@@ -1,0 +1,109 @@
+<head>
+    <!--
+    <script src="https://unpkg.com/@vimesh/style" defer></script>
+    <script src="https://unpkg.com/@vimesh/ui"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    -->
+
+    <script src="../node_modules/@vimesh/style/dist/vs.dev.js" defer></script>
+    <script src="../node_modules/@vimesh/ui/dist/vui.dev.js"></script>
+    <script src="../node_modules/alpinejs/dist/cdn.js" defer></script>
+
+    <script>
+        $vui.config.importMap = {
+            "*": '../components/${component}.html'
+        }
+    </script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+
+    <script>
+
+        people = [
+            { id: 1, name: 'Wade Cooper', disabled: true },
+            { id: 2, name: 'Arlene Mccoy' },
+            { id: 3, name: 'Devon Webb' },
+            { id: 4, name: 'Tom Cook' },
+            { id: 5, name: 'Tanya Fox', disabled: true },
+            { id: 6, name: 'Hellen Schmidt' },
+            { id: 7, name: 'Caroline Schultz' },
+            { id: 8, name: 'Mason Heaney' },
+            { id: 9, name: 'Claudie Smitham' },
+            { id: 10, name: 'Emil Schaefer' },
+        ]
+
+    </script>
+</head>
+
+<body x-cloak x-import="hui/listbox" class="p-2" x-data="{
+    people, 
+    active : null,
+    keyword : '',
+    get filteredPeople() {
+        return this.people.filter((p) => !this.keyword || p.name.toLowerCase().startsWith(this.keyword))
+    }}">
+
+    <div>
+        <label for="keyword" class="block text-sm font-medium leading-5 text-gray-700"> Keyword: </label>
+        <div class="relative mt-1 rounded-md shadow-sm">
+            <input x-model="keyword" class="form-input block w-full sm:text-sm sm:leading-5" />
+        </div>
+    </div>
+
+    <div class="flex h-full w-screen justify-center bg-gray-50 p-12">
+        <div class="mx-auto w-full max-w-xs">
+            <div class="space-y-1">
+                <hui-listbox x-model="active">
+                    <hui-listbox-label class="block text-sm font-medium leading-5 text-gray-700">Assigned to
+                    </hui-listbox-label>
+
+                    <div class="relative">
+                        <span class="inline-block w-full rounded-md shadow-sm">
+                            <hui-listbox-button
+                                class="focus:shadow-outline-blue relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out focus:border-blue-300 focus:outline-none sm:text-sm sm:leading-5">
+                                <span class="block truncate h-5" x-text="active && active.name || ' '"></span>
+                                <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                    <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="none"
+                                        stroke="currentColor">
+                                        <path d="M7 7l3-3 3 3m0 6l-3 3-3-3" strokeWidth="1.5" strokeLinecap="round"
+                                            strokeLinejoin="round" />
+                                    </svg>
+                                </span>
+                            </hui-listbox-button>
+                        </span>
+
+                        <div class="absolute mt-1 w-full rounded-md bg-white shadow-lg">
+                            <hui-listbox-options
+                                class="shadow-xs max-h-60 overflow-auto rounded-md py-1 text-base leading-6 focus:outline-none sm:text-sm sm:leading-5">
+                                <template x-for="person in filteredPeople" :key="person.name">
+                                    <hui-listbox-option :value="person" :class="['relative py-2 pl-3 cursor-default select-none pr-9 focus:outline-none',
+                                            active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                                            disabled ? 'bg-gray-50 text-gray-300' : ''
+                                        ]" :disabled="person.disabled">
+                                        <span :class="['block truncate', selected ? 'font-semibold' : 'font-normal']"
+                                            x-text="person.name">
+                                        </span>
+                                        <template x-if="selected">
+                                            <span
+                                                :class="['absolute inset-y-0 right-0 flex items-center pr-4', active ? 'text-white' : 'text-indigo-600'] ">
+                                                <svg class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd"
+                                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                        clipRule="evenodd" />
+                                                </svg>
+                                            </span>
+                                        </template>
+                                    </hui-listbox-option>
+                                </template>
+                            </hui-listbox-options>
+                        </div>
+                    </div>
+                </hui-listbox>
+            </div>
+        </div>
+    </div>
+
+</body>
