@@ -1,0 +1,28 @@
+<template x-component:hui="switch-group">
+    <slot></slot>
+</template>
+
+<template x-component:hui="switch" tabindex="0" x-modelable="checked" x-data="{
+    checked: false,
+    get disabled() {return $prop('disabled')}
+}" @click="$api.toggle()">
+    <slot></slot>
+    <template x-if="checked">
+        <input type="hidden" :name="$prop('name')" :value="$prop('value') || 'on'">
+    </template>
+    <script>
+        return {
+            toggle() {
+                this.checked = !this.checked
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui="switch-label">
+    <slot></slot>
+</template>
+
+<template x-component:hui="switch-description">
+    <slot></slot>
+</template>
