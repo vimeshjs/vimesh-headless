@@ -1,0 +1,69 @@
+<template x-component:hui="tab-group" x-modelable="value" x-data="{value : null}">
+    <slot></slot>
+    <script>
+        return {
+            isSelected(val) {
+                return val === this.value
+            },
+            select(val) {
+                this.value = val
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="tab-list">
+    <slot></slot>
+    <script>
+        return {
+            onMounted() {
+                let container = this.$closest('tab-group')
+                if (!container) throw Error('tab-list should be contained in tab-group')
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="tab" x-data="{
+    get selected(){return $api && $api.context.isSelected($api.value)}
+}" @click="$api.onSelect()">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('tab-group') },
+            get value() { return this.$prop('value') },
+            get disabled() { return this.$prop('disabled') },
+            onMounted() {
+                let container = this.$closest('tab-list')
+                if (!container) throw Error('tab should be contained in tab-list')
+            },
+            onSelect() {
+                if (this.disabled) return
+                this.context.select(this.value)
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="tab-panels">
+    <slot></slot>
+    <script>
+        return {
+            onMounted() {
+                let container = this.$closest('tab-group')
+                if (!container) throw Error('tab-panels should be contained in tab-group')
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="tab-panel" x-data="{
+    get selected(){return $api && $api.context.isSelected($prop('value'))}
+}" x-show="selected">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('tab-group') },
+            onMounted() {
+                let container = this.$closest('tab-panels')
+                if (!container) throw Error('tab-panel should be contained in tab-panels')
+            }
+        }
+    </script>
+</template>
