@@ -8,18 +8,14 @@
             _elActive: null,
             _elSelected: null,
             _isOpen: false,
-            getComponent(type) {
-                let comps = $vui.filterComponents(this.$el, type)
-                return comps.length > 0 ? comps[0] : null
-            },
             get compButton() {
-                return this.getComponent('listbox-button')
+                return this.$findOne('listbox-button')
             },
             get compLabel() {
-                return this.getComponent('listbox-label')
+                return this.$findOne('listbox-label')
             },
             get compOptions() {
-                return this.getComponent('listbox-options')
+                return this.$findOne('listbox-options')
             },
             open() {
                 this._isOpen = true
@@ -40,7 +36,7 @@
                 }
             },
             get allOptions() {
-                return $vui.filterComponents(this.$el, 'listbox-option')
+                return this.$find('listbox-option')
             },
             get enabledOptions() {
                 let options = []
@@ -98,7 +94,7 @@
     <script>
         return {
             focusButton() {
-                let context = this.$api.of('listbox')
+                let context = this.$api.$of('listbox')
                 $vui.focus(context.compButton)
             }
         }
@@ -109,7 +105,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.of('listbox') },
+            get context() { return this.$of('listbox') },
             onKeydown(e) {
                 let context = this.context
                 switch (e.key) {
@@ -142,14 +138,14 @@
 </template>
 
 <template x-component:hui="listbox-options" tabindex="0" x-data="{
-    get isOpen(){return $api.isOpen}
+    get isOpen(){return $api && $api.isOpen}
 }" x-trap="isOpen" x-show="isOpen" @click.outside="$api.context.close()" @keydown="$api.onKeydown($event)"
     @keydown.escape.stop.prevent="$api.context.close()" @keydown.enter.stop.prevent="$api.onSelectActive()"
     @keydown.space.stop.prevent="$api.onSelectActive()">
     <slot></slot>
     <script>
         return {
-            get context() { return this.of('listbox') },
+            get context() { return this.$of('listbox') },
             get isOpen() { return this.context.isOpen },
             onSelectActive() {
                 this.context.selectActive()
@@ -197,7 +193,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.of('listbox') },
+            get context() { return this.$of('listbox') },
             get active() {
                 let context = this.context
                 return context && context.isActive && context.isActive(this.$el)

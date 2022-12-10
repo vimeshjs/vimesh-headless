@@ -1,6 +1,6 @@
 {
   "name": "@vimesh/headless",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": "https://github.com/vimeshjs/vimesh-headless.git",
   "author": "Jacky ZHANG <xinjie.zhang@gmail.com>",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "@vimesh/style": "^1.0.0",
-    "@vimesh/ui": "^0.9.5",
+    "@vimesh/ui": "^0.9.7",
     "alpinejs": "^3.10.5",
     "http-server": "^14.1.1"
   }

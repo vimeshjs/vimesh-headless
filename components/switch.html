@@ -3,8 +3,7 @@
 </template>
 
 <template x-component:hui="switch" tabindex="0" x-modelable="checked" x-data="{
-    checked: false,
-    get disabled() {return $prop('disabled')}
+    checked: false
 }" @click="$api.toggle()">
     <slot></slot>
     <template x-if="checked">

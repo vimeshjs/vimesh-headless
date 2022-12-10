@@ -1,0 +1,31 @@
+<template x-component:hui="radio-group" x-modelable="value" x-data="{value : null}">
+    <slot></slot>
+    <script>
+        return {
+            isChecked(el) {
+                return $vui.$data(el).$prop('value') === this.value
+            },
+            check(val) {
+                this.value = val
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui="radio-group-option" x-data="{
+   get checked() {return $api.context.isChecked($el)},
+}" @click="$api.onCheck()">
+    <slot></slot>
+    <script>
+        return {
+            onMounted() {
+                let container = this.$closest('radio-group')
+                if (!container) throw Error('radio-group-option should be contained in radio-group')
+            },
+            get context() { return this.$of('radio-group') },
+            onCheck() {
+                this.context.check(this.$prop('value'))
+            }
+        }
+    </script>
+</template>
