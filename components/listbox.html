@@ -4,7 +4,7 @@
     get multiple() {return $prop('multiple')}
 }">
 
-    <input type="hidden" :name="$prop('name')" :value="$prop('value') || ''">
+    <input type="hidden" :name="$prop('name')" :value="$prop('value', '')">
     
     <slot></slot>
     <script>
@@ -79,7 +79,7 @@
             },
             selectActive() {
                 if (this._elActive) {
-                    this.select(this._elActive)
+                    this.select($vui.$api(this._elActive).value)
                 }
             }
         }
