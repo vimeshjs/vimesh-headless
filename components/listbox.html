@@ -1,33 +1,28 @@
 <template x-component:hui="listbox" x-modelable="value" x-data="{
     value: null,
-    get disabled() {return $prop('disabled')}
+    get disabled() {return $prop('disabled')},
+    get multiple() {return $prop('multiple')}
 }">
+
+    <input type="hidden" :name="$prop('name')" :value="$prop('value') || ''">
+    
     <slot></slot>
     <script>
+        const _ = $vui._
         return {
             _elActive: null,
-            _elSelected: null,
             _isOpen: false,
-            get compButton() {
-                return this.$findOne('listbox-button')
-            },
-            get compLabel() {
-                return this.$findOne('listbox-label')
-            },
-            get compOptions() {
-                return this.$findOne('listbox-options')
-            },
             open() {
                 this._isOpen = true
-                $vui.focus(this.compOptions)
+                $vui.focus(this.$findOne('listbox-options'))
             },
             close() { this._isOpen = false },
             get isOpen() { return this._isOpen },
             isActive(el) {
                 return this._elActive === el
             },
-            isSelected(el) {
-                return this._elSelected === el
+            isSelected(val) {
+                return this.multiple ? this.value && this.value.indexOf(val) !== -1 : this.value === val
             },
             activate(el) {
                 this._elActive = el
@@ -35,17 +30,16 @@
                     $vui.scrollIntoView(this._elActive)
                 }
             },
-            get allOptions() {
-                return this.$find('listbox-option')
-            },
             get enabledOptions() {
-                let options = []
-                this.allOptions.forEach(el => !$vui.$data(el).disabled && options.push(el))
-                return options
+                return _.filter(this.$find('listbox-option'), el => !$vui.$api(el).disabled)
+            },
+            get selectedElements() {
+                return _.filter(this.$find('listbox-option'), el => !$vui.$api(el).selected)
             },
             activateFirstOrSelected() {
-                if (this._elSelected) {
-                    this.activate(this._elSelected)
+                let els = this.selectedElements
+                if (els.length > 0) {
+                    this.activate(els[0])
                 } else {
                     this.activateFirst()
                 }
@@ -75,10 +69,13 @@
                 let count = elOptions.length
                 if (count > 0) this.activate(elOptions[count - 1])
             },
-            select(el) {
-                if (!el) return
-                this._elSelected = el
-                this.value = $vui.$data(el).value
+            select(val) {
+                if (!this.multiple)
+                    this.value = val
+                else if (_.isArray(this.value))
+                    this.value.indexOf(val) === -1 && this.value.push(val)
+                else
+                    this.value = [val]
             },
             selectActive() {
                 if (this._elActive) {
@@ -95,7 +92,7 @@
         return {
             focusButton() {
                 let context = this.$api.$of('listbox')
-                $vui.focus(context.compButton)
+                $vui.focus(context.$findOne('listbox-button'))
             }
         }
     </script>
@@ -200,10 +197,10 @@
             },
             get selected() {
                 let context = this.context
-                return context && context.isSelected && context.isSelected(this.$el)
+                return context && context.isSelected && context.isSelected(this.value)
             },
             activate() { this.context.activate(this.$el) },
-            select() { this.context.select(this.$el) },
+            select() { this.context.select(this.value) },
             close() { this.context.close() },
             onSelect() {
                 if (!this.disabled) {
