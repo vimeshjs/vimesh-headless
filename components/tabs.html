@@ -7,6 +7,25 @@
             },
             select(val) {
                 this.value = val
+            },
+            get manual() { return this.$prop('manual') },
+            get activeTabs() {
+                return this.$find((el) => {
+                    let api = $vui.$api(el)
+                    return api && (api.$meta.type === 'tab' && !api.disabled)
+                })
+            },
+            focusFirst() {
+                this.$focus.within(this.activeTabs).first()
+            },
+            focusLast() {
+                this.$focus.within(this.activeTabs).last()
+            },
+            focusPrev() {
+                this.$focus.within(this.activeTabs).withWrapAround().prev()
+            },
+            focusNext() {
+                this.$focus.within(this.activeTabs).withWrapAround().next()
             }
         }
     </script>
@@ -24,7 +43,12 @@
 </template>
 <template x-component:hui="tab" x-data="{
     get selected(){return $api && $api.context.isSelected($api.value)}
-}" @click="$api.onSelect()">
+}" @click="$api.onSelect(); $el.focus()" @focus="$api.onFocus()" @keydown.enter.prevent.stop="$api.onSelect()"
+    @keydown.space.prevent.stop="$api.onSelect()" @keydown.home.prevent.stop="$api.context.focusFirst()"
+    @keydown.page-up.prevent.stop="$api.context.focusFirst()" @keydown.end.prevent.stop="$api.context.focusLast()"
+    @keydown.page-down.prevent.stop="$api.context.focusLast()" @keydown.down.prevent.stop="$api.context.focusNext()"
+    @keydown.right.prevent.stop="$api.context.focusNext()" @keydown.up.prevent.stop="$api.context.focusPrev()"
+    @keydown.left.prevent.stop="$api.context.focusPrev()" :tabindex="selected && !$api.disabled ? 0 : -1">
     <slot></slot>
     <script>
         return {
@@ -38,6 +62,13 @@
             onSelect() {
                 if (this.disabled) return
                 this.context.select(this.value)
+            },
+            onFocus() {
+                if (this.disabled) return
+                if (!this.context.manual) {
+                    this.onSelect()
+                }
+                this.$el.focus()
             }
         }
     </script>
@@ -55,7 +86,7 @@
 </template>
 <template x-component:hui="tab-panel" x-data="{
     get selected(){return $api && $api.context.isSelected($prop('value'))}
-}" x-show="selected">
+}" x-show="selected" :tabindex="selected ? 0 : -1">
     <slot></slot>
     <script>
         return {
