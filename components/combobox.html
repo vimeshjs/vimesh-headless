@@ -1,0 +1,219 @@
+<template x-component:hui="combobox" x-modelable="value" x-data="{
+    value: null,
+    query: '',
+    get disabled() {return $prop('disabled')},
+    get multiple() {return $prop('multiple')}
+}">
+
+    <input type="hidden" :name="$prop('name')" :value="$prop('value', '')">
+
+    <slot></slot>
+    <script>
+        const _ = $vui._
+        return {
+            _elActive: null,
+            _isOpen: false,
+            open() {
+                this._isOpen = true
+                $vui.focus(this.$findOne('combobox-input'))
+            },
+            close() { this._isOpen = false },
+            get isOpen() { return this._isOpen },
+            isActive(el) {
+                return this._elActive === el
+            },
+            isSelected(val) {
+                return this.multiple ? this.value && this.value.indexOf(val) !== -1 : this.value === val
+            },
+            activate(el) {
+                this._elActive = el
+                if (this._elActive) {
+                    $vui.scrollIntoView(this._elActive)
+                }
+            },
+            get enabledOptions() {
+                return _.filter(this.$find('combobox-option'), el => !$vui.$api(el).disabled)
+            },
+            get selectedElements() {
+                return _.filter(this.$find('combobox-option'), el => $vui.$api(el).selected)
+            },
+            activateFirstOrSelected() {
+                let els = this.selectedElements
+                if (els.length > 0) {
+                    this.activate(els[0])
+                } else {
+                    this.activateFirst()
+                }
+            },
+            activateWithStep(step) {
+                let elOptions = this.enabledOptions
+                let count = elOptions.length
+                if (!this._elActive) this._elActive = elOptions[0]
+                if (count > 0) {
+                    let activeIndex = elOptions.indexOf(this._elActive)
+                    if (activeIndex === -1) activeIndex = 0
+                    let index = activeIndex + step
+                    if (index < 0)
+                        index = 0
+                    else if (index >= count)
+                        index = count - 1
+                    this.activate(elOptions[index])
+                }
+            },
+            activateFirst() {
+                let elOptions = this.enabledOptions
+                let count = elOptions.length
+                if (count > 0) this.activate(elOptions[0])
+            },
+            activateLast() {
+                let elOptions = this.enabledOptions
+                let count = elOptions.length
+                if (count > 0) this.activate(elOptions[count - 1])
+            },
+            select(val) {
+                if (!this.multiple)
+                    this.value = val
+                else if (_.isArray(this.value))
+                    this.value.indexOf(val) === -1 && this.value.push(val)
+                else
+                    this.value = [val]
+            },
+            selectActive() {
+                if (this._elActive) {
+                    this.select($vui.$api(this._elActive).value)
+                }
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui="combobox-options" x-show="$api && $api.context.isOpen" @click.outside="$api.context.close()">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('combobox') }
+        }
+    </script>
+</template>
+<template x-component:hui="combobox-option" x-data="{
+    get disabled() {return $prop('disabled')},
+    get active() {return $api.active},
+    get value() {return $prop('value')},
+    get selected() {return $api.selected},
+}" @mousemove="$api.activate()" @click="$api.onSelect()">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('combobox') },
+            get active() {
+                let context = this.context
+                return context && context.isActive && context.isActive(this.$el)
+            },
+            get selected() {
+                let context = this.context
+                return context && context.isSelected && context.isSelected(this.value)
+            },
+            activate() { this.context.activate(this.$el) },
+            select() { this.context.select(this.value) },
+            close() { this.context.close() },
+            onSelect() {
+                if (!this.disabled) {
+                    this.select()
+                    this.close()
+                }
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui.unwrap="combobox-button">
+    <button @click="$api.toggle()">
+        <slot></slot>
+    </button>
+    <script>
+        return {
+            get context() { return this.$of('combobox') },            
+            toggle() {
+                let context = this.context
+                if (context.isOpen)
+                    context.close()
+                else {
+                    context.open()
+                    context.activateFirstOrSelected()
+                }
+            }
+        }
+    </script>
+</template>
+<template x-component:hui.unwrap="combobox-input">
+    <input tabindex="0" @keydown="$api.onKeydown($event)" @click="$api.ensureOpen()" @input.stop="$api.onInput()" />
+    <script>
+        return {
+            get context() { return this.$of('combobox') },
+            onMounted() {
+                $vui.effect(() => this.syncInputValue())
+            },
+            syncInputValue() {
+                const displayValueFunc = this.$prop('display-value')
+                let val = this.context.value
+                if (displayValueFunc && val)
+                    val = displayValueFunc(val)
+                this.$el.value = val || ''
+                $vui.nextTick(() => this.$dispatch('change'))
+            },
+            ensureOpen() {
+                if (!this.context.isOpen) {
+                    this.context.open()
+                    this.context.activateFirstOrSelected()
+                }
+            },
+            onInput() {
+                this.ensureOpen()
+                this.$dispatch('change')
+            },
+            onKeydown(e) {
+                let context = this.context
+                switch (e.key) {
+                    case 'Escape':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        this.syncInputValue()
+                        context.close()
+                        this.$el.blur()
+                        break;
+                    case 'Enter':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        context.selectActive()
+                        this.syncInputValue()
+                        context.close()
+                        this.$el.blur()
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        this.ensureOpen()
+                        context.activateWithStep(1)
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        this.ensureOpen()
+                        context.activateWithStep(-1)
+                        break;
+                }
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="combobox-label" @click="$api.focusInput()">
+    <slot></slot>
+    <script>
+        return {
+            focusInput() {
+                let context = this.$api.$of('combobox')
+                context.open()
+            }
+        }
+    </script>
+</template>
