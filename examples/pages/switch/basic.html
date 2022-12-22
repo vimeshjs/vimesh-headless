@@ -1,0 +1,25 @@
+<template x-component:page="switch-basic" x-import="hui/switch" >
+    <div class="flex h-full items-start justify-center bg-gray-50 p-12" x-data="{
+        state: true
+    }">
+        <form action="https://jsonplaceholder.typicode.com/todos/1">
+            <hui-switch-group class="flex items-center space-x-4">
+                <hui-switch-label>Enable notifications</hui-switch-label>
+
+                <hui-switch name="email" x-model="state" :class="['relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:shadow-outline',
+          checked ? 'bg-indigo-600' : 'bg-gray-200']">
+                    <span
+                        class="inline-block h-5 w-5 transform rounded-full bg-white transition duration-200 ease-in-out"
+                        :class="[checked ? 'translate-x-5' : 'translate-x-0']"></span>
+                </hui-switch>
+            </hui-switch-group>
+            <input type="submit" value="Submit"
+                class="inline-block rounded-lg mt-2 bg-green-600 px-4 py-1.5 text-white shadow ring-1 ring-green-600 hover:bg-green-700 hover:ring-green-700">
+        </form>
+    </div>
+    <script>
+        return {
+           
+        }
+    </script>
+</template>

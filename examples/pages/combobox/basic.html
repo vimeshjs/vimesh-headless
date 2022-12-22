@@ -1,0 +1,92 @@
+<template x-component:page="combobox-basic" x-import="hui/combobox" x-data="{
+            query: '',
+            activePerson: null,
+            everybody: [
+                { id: 1, name: 'Wade Cooper' },
+                { id: 2, name: 'Arlene Mccoy' },
+                { id: 3, name: 'Devon Webb' },
+                { id: 4, name: 'Tom Cook' },
+                { id: 5, name: 'Tanya Fox' },
+                { id: 6, name: 'Hellen Schmidt' },
+                { id: 7, name: 'Caroline Schultz' },
+                { id: 8, name: 'Mason Heaney' },
+                { id: 9, name: 'Claudie Smitham' },
+                { id: 10, name: 'Emil Schaefer' }
+            ],
+            get filteredPeople() {
+                return this.query === ''
+                    ? this.everybody
+                    : this.everybody.filter((person) => {
+                        return person.name.toLowerCase().includes(this.query.toLowerCase())
+                    })
+            }
+        }">
+    <div class="flex flex-col h-full overflow-hidden bg-gray-700 font-sans text-gray-900 antialiased">
+        <main class="flex-1 overflow-auto bg-gray-50">
+            <div class="flex justify-center bg-gray-50 p-12">
+                <div class="mx-auto w-full max-w-xs">
+                    <div class="py-8 font-mono text-xs">
+                        Selected person: <span x-text="activePerson && activePerson.name || 'Nobody yet'"></span>
+                    </div>
+                    <div class="space-y-1">
+                        <hui-combobox x-model="activePerson">
+                            <hui-combobox-label class="block text-sm font-medium leading-5 text-gray-700">
+                                Assigned to
+                            </hui-combobox-label>
+
+                            <div class="relative">
+                                <span class="relative inline-flex flex-row overflow-hidden rounded-md border shadow-sm">
+                                    <hui-combobox-input @change="query=$event.target.value"
+                                        :display-value="() => (person) => person && person.name || ''"
+                                        class="border-none px-3 py-1 outline-none"></hui-combobox-input>
+                                    <hui-combobox-button
+                                        class="cursor-default border-l bg-gray-100 px-1 text-indigo-600 focus:outline-none">
+                                        <span class="pointer-events-none flex items-center px-2">
+                                            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="none"
+                                                stroke="currentColor">
+                                                <path d="M7 7l3-3 3 3m0 6l-3 3-3-3" strokeWidth="1.5"
+                                                    strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </hui-combobox-button>
+                                </span>
+
+                                <div class="absolute mt-1 w-full rounded-md bg-white shadow-lg">
+                                    <hui-combobox-options
+                                        class="shadow-xs max-h-60 overflow-auto rounded-md py-1 text-base leading-6 focus:outline-none sm:text-sm sm:leading-5">
+                                        <template x-for="person in filteredPeople" :key="person.id">
+                                            <hui-combobox-option :value="person">
+                                                <div :class="[
+                      'relative cursor-default select-none py-2 pl-3 pr-9 focus:outline-none',
+                      active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                    ]">
+                                                    <span
+                                                        :class="['block truncate', selected ? 'font-semibold' : 'font-normal']"
+                                                        x-text="person.name">
+                                                    </span>
+                                                    <template x-if="selected">
+                                                        <span :class="[
+                        'absolute inset-y-0 right-0 flex items-center pr-4',
+                        active ? 'text-white' : 'text-indigo-600',
+                      ]">
+                                                            <svg class="h-5 w-5" viewBox="0 0 20 20"
+                                                                fill="currentColor">
+                                                                <path fillRule="evenodd"
+                                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                                    clipRule="evenodd" />
+                                                            </svg>
+                                                        </span>
+                                                    </template>
+                                                </div>
+                                            </hui-combobox-option>
+                                        </template>
+                                    </hui-combobox-options>
+                                </div>
+                            </div>
+                        </hui-combobox>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</template>

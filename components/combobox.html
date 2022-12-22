@@ -13,11 +13,23 @@
         return {
             _elActive: null,
             _isOpen: false,
+
+            ensureActive() {
+                let elOptions = this.enabledOptions
+                if (elOptions.length > 0 && (!this._elActive || -1 === elOptions.indexOf(this._elActive)))
+                    this._elActive = elOptions[0]
+            },
             open() {
                 this._isOpen = true
-                $vui.focus(this.$findOne('combobox-input'))
+                let elInput = this.$findOne('combobox-input')
+                $vui.$api(elInput).onReset()
+                $vui.focus(elInput)
             },
-            close() { this._isOpen = false },
+            close() {
+                this._isOpen = false
+                let elInput = this.$findOne('combobox-input')
+                $vui.$api(elInput).syncInputValue()
+            },
             get isOpen() { return this._isOpen },
             isActive(el) {
                 return this._elActive === el
@@ -48,16 +60,18 @@
             activateWithStep(step) {
                 let elOptions = this.enabledOptions
                 let count = elOptions.length
-                if (!this._elActive) this._elActive = elOptions[0]
                 if (count > 0) {
                     let activeIndex = elOptions.indexOf(this._elActive)
-                    if (activeIndex === -1) activeIndex = 0
-                    let index = activeIndex + step
-                    if (index < 0)
-                        index = 0
-                    else if (index >= count)
-                        index = count - 1
-                    this.activate(elOptions[index])
+                    if (activeIndex === -1) {
+                        this._elActive = elOptions[0]
+                    } else {
+                        let index = activeIndex + step
+                        if (index < 0)
+                            index = 0
+                        else if (index >= count)
+                            index = count - 1
+                        this.activate(elOptions[index])
+                    }
                 }
             },
             activateFirst() {
@@ -132,7 +146,7 @@
     </button>
     <script>
         return {
-            get context() { return this.$of('combobox') },            
+            get context() { return this.$of('combobox') },
             toggle() {
                 let context = this.context
                 if (context.isOpen)
@@ -146,19 +160,23 @@
     </script>
 </template>
 <template x-component:hui.unwrap="combobox-input">
-    <input tabindex="0" @keydown="$api.onKeydown($event)" @click="$api.ensureOpen()" @input.stop="$api.onInput()" />
+    <input tabindex="0" @keydown="$api.onKeydown($event)" @click="$api.ensureOpen()" @input.stop="$api.onInput()"
+        :placeholder="$api && $api.displayValue" />
     <script>
         return {
             get context() { return this.$of('combobox') },
-            onMounted() {
-                $vui.effect(() => this.syncInputValue())
-            },
-            syncInputValue() {
+            get displayValue() {
                 const displayValueFunc = this.$prop('display-value')
                 let val = this.context.value
                 if (displayValueFunc && val)
                     val = displayValueFunc(val)
-                this.$el.value = val || ''
+                return val || ''
+            },
+            onMounted() {
+                $vui.effect(() => this.syncInputValue())
+            },
+            syncInputValue() {
+                this.$el.value = this.displayValue
                 $vui.nextTick(() => this.$dispatch('change'))
             },
             ensureOpen() {
@@ -167,9 +185,16 @@
                     this.context.activateFirstOrSelected()
                 }
             },
+            onReset() {
+                this.$el.value = ''
+                this.$dispatch('change')
+            },
             onInput() {
                 this.ensureOpen()
                 this.$dispatch('change')
+                $vui.nextTick(() => {
+                    this.context.ensureActive()
+                })
             },
             onKeydown(e) {
                 let context = this.context
@@ -177,7 +202,6 @@
                     case 'Escape':
                         e.preventDefault()
                         e.stopPropagation()
-                        this.syncInputValue()
                         context.close()
                         this.$el.blur()
                         break;
@@ -185,7 +209,6 @@
                         e.preventDefault()
                         e.stopPropagation()
                         context.selectActive()
-                        this.syncInputValue()
                         context.close()
                         this.$el.blur()
                         break;

@@ -1,0 +1,86 @@
+<head>
+    <!--
+    <script src="https://unpkg.com/@vimesh/style" defer></script>
+    <script src="https://unpkg.com/@vimesh/ui"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/universal-router/universal-router.min.js"></script>
+    -->
+
+    <script src="/node_modules/@vimesh/style/dist/vs.dev.js"></script>
+    <script src="/node_modules/@vimesh/ui/dist/vui.dev.js"></script>
+    <script src="/node_modules/alpinejs/dist/cdn.js" defer></script>
+    <script src="/node_modules/universal-router/universal-router.min.js"></script>
+
+    <script>
+        $vs.addMacroCss({
+            "*": 'border-gray-200'
+        })
+        $vui.config.importMap = {
+            "*": '../components/${component}.html',
+            "app": './components/${path}${component}.html',
+            "page": './pages/${path}${component}.html'
+        }
+        let root = {
+            $route: {},
+            routes: [
+                { name: 'Home', path: '/index', component: 'page-home' },
+                { name: 'Switch Basic', path: '/switch/basic', component: 'page-switch-basic' },
+                { name: 'Tabs Basic', path: '/tabs/basic', component: 'page-tabs-basic' },
+                { name: 'Combobox Basic', path: '/combobox/basic', component: 'page-combobox-basic' },
+                { name: 'Listbox Basic', path: '/listbox/basic', component: 'page-listbox-basic' },
+                { name: 'Listbox Multi', path: '/listbox/multi', component: 'page-listbox-multi' },
+                { name: 'Radio Group Basic', path: '/radio-group/basic', component: 'page-radio-group-basic@page:radio-group/basic' },
+                { name: 'Something Wrong!', path: '(.*)', component: 'page-home', hidden: true }
+            ]
+        }
+    </script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body x-cloak x-import="app:header,footer,side-menu" class="h-full w-full font-sans text-gray-900 antialiased flex flex-col"
+    x-data="root">
+    <app-header class="flex-none h-16 px-1 py-3 bg-gray-700 flex"></app-header>
+    <main class="flex-1 flex">
+        <app-side-menu class=" w-64 flex-none"></app-side-menu>
+        <app-router-view class="flex-1"></app-router-view>
+    </main>
+    <app-footer class="flex-none"></app-footer>
+    <template x-component:app="router-view">
+        <script>
+            return {
+                router: null,
+                onUrlChange() {
+                    let match = window.location.href.match(/#(.*)$/)
+                    let fragment = match ? match[1] : ''
+                    this.router.resolve({ pathname: fragment }).then(component => {
+                        if (component) {
+                            let pos = component.indexOf('@')
+                            let from = pos !== -1 ? component.substring(pos + 1) : component.replace('-', ':').replace('-', '/')
+                            if (pos !== -1) component = component.substring(0, pos)
+                            $vui.import(from)
+                            $vui.setHtml(this.$el, `<${component}></${component}>`)
+                        }
+                    })
+                },
+                onMounted() {
+                    this.router = new UniversalRouter(this.routes, {
+                        context: { self: this },
+                        resolveRoute(context, params) {
+                            context.self.$route = { params, path: context.pathname }
+                            if (typeof context.route.action === 'function') {
+                                return context.route.action(context, params)
+                            }
+                            return context.route.component
+                        }
+                    })
+                    this.onUrlChange()
+                    window.addEventListener('popstate', e => this.onUrlChange())
+                }
+            }
+        </script>
+    </template>
+</body>

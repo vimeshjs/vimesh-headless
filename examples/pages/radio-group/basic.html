@@ -1,27 +1,4 @@
-<head>
-    <!--
-    <script src="https://unpkg.com/@vimesh/style" defer></script>
-    <script src="https://unpkg.com/@vimesh/ui"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    -->
-
-    <script src="/node_modules/@vimesh/style/dist/vs.dev.js" defer></script>
-    <script src="/node_modules/@vimesh/ui/dist/vui.dev.js"></script>
-    <script src="/node_modules/alpinejs/dist/cdn.js" defer></script>
-
-    <script>
-        $vui.config.importMap = {
-            "*": '/components/${component}.html'
-        }
-    </script>
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
-
-    <script>
-        let data = {
+<template x-component:page="radio-group-basic" x-import="hui/radio-group" x-data="{
             active: 'access-2',
             access: [
                 {
@@ -40,13 +17,9 @@
                     description: 'You are the only one able to access this project',
                 },
             ]
-        }
-    </script>
-</head>
+        }">
 
-<body x-cloak x-import="hui/radio-group" class="p-2" x-data="data">
-
-    <div class="max-w-xl p-12">
+    <div class="max-w-xl p-12  h-full">
         <a href="/">Link before</a>
         <hui-radio-group x-model="active">
             <fieldset class="space-y-4">
@@ -95,4 +68,4 @@
         </hui-radio-group>
         <a href="/">Link after</a>
     </div>
-</body>
+</template>
