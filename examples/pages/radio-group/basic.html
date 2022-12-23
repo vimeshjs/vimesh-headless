@@ -1,23 +1,29 @@
-<template x-component:page="radio-group-basic" x-import="hui/radio-group" x-data="{
-            active: 'access-2',
-            access: [
-                {
-                    id: 'access-1',
-                    name: 'Public access',
-                    description: 'This project would be available to anyone who has the link',
-                },
-                {
-                    id: 'access-2',
-                    name: 'Private to Project Members',
-                    description: 'Only members of this project would be able to access',
-                },
-                {
-                    id: 'access-3',
-                    name: 'Private to you',
-                    description: 'You are the only one able to access this project',
-                },
-            ]
-        }">
+<script>
+    function setupRadioGroupBasicData() {
+        const access = [
+            {
+                id: 'access-1',
+                name: 'Public access',
+                description: 'This project would be available to anyone who has the link',
+            },
+            {
+                id: 'access-2',
+                name: 'Private to Project Members',
+                description: 'Only members of this project would be able to access',
+            },
+            {
+                id: 'access-3',
+                name: 'Private to you',
+                description: 'You are the only one able to access this project',
+            },
+        ]
+        return {
+            active: access[1].id,
+            access
+        }
+    }
+</script>
+<template x-component:page="radio-group-basic" x-import="hui/radio-group" x-data="setupRadioGroupBasicData()">
 
     <div class="max-w-xl p-12  h-full">
         <a href="/">Link before</a>

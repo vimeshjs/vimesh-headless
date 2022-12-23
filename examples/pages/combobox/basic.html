@@ -1,18 +1,21 @@
-<template x-component:page="combobox-basic" x-import="hui/combobox" x-data="{
+<script>
+    function setupComboboxBasicData() {
+        const everybody = [
+            { id: 1, name: 'Wade Cooper' },
+            { id: 2, name: 'Arlene Mccoy' },
+            { id: 3, name: 'Devon Webb' },
+            { id: 4, name: 'Tom Cook' },
+            { id: 5, name: 'Tanya Fox' },
+            { id: 6, name: 'Hellen Schmidt' },
+            { id: 7, name: 'Caroline Schultz' },
+            { id: 8, name: 'Mason Heaney' },
+            { id: 9, name: 'Claudie Smitham' },
+            { id: 10, name: 'Emil Schaefer' }
+        ]
+        return {
             query: '',
-            activePerson: null,
-            everybody: [
-                { id: 1, name: 'Wade Cooper' },
-                { id: 2, name: 'Arlene Mccoy' },
-                { id: 3, name: 'Devon Webb' },
-                { id: 4, name: 'Tom Cook' },
-                { id: 5, name: 'Tanya Fox' },
-                { id: 6, name: 'Hellen Schmidt' },
-                { id: 7, name: 'Caroline Schultz' },
-                { id: 8, name: 'Mason Heaney' },
-                { id: 9, name: 'Claudie Smitham' },
-                { id: 10, name: 'Emil Schaefer' }
-            ],
+            activePerson: everybody[1],
+            everybody,
             get filteredPeople() {
                 return this.query === ''
                     ? this.everybody
@@ -20,7 +23,10 @@
                         return person.name.toLowerCase().includes(this.query.toLowerCase())
                     })
             }
-        }">
+        }
+    }
+</script>
+<template x-component:page="combobox-basic" x-import="hui/combobox" x-data="setupComboboxBasicData()">
     <div class="flex flex-col h-full overflow-hidden bg-gray-700 font-sans text-gray-900 antialiased">
         <main class="flex-1 overflow-auto bg-gray-50">
             <div class="flex justify-center bg-gray-50 p-12">

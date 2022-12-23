@@ -1,21 +1,24 @@
-
-
-<template x-component:page="listbox-basic" x-import="hui/listbox" class="p-2" x-data="{
-    people : [
-    { id: 1, name: 'Wade Cooper' },
-    { id: 2, name: 'Arlene Mccoy' },
-    { id: 3, name: 'Devon Webb' },
-    { id: 4, name: 'Tom Cook' },
-    { id: 5, name: 'Tanya Fox', disabled: true },
-    { id: 6, name: 'Hellen Schmidt' },
-    { id: 7, name: 'Caroline Schultz' },
-    { id: 8, name: 'Mason Heaney', disabled: true },
-    { id: 9, name: 'Claudie Smitham' },
-    { id: 10, name: 'Emil Schaefer' },
-],
-    active : null
-}">
-
+<script>
+    function setupListboxBasicData() {
+        const people = [
+            { id: 1, name: 'Wade Cooper' },
+            { id: 2, name: 'Arlene Mccoy' },
+            { id: 3, name: 'Devon Webb' },
+            { id: 4, name: 'Tom Cook' },
+            { id: 5, name: 'Tanya Fox', disabled: true },
+            { id: 6, name: 'Hellen Schmidt' },
+            { id: 7, name: 'Caroline Schultz' },
+            { id: 8, name: 'Mason Heaney', disabled: true },
+            { id: 9, name: 'Claudie Smitham' },
+            { id: 10, name: 'Emil Schaefer' },
+        ]
+        return {
+            people,
+            active: people[1]
+        }
+    }
+</script>
+<template x-component:page="listbox-basic" x-import="hui/listbox" class="p-2" x-data="setupListboxBasicData()">
     <div class="flex h-full justify-center bg-gray-50 p-12">
         <div class="mx-auto w-full max-w-xs">
             <div class="space-y-1">
