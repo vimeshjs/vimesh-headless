@@ -1,8 +1,5 @@
 <template x-component:app="side-menu">
     <ul>
-        <app-menu-item :item="routes[0]"></app-menu-item>
-        <app-menu-item :item="routes[1]"></app-menu-item>
-
         <template x-for="item in routes" :key="item.path">
             <template x-if="!item.hidden">
                 <li><a :href="'#' + item.path" x-text="item.name"></a></li>

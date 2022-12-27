@@ -1,0 +1,21 @@
+<link href="./assets/prism.css" rel="stylesheet" />
+<script src="./assets/prism.js" data-manual></script>
+
+<template x-component:app="code-viewer" x-data="{
+    get language(){return this.$prop('language', 'html')},
+    get code(){return this.$prop('code', '')},
+    highlighted: ''
+}">
+    <pre><code :class="`language-${language}`" x-html="highlighted"></code></pre>
+    <script>
+        return {
+            onCodeChanged() {
+                this.highlighted = Prism.highlight(this.code, Prism.languages[this.language], this.language)
+            },
+            onMounted() {
+                this.$watch('code', () => this.onCodeChanged())
+                this.onCodeChanged()
+            }
+        }
+    </script>
+</template>

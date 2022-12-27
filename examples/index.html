@@ -33,38 +33,40 @@
     </style>
 </head>
 
-<body x-cloak x-import="app:header,footer,side-menu"
+<body x-cloak x-import="app:header,footer,side-menu,code-viewer"
     class="h-full w-full font-sans text-gray-900 antialiased flex flex-col" x-data="root">
     <app-header class="flex-none h-16 px-1 py-3 bg-gray-700 flex"></app-header>
     <div class="flex-1 flex">
         <app-side-menu class="w-64 flex-none"></app-side-menu>
-        <div class="flex flex-1 flex-col">
+        <div class="flex-1 h-full flex flex-col overflow-hidden">
             <app-router-view class="flex-1"></app-router-view>
-            <div class="flex-1">
-                this is code area
-            </div>
+            <app-code-viewer class="flex-none h-64 overflow-y-auto bg-gray-700 rounded-md" language="html" :code="$route.code"></app-code-viewer>
         </div>
     </div>
-    <app-footer class="flex-none"></app-footer>
     <template x-component:app="router-view" x-shtml="$api && $api.pageContent || ''"
         x-import:dynamic="$api && $api.pageToImport">
         <script>
             return {
                 router: null,
-                currentPage: null,
-                get pageContent() {
-                    if (!this.currentPage) return ''
-                    let component = `page-${this.currentPage.replace('/', '-')}`
-                    return `<${component}></${component}>`
-                },
-                get pageToImport() {
-                    if (!this.currentPage) return ''
-                    return `page:${this.currentPage}`
-                },
+                pageContent: '',
+                pageToImport: null,
                 onUrlChange() {
                     let match = window.location.href.match(/#(.*)$/)
                     let fragment = match ? match[1] : ''
-                    this.router.resolve({ pathname: fragment }).then(page => this.currentPage = page)
+                    this.router.resolve({ pathname: fragment }).then(page => {
+                        if (page) {
+                            let component = `page-${page.replace('/', '-')}`
+                            this.pageContent = `<${component}></${component}>`
+                            this.pageToImport = `page:${page}`
+                            $vui.import(this.pageToImport).then(() => {
+                                $vui._.each($vui.imports, meta => {
+                                    if (meta.fullname === this.pageToImport ){
+                                        this.$route.code = meta.html
+                                    }
+                                })
+                            })
+                        }
+                    })
                 },
                 onMounted() {
                     this.router = new UniversalRouter(this.routes, {

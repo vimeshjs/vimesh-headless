@@ -1,7 +1,923 @@
-
-<template x-component:page="home" x-data="{names : ['a', 'b','c' ]}">
-    Welcome to Vimesh Headless UI
-    <template x-for="n in names">
-        <p x-text="n"></p>
-    </template>
+<template x-component:page="home">
+    <div class="border-t border-gray-700" style="background:linear-gradient(#374151 calc(100% - 6rem), transparent)">
+        <div
+            class="grid w-full grid-cols-[12px,1fr,12px] gap-px sm:grid-cols-[19px,1fr,14px,1fr,19px] lg:grid-cols-[19px,1fr,14px,1fr,14px,1fr,19px] xl:grid-cols-[minmax(19px,1fr),minmax(286px,322px),30px,minmax(286px,322px),30px,minmax(286px,322px),30px,minmax(286px,322px),minmax(19px,1fr)]">
+            <div class="h-3 bg-gray-900"></div>
+            <div class="h-3 bg-gray-900"></div>
+            <div class="h-3 bg-gray-900"></div>
+            <div class="hidden h-3 bg-gray-900 sm:block"></div>
+            <div class="hidden h-3 bg-gray-900 sm:block"></div>
+            <div class="hidden h-3 bg-gray-900 lg:block"></div>
+            <div class="hidden h-3 bg-gray-900 lg:block"></div>
+            <div class="hidden h-3 bg-gray-900 xl:block"></div>
+            <div class="hidden h-3 bg-gray-900 xl:block"></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-2
+  sm:col-start-2 sm:row-start-2
+  lg:col-start-2 lg:row-start-2
+  xl:col-start-2 xl:row-start-2
+" aria-hidden="true"><a tabindex="-1" href="#/menu/basic">
+                    <svg viewBox="0 0 343 172" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="343" height="171.5" rx="13.108" fill="url(#menu-card-___paint0_linear)"></rect>
+                        <g filter="url(#menu-card-___filter0_dd)">
+                            <rect x="98.312" y="60.08" width="146.376" height="81.927" rx="6.554" fill="#fff"></rect>
+                        </g>
+                        <g filter="url(#menu-card-___filter1_dd)">
+                            <rect x="174.777" y="29.494" width="69.911" height="26.217" rx="6.554" fill="#5B21B6">
+                            </rect>
+                        </g>
+                        <path fill="#F3F4F6"
+                            d="M98.312 79.743h146.376v1.092H98.312zM98.312 100.498h146.376v1.092H98.312zM98.312 121.252h146.376v1.092H98.312z">
+                        </path>
+                        <defs>
+                            <filter id="menu-card-___filter0_dd" x="91.758" y="56.803" width="159.484" height="95.035"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2.185"></feOffset>
+                                <feGaussianBlur stdDeviation="2.185"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3.277"></feOffset>
+                                <feGaussianBlur stdDeviation="3.277"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="menu-card-___filter1_dd" x="168.223" y="26.217" width="83.019" height="39.325"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2.185"></feOffset>
+                                <feGaussianBlur stdDeviation="2.185"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3.277"></feOffset>
+                                <feGaussianBlur stdDeviation="3.277"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <linearGradient id="menu-card-___paint0_linear" x1="0" y1="0" x2="343.754" y2="1.525"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#A855F7"></stop>
+                                <stop offset="1" stop-color="#6366F1"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-3
+  sm:col-start-2 sm:row-start-3
+  lg:col-start-2 lg:row-start-3
+  xl:col-start-2 xl:row-start-3
+"><a class="font-medium text-white" href="#/menu/basic">Menu (Dropdown)</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-4
+  sm:col-start-4 sm:row-start-2
+  lg:col-start-4 lg:row-start-2
+  xl:col-start-4 xl:row-start-2
+" aria-hidden="true"><a tabindex="-1" href="#/listbox/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#listbox-card-___paint0_linear)"></rect>
+                        <g filter="url(#listbox-card-___filter0_dd)">
+                            <rect x="90" y="55" width="134" height="74" rx="6" fill="#fff"></rect>
+                        </g>
+                        <g filter="url(#listbox-card-___filter1_dd)">
+                            <rect x="90" y="27" width="134" height="24" rx="6" fill="#fff"></rect>
+                        </g>
+                        <path d="M210 38l2 2 2-2" stroke="#D1D5DB" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path fill="#FEF3C7" d="M90 74h134v17H90z"></path>
+                        <path d="M116 83h64" stroke="#D97706" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M116 99h41M116 67h49" stroke="#D1D5DB" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M101 39h49" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M116 115h57" stroke="#D1D5DB" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M99 83l2 2 4-4" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <defs>
+                            <filter id="listbox-card-___filter0_dd" x="84" y="52" width="146" height="86"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="listbox-card-___filter1_dd" x="84" y="24" width="146" height="36"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <linearGradient id="listbox-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FACC15"></stop>
+                                <stop offset="1" stop-color="#F97316"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-5
+  sm:col-start-4 sm:row-start-3
+  lg:col-start-4 lg:row-start-3
+  xl:col-start-4 xl:row-start-3
+"><a class="font-medium text-white" href="#/listbox/basic">Listbox (Select)</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-6
+  sm:col-start-2 sm:row-start-4
+  lg:col-start-6 lg:row-start-2
+  xl:col-start-6 xl:row-start-2
+" aria-hidden="true"><a tabindex="-1" href="#/combobox/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#combobox-card-___paint0_linear_904_27)">
+                        </rect>
+                        <rect width="314" height="157" rx="12" fill="url(#combobox-card-___paint1_linear_904_27)">
+                        </rect>
+                        <g filter="url(#combobox-card-___filter0_dd_904_27)">
+                            <path d="M90 71a6 6 0 016-6h122a6 6 0 016 6v44a6 6 0 01-6 6H96a6 6 0 01-6-6V71z"
+                                fill="#fff"></path>
+                        </g>
+                        <g filter="url(#combobox-card-___filter1_dd_904_27)">
+                            <rect x="90" y="37" width="134" height="24" rx="6" fill="#fff"></rect>
+                        </g>
+                        <path
+                            d="M98.799 53v-7.273h4.56v.945h-3.463v2.216h3.225v.94h-3.225v2.227h3.505V53h-4.602zm5.94 0v-5.455h1.026v.867h.057c.1-.294.275-.524.526-.693.253-.17.54-.255.859-.255a4.498 4.498 0 01.451.025v1.015a1.853 1.853 0 00-.227-.039 2.169 2.169 0 00-.327-.025c-.251 0-.474.054-.671.16a1.192 1.192 0 00-.632 1.069V53h-1.062zm3.838 0v-5.455h1.062V53h-1.062zm.536-6.296a.677.677 0 01-.476-.185.6.6 0 01-.195-.447c0-.175.065-.325.195-.448a.67.67 0 01.476-.188c.185 0 .342.063.473.188a.59.59 0 01.198.448.597.597 0 01-.198.447.665.665 0 01-.473.185z"
+                            fill="#0F172A"></path>
+                        <path d="M210 51l2 2 2-2" stroke="#D1D5DB" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M210 51l2 2 2-2M210 47l2-2 2 2" stroke="#9CA3AF" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path fill="#0D9488" d="M90 84h134v17H90z"></path>
+                        <path d="M116 93h64" stroke="#fff" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M116 109h41M116 77h49" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M99 93l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M114 44v10" stroke="#14B8A6" stroke-width="2" stroke-linecap="round"></path>
+                        <defs>
+                            <linearGradient id="combobox-card-___paint0_linear_904_27" x1="0" y1="0" x2="314.69"
+                                y2="1.396" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#AAF0F4"></stop>
+                                <stop offset="1" stop-color="#10B981"></stop>
+                            </linearGradient>
+                            <linearGradient id="combobox-card-___paint1_linear_904_27" x1="0" y1="0" x2="314.69"
+                                y2="1.396" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#2DD4BF"></stop>
+                                <stop offset="1" stop-color="#22D3EE"></stop>
+                            </linearGradient>
+                            <filter id="combobox-card-___filter0_dd_904_27" x="84" y="62" width="146" height="68"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"></feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_904_27"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"></feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow_904_27" result="effect2_dropShadow_904_27"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow_904_27" result="shape"></feBlend>
+                            </filter>
+                            <filter id="combobox-card-___filter1_dd_904_27" x="84" y="34" width="146" height="36"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"></feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_904_27"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"></feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow_904_27" result="effect2_dropShadow_904_27"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow_904_27" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-7
+  sm:col-start-2 sm:row-start-5
+  lg:col-start-6 lg:row-start-3
+  xl:col-start-6 xl:row-start-3
+"><a class="font-medium text-white" href="#/combobox/basic">Combobox (Autocomplete)</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:block
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:block
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-8
+  sm:col-start-4 sm:row-start-4
+  lg:col-start-2 lg:row-start-4
+  xl:col-start-8 xl:row-start-2
+" aria-hidden="true"><a tabindex="-1" href="#/switch/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#switch-card-___paint0_linear)"></rect>
+                        <rect x="120" y="59" width="74" height="38" rx="19" fill="#0F766E"></rect>
+                        <g filter="url(#switch-card-___filter0_dd)">
+                            <circle cx="139" cy="78" r="17" fill="#fff"></circle>
+                        </g>
+                        <defs>
+                            <linearGradient id="switch-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4ADE80"></stop>
+                                <stop offset="1" stop-color="#14B4C6"></stop>
+                            </linearGradient>
+                            <filter id="switch-card-___filter0_dd" x="107" y="54" width="64" height="64"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="8"></feOffset>
+                                <feGaussianBlur stdDeviation="7.5"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-9
+  sm:col-start-4 sm:row-start-5
+  lg:col-start-2 lg:row-start-5
+  xl:col-start-8 xl:row-start-3
+"><a class="font-medium text-white" href="#/switch/basic">Switch (Toggle)</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:hidden
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:hidden
+    xl:block
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-10
+  sm:col-start-2 sm:row-start-6
+  lg:col-start-4 lg:row-start-4
+  xl:col-start-2 xl:row-start-4
+" aria-hidden="true"><a tabindex="-1" href="#/disclosure/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#disclosure-card-___paint0_linear)"></rect>
+                        <g filter="url(#disclosure-card-___filter0_dd)">
+                            <rect x="77" y="34" width="160" height="88" rx="8" fill="#fff"></rect>
+                        </g>
+                        <path d="M226 48.5l-2-2-2 2M222 89.5l2 2 2-2M222 110.5l2 2 2-2" stroke="#D1D5DB"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path fill="#F3F4F6" d="M77 80h160v1H77zM77 101h160v1H77z"></path>
+                        <path d="M89 48h60" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M89 58h116M89 68h92" stroke="#D1D5DB" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M89 91h76M89 112h52" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <defs>
+                            <linearGradient id="disclosure-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#D946EF"></stop>
+                                <stop offset="1" stop-color="#9333EA"></stop>
+                            </linearGradient>
+                            <filter id="disclosure-card-___filter0_dd" x="62" y="27" width="190" height="118"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="8"></feOffset>
+                                <feGaussianBlur stdDeviation="7.5"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-11
+  sm:col-start-2 sm:row-start-7
+  lg:col-start-4 lg:row-start-5
+  xl:col-start-2 xl:row-start-5
+"><a class="font-medium text-white" href="#/disclosure/basic">Disclosure</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-12
+  sm:col-start-4 sm:row-start-6
+  lg:col-start-6 lg:row-start-4
+  xl:col-start-4 xl:row-start-4
+" aria-hidden="true"><a tabindex="-1" href="#/dialog/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#dialog-card-___paint0_linear)"></rect>
+                        <g filter="url(#dialog-card-___filter0_dd)">
+                            <rect x="81" y="33" width="152" height="91" rx="8" fill="#fff"></rect>
+                        </g>
+                        <rect x="93" y="96" width="40" height="16" rx="4" fill="#BFDBFE"></rect>
+                        <path d="M95 49h60" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M95 64h114M95 84h114M95 74h121" stroke="#D1D5DB" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <defs>
+                            <linearGradient id="dialog-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#38BDF8"></stop>
+                                <stop offset="1" stop-color="#6366F1"></stop>
+                            </linearGradient>
+                            <filter id="dialog-card-___filter0_dd" x="66" y="26" width="182" height="121"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="8"></feOffset>
+                                <feGaussianBlur stdDeviation="7.5"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-13
+  sm:col-start-4 sm:row-start-7
+  lg:col-start-6 lg:row-start-5
+  xl:col-start-4 xl:row-start-5
+"><a class="font-medium text-white" href="#/dialog/basic">Dialog (Modal)</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-14
+  sm:col-start-2 sm:row-start-8
+  lg:col-start-2 lg:row-start-6
+  xl:col-start-6 xl:row-start-4
+" aria-hidden="true"><a tabindex="-1" href="#/popover/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#popover-card-___paint0_linear)"></rect>
+                        <g filter="url(#popover-card-___filter0_dd)">
+                            <path
+                                d="M74 43a8 8 0 018-8h9.515a6 6 0 004.242-1.757L102 27l6.243 6.243A5.998 5.998 0 00112.485 35H218a8 8 0 018 8v75a8 8 0 01-8 8H82a8 8 0 01-8-8V43z"
+                                fill="#fff"></path>
+                        </g>
+                        <path d="M110 52h20M174 52h20M174 76h20M110 76h20" stroke="#4B5563" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M110 58h28M174 58h28M174 82h28M110 82h28" stroke="#D1D5DB" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <rect x="86" y="47" width="16" height="16" rx="4" fill="#FED7AA"></rect>
+                        <rect x="150" y="47" width="16" height="16" rx="4" fill="#FED7AA"></rect>
+                        <rect x="86" y="71" width="16" height="16" rx="4" fill="#FED7AA"></rect>
+                        <rect x="150" y="71" width="16" height="16" rx="4" fill="#FED7AA"></rect>
+                        <path d="M74 99h152v19a8 8 0 01-8 8H82a8 8 0 01-8-8V99z" fill="#F3F4F6"></path>
+                        <path d="M87 109h20" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M87 115h68" stroke="#D1D5DB" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <defs>
+                            <linearGradient id="popover-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FB923C"></stop>
+                                <stop offset="1" stop-color="#DB2777"></stop>
+                            </linearGradient>
+                            <filter id="popover-card-___filter0_dd" x="59" y="20" width="182" height="129"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="8"></feOffset>
+                                <feGaussianBlur stdDeviation="7.5"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-15
+  sm:col-start-2 sm:row-start-9
+  lg:col-start-2 lg:row-start-7
+  xl:col-start-6 xl:row-start-5
+"><a class="font-medium text-white" href="#/popover/basic">Popover</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:hidden
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-16
+  sm:col-start-4 sm:row-start-8
+  lg:col-start-4 lg:row-start-6
+  xl:col-start-8 xl:row-start-4
+" aria-hidden="true"><a tabindex="-1" href="#/radio-group/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#radio-group-card-___paint0_linear)"></rect>
+                        <g filter="url(#radio-group-card-___filter0_dd)">
+                            <rect x="90" y="38" width="134" height="24" rx="6" fill="#fff"></rect>
+                        </g>
+                        <path d="M116 50h52" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <g filter="url(#radio-group-card-___filter1_dd)">
+                            <rect x="90" y="66" width="134" height="24" rx="6" fill="#CFFAFE"></rect>
+                        </g>
+                        <g filter="url(#radio-group-card-___filter2_dd)">
+                            <rect x="90" y="94" width="134" height="24" rx="6" fill="#fff"></rect>
+                        </g>
+                        <path d="M116 78h64" stroke="#0E7490" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M116 106h43" stroke="#4B5563" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <circle cx="102" cy="50" r="5" fill="#E4E4E7"></circle>
+                        <circle cx="102" cy="78" r="5" fill="#0891B2"></circle>
+                        <circle cx="102" cy="78" r="2" fill="#fff"></circle>
+                        <circle cx="102" cy="106" r="5" fill="#E4E4E7"></circle>
+                        <defs>
+                            <filter id="radio-group-card-___filter0_dd" x="84" y="35" width="146" height="36"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="radio-group-card-___filter1_dd" x="84" y="63" width="146" height="36"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="radio-group-card-___filter2_dd" x="84" y="91" width="146" height="36"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <linearGradient id="radio-group-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#39D0DD"></stop>
+                                <stop offset="1" stop-color="#0EA5E9"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-17
+  sm:col-start-4 sm:row-start-9
+  lg:col-start-4 lg:row-start-7
+  xl:col-start-8 xl:row-start-5
+"><a class="font-medium text-white" href="#/radio-group/basic">Radio Group</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:hidden
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:hidden
+    xl:block
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-18
+  sm:col-start-2 sm:row-start-10
+  lg:col-start-6 lg:row-start-6
+  xl:col-start-2 xl:row-start-6
+" aria-hidden="true"><a tabindex="-1" href="#/tabs/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#tabs-card-___paint0_linear)"></rect>
+                        <rect x="55" y="61" width="204" height="35" rx="8" fill="#1E3A8A" fill-opacity="0.2"></rect>
+                        <g filter="url(#tabs-card-___filter0_dd)">
+                            <rect x="57" y="63" width="64" height="31" rx="6" fill="#fff"></rect>
+                            <path d="M73 78.5a1.5 1.5 0 011.5-1.5h29a1.5 1.5 0 010 3h-29a1.5 1.5 0 01-1.5-1.5z"
+                                fill="#1E3A8A"></path>
+                        </g>
+                        <path
+                            d="M141 78.5a1.5 1.5 0 011.5-1.5h29a1.5 1.5 0 010 3h-29a1.5 1.5 0 01-1.5-1.5zM209 78.5a1.5 1.5 0 011.5-1.5h29a1.5 1.5 0 010 3h-29a1.5 1.5 0 01-1.5-1.5z"
+                            fill="#BFDBFE"></path>
+                        <defs>
+                            <linearGradient id="tabs-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#38BDF8"></stop>
+                                <stop offset="1" stop-color="#2563EB"></stop>
+                            </linearGradient>
+                            <filter id="tabs-card-___filter0_dd" x="54" y="61" width="70" height="37"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"></feColorMatrix>
+                                <feOffset dy="1"></feOffset>
+                                <feGaussianBlur stdDeviation="1"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"></feColorMatrix>
+                                <feOffset dy="1"></feOffset>
+                                <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-19
+  sm:col-start-2 sm:row-start-11
+  lg:col-start-6 lg:row-start-7
+  xl:col-start-2 xl:row-start-7
+"><a class="font-medium text-white" href="#/tabs/basic">Tabs</a></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:block
+    lg:block
+    xl:block
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:block
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900
+    sm:hidden
+    lg:block
+    xl:hidden
+  "></div>
+            <div class="bg-gray-900 p-1
+  col-start-2 row-start-20
+  sm:col-start-4 sm:row-start-10
+  lg:col-start-2 lg:row-start-8
+  xl:col-start-4 xl:row-start-6
+" aria-hidden="true"><a tabindex="-1" href="#/transition/basic"><svg viewBox="0 0 314 157" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="w-full">
+                        <rect width="314" height="157" rx="12" fill="url(#transition-card-___paint0_linear)"></rect>
+                        <g opacity="0.25" filter="url(#transition-card-___filter0_dd)">
+                            <circle cx="109" cy="78" r="24" fill="#fff"></circle>
+                        </g>
+                        <g opacity="0.5" filter="url(#transition-card-___filter1_dd)">
+                            <circle cx="141" cy="78" r="24" fill="#fff"></circle>
+                        </g>
+                        <g opacity="0.75" filter="url(#transition-card-___filter2_dd)">
+                            <circle cx="173" cy="78" r="24" fill="#fff"></circle>
+                        </g>
+                        <g filter="url(#transition-card-___filter3_dd)">
+                            <circle cx="205" cy="78" r="24" fill="#fff"></circle>
+                        </g>
+                        <defs>
+                            <filter id="transition-card-___filter0_dd" x="79" y="51" width="60" height="60"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="transition-card-___filter1_dd" x="111" y="51" width="60" height="60"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="transition-card-___filter2_dd" x="143" y="51" width="60" height="60"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <filter id="transition-card-___filter3_dd" x="175" y="51" width="60" height="60"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="2"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix>
+                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0">
+                                </feColorMatrix>
+                                <feOffset dy="3"></feOffset>
+                                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                                <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"></feBlend>
+                                <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"></feBlend>
+                            </filter>
+                            <linearGradient id="transition-card-___paint0_linear" x1="0" y1="0" x2="314.69" y2="1.396"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#EC4899"></stop>
+                                <stop offset="1" stop-color="#F43F5E"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg></a></div>
+            <div class="h-[90px] bg-gray-900 px-1 py-2
+  col-start-2 row-start-21
+  sm:col-start-4 sm:row-start-11
+  lg:col-start-2 lg:row-start-9
+  xl:col-start-4 xl:row-start-7
+"><a class="font-medium text-white" href="#/transition/basic">Transition</a></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+            <div class="hidden bg-gray-900
+    sm:hidden
+    lg:block
+    xl:block
+  "></div>
+        </div>
+    </div>
 </template>

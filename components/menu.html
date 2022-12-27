@@ -1,0 +1,194 @@
+<template x-component:hui="menu" x-modelable="value" x-data="{
+    value: null,
+    get disabled() {return $prop('disabled')}
+}">
+    <slot></slot>
+    <script>
+        const _ = $vui._
+        return {
+            _elActive: null,
+            _isOpen: false,
+            open() {
+                this._isOpen = true
+                $vui.focus(this.$findOne('menu-items'))
+            },
+            close() { this._isOpen = false },
+            get isOpen() { return this._isOpen },
+            isActive(el) {
+                return this._elActive === el
+            },
+            isSelected(val) {
+                return this.value === val
+            },
+            activate(el) {
+                this._elActive = el
+                if (this._elActive) {
+                    $vui.scrollIntoView(this._elActive)
+                }
+            },
+            get enabledOptions() {
+                return _.filter(this.$find('menu-item'), el => !$vui.$api(el).disabled)
+            },
+            get selectedElements() {
+                return _.filter(this.$find('menu-item'), el => !$vui.$api(el).selected)
+            },
+            activateFirstOrSelected() {
+                let els = this.selectedElements
+                if (els.length > 0) {
+                    this.activate(els[0])
+                } else {
+                    this.activateFirst()
+                }
+            },
+            activateWithStep(step) {
+                let elOptions = this.enabledOptions
+                let count = elOptions.length
+                if (!this._elActive) this._elActive = elOptions[0]
+                if (count > 0) {
+                    let activeIndex = elOptions.indexOf(this._elActive)
+                    if (activeIndex === -1) activeIndex = 0
+                    let index = activeIndex + step
+                    if (index < 0)
+                        index = 0
+                    else if (index >= count)
+                        index = count - 1
+                    this.activate(elOptions[index])
+                }
+            },
+            activateFirst() {
+                let elOptions = this.enabledOptions
+                let count = elOptions.length
+                if (count > 0) this.activate(elOptions[0])
+            },
+            activateLast() {
+                let elOptions = this.enabledOptions
+                let count = elOptions.length
+                if (count > 0) this.activate(elOptions[count - 1])
+            },
+            select(val) {
+                this.value = val
+            },
+            selectActive() {
+                if (this._elActive) {
+                    this.select($vui.$api(this._elActive).value)
+                }
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui="menu-button" @click="$api.toggle()" tabindex="0" @keydown="$api.onKeydown($event)">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('menu') },
+            onKeydown(e) {
+                let context = this.context
+                switch (e.key) {
+                    case 'Space':
+                    case 'Enter':
+                    case 'ArrowDown':
+                        e.preventDefault()
+                        context.open()
+                        $vui.nextTick(() => context.activateFirstOrSelected())
+                        break;
+
+                    case 'ArrowUp':
+                        e.preventDefault()
+                        context.open()
+                        $vui.nextTick(() => context.activateLast())
+                        break;
+                }
+            },
+            toggle() {
+                let context = this.context
+                if (context.isOpen)
+                    context.close()
+                else {
+                    context.open()
+                    $vui.nextTick(() => context.activateFirstOrSelected())
+                }
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui="menu-items" tabindex="0" x-data="{
+    get isOpen(){return $api && $api.isOpen}
+}" x-trap="isOpen" x-show="isOpen" @click.outside="$api.context.close()" @keydown="$api.onKeydown($event)"
+    @keydown.escape.stop.prevent="$api.context.close()" @keydown.enter.stop.prevent="$api.onSelectActive()"
+    @keydown.space.stop.prevent="$api.onSelectActive()">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('menu') },
+            get isOpen() { return this.context.isOpen },
+            onSelectActive() {
+                this.context.selectActive()
+                this.context.close()
+            },
+            onKeydown(e) {
+                let context = this.context
+                switch (e.key) {
+                    case 'ArrowDown':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        context.activateWithStep(1)
+                        break;
+
+                    case 'ArrowUp':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        context.activateWithStep(-1)
+                        break;
+                    case 'Home':
+                    case 'PageUp':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        context.activateFirst()
+                        break
+
+                    case 'End':
+                    case 'PageDown':
+                        e.preventDefault()
+                        e.stopPropagation()
+                        context.activateLast()
+                        break
+                }
+            }
+        }
+    </script>
+</template>
+
+<template x-component:hui="menu-item" x-data="{
+    get disabled() {return $prop('disabled')},
+    get active() {return $api.active},
+    get value() {return $prop('value')},
+    get selected() {return $api.selected},
+}" @mousemove="$api.activate()" @click="$api.onSelect()" :tabindex="-1">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of('menu') },
+            get active() {
+                let context = this.context
+                return context && context.isActive && context.isActive(this.$el)
+            },
+            get selected() {
+                let context = this.context
+                return context && context.isSelected && context.isSelected(this.value)
+            },
+            activate() {
+                this.context.activate(this.$el)
+            },
+            select() { this.context.select(this.value) },
+            close() { this.context.close() },
+            onSelect() {
+                if (!this.disabled) {
+                    this.select()
+                    this.close()
+                }
+            }
+        }
+    </script>
+</template>
