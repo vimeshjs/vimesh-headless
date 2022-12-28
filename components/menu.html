@@ -10,7 +10,8 @@
             _isOpen: false,
             open() {
                 this._isOpen = true
-                $vui.focus(this.$findOne('menu-items'))
+                let elMenuItems = this.$findOne('menu-items')
+                $vui.focus(elMenuItems)
             },
             close() { this._isOpen = false },
             get isOpen() { return this._isOpen },
@@ -121,8 +122,12 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('menu') },
-            get isOpen() { return this.context.isOpen },
+            get context() {
+                return this.$of('menu')
+            },
+            get isOpen() {
+                return this.context.isOpen
+            },
             onSelectActive() {
                 this.context.selectActive()
                 this.context.close()

@@ -7,15 +7,19 @@
     <script src="https://unpkg.com/universal-router/universal-router.min.js"></script>        
 
     <script>
+        const DEBUG = false
+        $vui.config.debug = DEBUG
         $vui.config.importMap = {
-            "*": '../components/${component}.html',
-            "app": './components/${path}${component}.html',
-            "page": './pages/${path}${component}.html'
+            "hui": '../components/${component}.html' + (DEBUG ? '?t=' + new Date().valueOf() : ''),
+            "app": './components/${path}${component}.html' + (DEBUG ? '?t=' + new Date().valueOf() : ''),
+            "page": './pages/${path}${component}.html' + (DEBUG ? '?t=' + new Date().valueOf() : ''),
         }
         let root = {
             $route: {},
+            get isHome() { return this.$route.page === 'home' },
             routes: [
                 { name: 'Home', path: '/index', page: 'home' },
+                { name: 'Menu Basic', path: '/menu/basic', page: 'menu/basic' },
                 { name: 'Switch Basic', path: '/switch/basic', page: 'switch/basic' },
                 { name: 'Tabs Basic', path: '/tabs/basic', page: 'tabs/basic' },
                 { name: 'Combobox Basic', path: '/combobox/basic', page: 'combobox/basic' },
@@ -35,12 +39,13 @@
 
 <body x-cloak x-import="app:header,footer,side-menu,code-viewer"
     class="h-full w-full font-sans text-gray-900 antialiased flex flex-col" x-data="root">
-    <app-header class="flex-none h-16 px-1 py-3 bg-gray-700 flex"></app-header>
+    <app-header class="flex-none h-16 px-1 py-3 flex"></app-header>
     <div class="flex-1 flex">
-        <app-side-menu class="w-64 flex-none"></app-side-menu>
+        <app-side-menu class="w-64 flex-none" x-show="!isHome"></app-side-menu>
         <div class="flex-1 h-full flex flex-col overflow-hidden">
             <app-router-view class="flex-1"></app-router-view>
-            <app-code-viewer class="flex-none h-64 overflow-y-auto bg-gray-700 rounded-md" language="html" :code="$route.code"></app-code-viewer>
+            <app-code-viewer x-show="!isHome" class="flex-none h-64 overflow-y-auto bg-gray-700 rounded-md"
+                language="html" :code="$route.code"></app-code-viewer>
         </div>
     </div>
     <template x-component:app="router-view" x-shtml="$api && $api.pageContent || ''"
@@ -60,7 +65,7 @@
                             this.pageToImport = `page:${page}`
                             $vui.import(this.pageToImport).then(() => {
                                 $vui._.each($vui.imports, meta => {
-                                    if (meta.fullname === this.pageToImport ){
+                                    if (meta.fullname === this.pageToImport) {
                                         this.$route.code = meta.html
                                     }
                                 })
@@ -72,7 +77,7 @@
                     this.router = new UniversalRouter(this.routes, {
                         context: { self: this },
                         resolveRoute(context, params) {
-                            context.self.$route = { params, path: context.pathname }
+                            context.self.$route = { params, ...context.route }
                             if (typeof context.route.action === 'function') {
                                 return context.route.action(context, params)
                             }

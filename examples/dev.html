@@ -11,9 +11,9 @@
         const DEBUG = true
         $vui.config.debug = DEBUG
         $vui.config.importMap = {
-            "hui": '../components/${component}.html' + (DEBUG ? '?t=' + new Date().valueOf() : ''),
-            "app": './components/${path}${component}.html' + (DEBUG ? '?t=' + new Date().valueOf() : ''),
-            "page": './pages/${path}${component}.html' + (DEBUG ? '?t=' + new Date().valueOf() : ''),
+            "hui": '../components/${component}.html' + (DEBUG ? '?v=' + new Date().valueOf() : '?v=0.1'),
+            "app": './components/${path}${component}.html' + (DEBUG ? '?v=' + new Date().valueOf() : '?v=0.1'),
+            "page": './pages/${path}${component}.html' + (DEBUG ? '?v=' + new Date().valueOf() : '?v=0.1'),
         }
         let root = {
             $route: {},
@@ -21,6 +21,9 @@
             routes: [
                 { name: 'Home', path: '/index', page: 'home' },
                 { name: 'Menu Basic', path: '/menu/basic', page: 'menu/basic' },
+                { name: 'Menu Multiple Elements', path: '/menu/multiple-elements', page: 'menu/multiple-elements' },
+                { name: 'Menu with Popper', path: '/menu/with-popper', page: 'menu/with-popper' },
+                
                 { name: 'Switch Basic', path: '/switch/basic', page: 'switch/basic' },
                 { name: 'Tabs Basic', path: '/tabs/basic', page: 'tabs/basic' },
                 { name: 'Combobox Basic', path: '/combobox/basic', page: 'combobox/basic' },
