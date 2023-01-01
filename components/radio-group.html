@@ -19,10 +19,10 @@
     <script>
         return {
             onMounted() {
-                let container = this.$closest('radio-group')
+                let container = this.$closest(':radio-group')
                 if (!container) throw Error('radio-group-option should be contained in radio-group')
             },
-            get context() { return this.$of('radio-group') },
+            get context() { return this.$of(':radio-group') },
             onCheck() {
                 this.context.check(this.$prop('value'))
             }

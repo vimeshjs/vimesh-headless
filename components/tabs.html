@@ -10,10 +10,7 @@
             },
             get manual() { return this.$prop('manual') },
             get activeTabs() {
-                return this.$find((el) => {
-                    let api = $vui.$api(el)
-                    return api && (api.$meta.type === 'tab' && !api.disabled)
-                })
+                return $vui._.filter(this.$find(':tab'), el => !$vui.$api(el).disabled)
             },
             focusFirst() {
                 this.$focus.within(this.activeTabs).first()
@@ -35,7 +32,7 @@
     <script>
         return {
             onMounted() {
-                let container = this.$closest('tab-group')
+                let container = this.$closest(':tab-group')
                 if (!container) throw Error('tab-list should be contained in tab-group')
             }
         }
@@ -52,11 +49,11 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('tab-group') },
+            get context() { return this.$of(':tab-group') },
             get value() { return this.$prop('value') },
             get disabled() { return this.$prop('disabled') },
             onMounted() {
-                let container = this.$closest('tab-list')
+                let container = this.$closest(':tab-list')
                 if (!container) throw Error('tab should be contained in tab-list')
             },
             onSelect() {
@@ -78,7 +75,7 @@
     <script>
         return {
             onMounted() {
-                let container = this.$closest('tab-group')
+                let container = this.$closest(':tab-group')
                 if (!container) throw Error('tab-panels should be contained in tab-group')
             }
         }
@@ -90,9 +87,9 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('tab-group') },
+            get context() { return this.$of(':tab-group') },
             onMounted() {
-                let container = this.$closest('tab-panels')
+                let container = this.$closest(':tab-panels')
                 if (!container) throw Error('tab-panel should be contained in tab-panels')
             }
         }

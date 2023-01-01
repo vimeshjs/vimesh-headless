@@ -1,8 +1,12 @@
-<template x-component:app="side-menu">
+<template x-component:app="side-menu" class="bg-gray-900 p-2">
     <ul>
         <template x-for="item in routes" :key="item.path">
             <template x-if="!item.hidden">
-                <li><a :href="'#' + item.path" x-text="item.name"></a></li>
+                <a :href="'#' + item.path">
+                    <li x-text="item.name"
+                        class="flex items-center whitespace-nowrap rounded py-2 px-6 font-medium transition-colors duration-200 hover:bg-gray-700 hover:text-white lg:py-2 lg:px-4 lg:text-sm text-white">
+                    </li>
+                </a>
             </template>
         </template>
     </ul>

@@ -10,7 +10,7 @@
             _isOpen: false,
             open() {
                 this._isOpen = true
-                let elMenuItems = this.$findOne('menu-items')
+                let elMenuItems = this.$findOne(':menu-items')
                 $vui.focus(elMenuItems)
             },
             close() { this._isOpen = false },
@@ -28,10 +28,10 @@
                 }
             },
             get enabledOptions() {
-                return _.filter(this.$find('menu-item'), el => !$vui.$api(el).disabled)
+                return _.filter(this.$find(':menu-item'), el => !$vui.$api(el).disabled)
             },
             get selectedElements() {
-                return _.filter(this.$find('menu-item'), el => !$vui.$api(el).selected)
+                return _.filter(this.$find(':menu-item'), el => $vui.$api(el).selected)
             },
             activateFirstOrSelected() {
                 let els = this.selectedElements
@@ -82,7 +82,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('menu') },
+            get context() { return this.$of(':menu') },
             onKeydown(e) {
                 let context = this.context
                 switch (e.key) {
@@ -123,7 +123,7 @@
     <script>
         return {
             get context() {
-                return this.$of('menu')
+                return this.$of(':menu')
             },
             get isOpen() {
                 return this.context.isOpen
@@ -174,7 +174,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('menu') },
+            get context() { return this.$of(':menu') },
             get active() {
                 let context = this.context
                 return context && context.isActive && context.isActive(this.$el)

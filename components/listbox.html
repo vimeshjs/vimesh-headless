@@ -14,7 +14,7 @@
             _isOpen: false,
             open() {
                 this._isOpen = true
-                $vui.focus(this.$findOne('listbox-options'))
+                $vui.focus(this.$findOne(':listbox-options'))
             },
             close() { this._isOpen = false },
             get isOpen() { return this._isOpen },
@@ -31,10 +31,10 @@
                 }
             },
             get enabledOptions() {
-                return _.filter(this.$find('listbox-option'), el => !$vui.$api(el).disabled)
+                return _.filter(this.$find(':listbox-option'), el => !$vui.$api(el).disabled)
             },
             get selectedElements() {
-                return _.filter(this.$find('listbox-option'), el => !$vui.$api(el).selected)
+                return _.filter(this.$find(':listbox-option'), el => !$vui.$api(el).selected)
             },
             activateFirstOrSelected() {
                 let els = this.selectedElements
@@ -91,8 +91,8 @@
     <script>
         return {
             focusButton() {
-                let context = this.$api.$of('listbox')
-                $vui.focus(context.$findOne('listbox-button'))
+                let context = this.$api.$of(':listbox')
+                $vui.focus(context.$findOne(':listbox-button'))
             }
         }
     </script>
@@ -102,7 +102,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('listbox') },
+            get context() { return this.$of(':listbox') },
             onKeydown(e) {
                 let context = this.context
                 switch (e.key) {
@@ -142,7 +142,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('listbox') },
+            get context() { return this.$of(':listbox') },
             get isOpen() { return this.context.isOpen },
             onSelectActive() {
                 this.context.selectActive()
@@ -190,7 +190,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('listbox') },
+            get context() { return this.$of(':listbox') },
             get active() {
                 let context = this.context
                 return context && context.isActive && context.isActive(this.$el)

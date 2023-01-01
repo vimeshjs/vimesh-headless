@@ -48,7 +48,7 @@
         <app-side-menu class="w-64 flex-none" x-show="!isHome"></app-side-menu>
         <div class="flex-1 h-full flex flex-col overflow-hidden">
             <app-router-view class="flex-1"></app-router-view>
-            <app-code-viewer x-show="!isHome" class="flex-none h-64 overflow-y-auto bg-gray-700 rounded-md"
+            <app-code-viewer x-show="!isHome" class="flex-none h-64 overflow-y-auto bg-gray-700 m-1 rounded-md"
                 language="html" :code="$route.code"></app-code-viewer>
         </div>
     </div>

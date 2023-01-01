@@ -10,7 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "@vimesh/style": "^1.0.4",
-    "@vimesh/ui": "^0.12.1",
+    "@vimesh/ui": "^0.12.3",
     "alpinejs": "^3.10.5",
     "http-server": "^14.1.1",
     "universal-router": "^9.1.0"

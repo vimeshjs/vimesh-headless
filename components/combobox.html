@@ -21,13 +21,13 @@
             },
             open() {
                 this._isOpen = true
-                let elInput = this.$findOne('combobox-input')
+                let elInput = this.$findOne(':combobox-input')
                 $vui.$api(elInput).onReset()
                 $vui.focus(elInput)
             },
             close() {
                 this._isOpen = false
-                let elInput = this.$findOne('combobox-input')
+                let elInput = this.$findOne(':combobox-input')
                 $vui.$api(elInput).syncInputValue()
             },
             get isOpen() { return this._isOpen },
@@ -44,10 +44,10 @@
                 }
             },
             get enabledOptions() {
-                return _.filter(this.$find('combobox-option'), el => !$vui.$api(el).disabled)
+                return _.filter(this.$find(':combobox-option'), el => !$vui.$api(el).disabled)
             },
             get selectedElements() {
-                return _.filter(this.$find('combobox-option'), el => $vui.$api(el).selected)
+                return _.filter(this.$find(':combobox-option'), el => $vui.$api(el).selected)
             },
             activateFirstOrSelected() {
                 let els = this.selectedElements
@@ -105,7 +105,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('combobox') }
+            get context() { return this.$of(':combobox') }
         }
     </script>
 </template>
@@ -118,7 +118,7 @@
     <slot></slot>
     <script>
         return {
-            get context() { return this.$of('combobox') },
+            get context() { return this.$of(':combobox') },
             get active() {
                 let context = this.context
                 return context && context.isActive && context.isActive(this.$el)
@@ -146,7 +146,7 @@
     </button>
     <script>
         return {
-            get context() { return this.$of('combobox') },
+            get context() { return this.$of(':combobox') },
             toggle() {
                 let context = this.context
                 if (context.isOpen)
@@ -164,7 +164,7 @@
         :placeholder="$api && $api.displayValue" />
     <script>
         return {
-            get context() { return this.$of('combobox') },
+            get context() { return this.$of(':combobox') },
             get displayValue() {
                 const displayValueFunc = this.$prop('display-value')
                 let val = this.context.value
@@ -234,7 +234,7 @@
     <script>
         return {
             focusInput() {
-                let context = this.$api.$of('combobox')
+                let context = this.$api.$of(':combobox')
                 context.open()
             }
         }
