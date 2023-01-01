@@ -20,16 +20,20 @@
             get isHome() { return this.$route.page === 'home' },
             routes: [
                 { name: 'Home', path: '/index', page: 'home' },
-                { name: 'Menu Basic', path: '/menu/basic', page: 'menu/basic' },
+                { name: 'Menu', path: '/menu/basic', page: 'menu/basic' },
                 { name: 'Menu Multiple Elements', path: '/menu/multiple-elements', page: 'menu/multiple-elements' },
                 { name: 'Menu with Popper', path: '/menu/with-popper', page: 'menu/with-popper' },
+                { name: 'Menu with Transition', path: '/menu/with-transition', page: 'menu/with-transition' },
+                { name: 'Menu with Transition and Popper', path: '/menu/with-transition-and-popper', page: 'menu/with-transition-and-popper' },
                 
-                { name: 'Switch Basic', path: '/switch/basic', page: 'switch/basic' },
-                { name: 'Tabs Basic', path: '/tabs/basic', page: 'tabs/basic' },
-                { name: 'Combobox Basic', path: '/combobox/basic', page: 'combobox/basic' },
-                { name: 'Listbox Basic', path: '/listbox/basic', page: 'listbox/basic' },
+                { name: 'Popover', path: '/popover/basic', page: 'popover/basic' },
+
+                { name: 'Switch', path: '/switch/basic', page: 'switch/basic' },
+                { name: 'Tabs', path: '/tabs/basic', page: 'tabs/basic' },
+                { name: 'Combobox', path: '/combobox/basic', page: 'combobox/basic' },
+                { name: 'Listbox', path: '/listbox/basic', page: 'listbox/basic' },
                 { name: 'Listbox Multi', path: '/listbox/multi', page: 'listbox/multi' },
-                { name: 'Radio Group Basic', path: '/radio-group/basic', page: 'radio-group/basic' },
+                { name: 'Radio Group', path: '/radio-group/basic', page: 'radio-group/basic' },
                 { name: 'Something Wrong!', path: '(.*)', page: 'home', hidden: true }
             ]
         }
@@ -45,7 +49,7 @@
     class="h-full w-full font-sans text-gray-900 antialiased flex flex-col" x-data="root">
     <app-header class="flex-none h-16 px-1 py-3 flex"></app-header>
     <div class="flex-1 flex">
-        <app-side-menu class="w-64 flex-none" x-show="!isHome"></app-side-menu>
+        <app-side-menu class="w-74 flex-none" x-show="!isHome"></app-side-menu>
         <div class="flex-1 h-full flex flex-col overflow-hidden">
             <app-router-view class="flex-1"></app-router-view>
             <app-code-viewer x-show="!isHome" class="flex-none h-64 overflow-y-auto bg-gray-700 m-1 rounded-md"

@@ -1,0 +1,141 @@
+<template x-component:hui="popover">
+    <slot></slot>
+    <script>
+        const _ = $vui._
+        return {
+            _isOpen: false,
+            open() {
+                this._isOpen = true
+                this.$dispatch('popover-close-others', { el: this.$el })
+            },
+            close(el) {
+                this._isOpen = false
+                if (!el) return
+                el = el || this.$findOne(':popover-button')
+                if (document.activeElement.isSameNode(el)) return
+                setTimeout(() => el.focus())
+            },
+            get isOpen() { return this._isOpen },
+            toggle() {
+                if (this.isOpen)
+                    this.close()
+                else
+                    this.open()
+            },
+            onMounted() {
+                let elGroup = this.$closest(':popover-group')
+                if (elGroup) {
+                    elGroup.addEventListener('popover-close-others', ({ detail }) => {
+                        if (detail.el.isSameNode(this.$el)) return
+                        this.close(false)
+                    })
+                }
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="popover-overlay" x-show="$api && $api.context.isOpen">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of(':popover') }
+        }
+    </script>
+</template>
+<template x-component:hui.unwrap="popover-button" @click="$api.onToggle()" @keydown.enter.stop.prevent="$api.onToggle()"
+    @keydown.space.stop.prevent="$api.onToggle()" @keyup.space.stop.prevent="" @keydown.tab="$api.onTabDown($event)"
+    @keyup.tab="$api.onTabUp($event)">
+    <button>
+        <slot></slot>
+    </button>
+    <script>
+        return {
+            get context() { return this.$of(':popover') },
+            onToggle() {
+                this.context.toggle()
+            },
+            onTabDown(e) {
+                if (!e.shiftKey && this.context.isOpen) {
+                    let elPanel = this.context.$findOne(':popover-panel')
+                    let firstFocusableEl = this.$focus.within(elPanel).getFirst()
+
+                    if (firstFocusableEl) {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        this.$focus.focus(firstFocusableEl)
+                    }
+                }
+            },
+            onTabUp(e) {
+                if (this.context.isOpen) {
+                    // Check if the last focused element was "after" this one
+                    let lastEl = this.$focus.previouslyFocused()
+                    if (!lastEl) return
+                    let elPanel = this.context.$findOne(':popover-panel')
+                    if (
+                        // Make sure the last focused wasn't part of this popover.
+                        (!this.$el.contains(lastEl) && !elPanel.contains(lastEl))
+                        // Also make sure it appeared "after" this button in the DOM.
+                        && (lastEl && (this.$el.compareDocumentPosition(lastEl) & Node.DOCUMENT_POSITION_FOLLOWING))
+                    ) {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        this.$focus.within(elPanel).last()
+                    }
+                }
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="popover-panel" x-show="$api && $api.context.isOpen"
+    x-effect="$api && $api.context.isOpen && $prop('focus') && $focus.first()"
+    @mousedown.window="$api && $api.onMouseDown($event)" @keydown.tab="$api.onTab($event)">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of(':popover') },
+            onMouseDown(e) {
+                let context = this.context
+                if (!context.isOpen) return
+                let apiTarget = $vui.$api(e.target)
+                let elPanel = apiTarget.$closest(':popover-panel')
+                if (elPanel === this.$el) return
+                let elButton = apiTarget.$closest(':popover-button')
+                if (elButton && elButton === context.$findOne(':popover-button')) return
+
+                if (!this.$focus.focusable(e.target)) {
+                    context.close()
+                }
+            },
+            onTab(e) {
+                let elButton = this.context.$findOne(':popover-button')
+                if (e.shiftKey && this.$focus.isFirst(e.target)) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    this.$prop('focus') ? this.context.close() : elButton.focus()
+                } else if (!e.shiftKey && this.$focus.isLast(e.target)) {
+                    e.preventDefault()
+                    e.stopPropagation()
+
+                    // Get the next panel button:
+                    let els = this.$focus.within(document).all()
+                    let buttonIdx = els.indexOf(elButton)
+                    let nextEls = els
+                        .splice(buttonIdx + 1) // Elements after button
+                        .filter(el => !this.$el.contains(el)) // Ignore items in panel
+
+                    nextEls[0].focus()
+                    this.$prop('focus') && this.context.close()
+                }
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="popover-group">
+    <slot></slot>
+    <script>
+        return {
+
+        }
+    </script>
+</template>

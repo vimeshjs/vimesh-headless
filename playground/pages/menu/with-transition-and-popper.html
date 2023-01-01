@@ -1,0 +1,73 @@
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<template x-component:page="menu-with-transition-and-popper" x-import="hui:menu" x-data="{
+    trigger: null,
+    container: null,
+    initPopper(){
+        if (!this.trigger || !this.container) return
+        Popper.createPopper(this.trigger,this.container, {
+            placement: 'bottom-end',
+            strategy: 'fixed',
+            modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
+          })
+    }
+}">
+    <div class="flex h-full w-screen justify-center bg-gray-50 p-12">
+        <div class="mt-64 inline-block text-left">
+            <hui-menu id="id-menu">
+                <span class="inline-flex rounded-md shadow-sm">
+                    <hui-menu-button x-init="trigger=$el;initPopper()"
+                        class="focus:shadow-outline-blue inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out hover:text-gray-500 focus:border-blue-300 focus:outline-none active:bg-gray-50 active:text-gray-800">
+                        <span>Options</span>
+                        <svg class="ml-2 -mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clipRule="evenodd" />
+                        </svg>
+                    </hui-menu-button>
+                </span>
+
+                <template x-teleport="body">
+                    <hui-menu-items x-transition:enter="transition duration-500 ease-out"
+                        x-transition:enter-start="transform scale-50 opacity-0"
+                        x-transition:enter-end="transform scale-100 opacity-100"
+                        x-transition:leave="transition duration-75 ease-out"
+                        x-transition:leave-start="transform scale-100 opacity-100"
+                        x-transition:leave-end="transform scale-95 opacity-0" x-init="container=$el;initPopper()"
+                        class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md border border-gray-200 bg-white shadow-lg outline-none">
+                        <div class="px-4 py-3">
+                            <p class="text-sm leading-5">Signed in as</p>
+                            <p class="truncate text-sm font-medium leading-5 text-gray-900">tom@example.com</p>
+                        </div>
+
+                        <div class="py-1">
+                            <hui-menu-item><a :class="
+                  ['block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700',
+                  active && 'bg-gray-100 text-gray-900',
+                  disabled && 'cursor-not-allowed opacity-50']" href="#account-settings">Account
+                                    settings</a></hui-menu-item>
+                            <hui-menu-item><a :class="
+                    ['block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700',
+                    active && 'bg-gray-100 text-gray-900',
+                    disabled && 'cursor-not-allowed opacity-50']" href="#support">Support</a></hui-menu-item>
+                            <hui-menu-item disabled><a :class="
+                  ['block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700',
+                  active && 'bg-gray-100 text-gray-900',
+                  disabled && 'cursor-not-allowed opacity-50']" href="#new-feature">New feature
+                                    (soon)</a></hui-menu-item>
+                            <hui-menu-item><a :class="
+                    ['block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700',
+                    active && 'bg-gray-100 text-gray-900',
+                    disabled && 'cursor-not-allowed opacity-50']" href="#license">License</a></hui-menu-item>
+                        </div>
+                        <div class="py-1">
+                            <hui-menu-item><a :class="
+                    ['block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700',
+                    active && 'bg-gray-100 text-gray-900',
+                    disabled && 'cursor-not-allowed opacity-50']" href="#sign-out">Sign out</a></hui-menu-item>
+                        </div>
+                    </hui-menu-items>
+                </template>
+            </hui-menu>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,80 @@
+<script>
+    function setupPopoverBasicData() {
+        let links = ['First', 'Second', 'Third', 'Fourth']
+        //trigger1, container1, trigger2, container2
+        return { links }
+    }
+</script>
+<template x-component:page="popover-basic" x-import="hui:popover" x-data="setupPopoverBasicData()">
+    <div class="flex items-center justify-center space-x-12 p-12">
+        <button>Previous</button>
+
+        <hui-popover-group as="nav" ar-label="Mythical University" class="flex space-x-3">
+            <hui-popover class="relative">               
+                <hui-popover-overlay x-transition:enter="transition ease-out duration-300 transform"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-300 transform"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 z-20 bg-gray-500 bg-opacity-75"></hui-popover-overlay>
+                <hui-popover-button
+                    class="relative z-30 border-2 border-transparent bg-gray-300 px-3 py-2 focus:border-blue-900 focus:outline-none">
+                    Normal</hui-popover-button>
+                <hui-popover-panel class="absolute z-30 flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
+                    <template x-for="(link, i) of links" :key="i">
+                        <button :hidden="i === 2"
+                            class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
+                            Normal - <span x-text="link"></span>
+                        </button>
+                    </template>
+                </hui-popover-panel>
+            </hui-popover>
+            <hui-popover class="relative">
+                <hui-popover-button
+                    class="border-2 border-transparent bg-gray-300 px-3 py-2 focus:border-blue-900 focus:outline-none">
+                    Focus</hui-popover-button>
+                <hui-popover-panel focus class="absolute flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
+                    <template x-for="(link, i) of links" :key="i">
+                        <button
+                            class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
+                            Focus - <span x-text="link"></span>
+                        </button>
+                    </template>
+                </hui-popover-panel>
+            </hui-popover>
+
+            <!--
+            <hui-popover as="div" class="relative">
+                <hui-popover-button ref="trigger1"
+                    class="border-2 border-transparent bg-gray-300 px-3 py-2 focus:border-blue-900 focus:outline-none">
+                    Portal</hui-popover-button>
+                <Portal>
+                    <PopoverPanel ref="container1" class="flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
+                        <button v-for="(link, i) of links" :key="i"
+                            class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
+                            Portal - {{ link }}
+                        </button>
+                    </PopoverPanel>
+                </Portal>
+            </hui-popover>
+
+            <hui-popover as="div" class="relative">
+                <hui-popover-button ref="trigger2"
+                    class="border-2 border-transparent bg-gray-300 px-3 py-2 focus:border-blue-900 focus:outline-none">
+                    Focus in portal</hui-popover-button>
+                <Portal>
+                    <PopoverPanel ref="container2" focus
+                        class="flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
+                        <button v-for="(link, i) of links" :key="i"
+                            class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
+                            Focus in Portal - {{ link }}
+                        </button>
+                    </PopoverPanel>
+                </Portal>
+            </hui-popover>
+            -->
+        </hui-popover-group>
+
+        <button>Next</button>
+    </div>
+
+</template>
