@@ -39,7 +39,7 @@
 
 <template x-component:app.unwrap="menu-item">
     <hui-menu-item>
-        <a :href="$prop('href')" :class="[
+        <a tabindex="-1" :href="$prop('href')" :class="[
         'flex justify-between w-full text-left px-4 py-2 text-sm leading-5',
         active ? 'bg-indigo-500 text-white' : 'text-gray-700',
         disabled ? 'cursor-not-allowed opacity-50' : '']">

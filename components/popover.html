@@ -42,7 +42,8 @@
         }
     </script>
 </template>
-<template x-component:hui.unwrap="popover-button" @click="$api.onToggle()" @keydown.enter.stop.prevent="$api.onToggle()"
+<template x-component:hui.unwrap="popover-button" @click="$api.onToggle()"
+    @keydown.escape.stop.prevent="$api.context.close()" @keydown.enter.stop.prevent="$api.onToggle()"
     @keydown.space.stop.prevent="$api.onToggle()" @keyup.space.stop.prevent="" @keydown.tab="$api.onTabDown($event)"
     @keyup.tab="$api.onTabUp($event)">
     <button>
@@ -89,7 +90,8 @@
 </template>
 <template x-component:hui="popover-panel" x-show="$api && $api.context.isOpen"
     x-effect="$api && $api.context.isOpen && $prop('focus') && $focus.first()"
-    @mousedown.window="$api && $api.onMouseDown($event)" @keydown.tab="$api.onTab($event)">
+    @keydown.escape.stop.prevent="$api.context.close()" @mousedown.window="$api && $api.onMouseDown($event)"
+    @keydown.tab="$api.onTab($event)">
     <slot></slot>
     <script>
         return {

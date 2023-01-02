@@ -117,8 +117,8 @@
 <template x-component:hui="menu-items" tabindex="0" x-data="{
     get isOpen(){return $api && $api.isOpen}
 }" x-trap="isOpen" x-show="isOpen" @click.outside="$api.context.close()" @keydown="$api.onKeydown($event)"
-    @keydown.escape.stop.prevent="$api.context.close()" @keydown.enter.stop.prevent="$api.onSelectActive()"
-    @keydown.space.stop.prevent="$api.onSelectActive()">
+    @keydown.tab.stop.prevent="$api.context.close()" @keydown.escape.stop.prevent="$api.context.close()"
+    @keydown.enter.stop.prevent="$api.onSelectActive()" @keydown.space.stop.prevent="$api.onSelectActive()">
     <slot></slot>
     <script>
         return {

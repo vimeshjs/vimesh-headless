@@ -1,16 +1,39 @@
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 <script>
     function setupPopoverBasicData() {
         let links = ['First', 'Second', 'Third', 'Fourth']
-        //trigger1, container1, trigger2, container2
-        return { links }
+        return {
+            links,
+            trigger1: null,
+            container1: null,
+            trigger2: null,
+            container2: null,
+            init() {
+                $vui.effect(() => {
+                    if (!this.trigger1 || !this.container1) return
+                    Popper.createPopper(this.trigger1, this.container1, {
+                        placement: 'bottom-start',
+                        strategy: 'fixed'
+                    })
+                })
+
+                $vui.effect(() => {
+                    if (!this.trigger2 || !this.container2) return
+                    Popper.createPopper(this.trigger2, this.container2, {
+                        placement: 'bottom-start',
+                        strategy: 'fixed'
+                    })
+                })
+            }
+        }
     }
 </script>
 <template x-component:page="popover-basic" x-import="hui:popover" x-data="setupPopoverBasicData()">
     <div class="flex items-center justify-center space-x-12 p-12">
         <button>Previous</button>
 
-        <hui-popover-group as="nav" ar-label="Mythical University" class="flex space-x-3">
-            <hui-popover class="relative">               
+        <hui-popover-group ar-label="Mythical University" class="flex space-x-3">
+            <hui-popover class="relative">
                 <hui-popover-overlay x-transition:enter="transition ease-out duration-300 transform"
                     x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                     x-transition:leave="transition ease-in duration-300 transform"
@@ -42,36 +65,39 @@
                 </hui-popover-panel>
             </hui-popover>
 
-            <!--
-            <hui-popover as="div" class="relative">
-                <hui-popover-button ref="trigger1"
+            <hui-popover class="relative">
+                <hui-popover-button x-init="trigger1=$el"
                     class="border-2 border-transparent bg-gray-300 px-3 py-2 focus:border-blue-900 focus:outline-none">
                     Portal</hui-popover-button>
-                <Portal>
-                    <PopoverPanel ref="container1" class="flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
-                        <button v-for="(link, i) of links" :key="i"
-                            class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
-                            Portal - {{ link }}
-                        </button>
-                    </PopoverPanel>
-                </Portal>
+                <template x-teleport="body">
+                    <hui-popover-panel x-init="container1=$el"
+                        class="flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
+                        <template x-for="(link, i) of links" :key="i">
+                            <button
+                                class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
+                                Portal - <span x-text="link"></span>
+                            </button>
+                        </template>
+                    </hui-popover-panel>
+                </template>
             </hui-popover>
 
-            <hui-popover as="div" class="relative">
-                <hui-popover-button ref="trigger2"
+            <hui-popover class="relative">
+                <hui-popover-button x-init="trigger2=$el"
                     class="border-2 border-transparent bg-gray-300 px-3 py-2 focus:border-blue-900 focus:outline-none">
                     Focus in portal</hui-popover-button>
-                <Portal>
-                    <PopoverPanel ref="container2" focus
+                <template x-teleport="body">
+                    <hui-popover-panel x-init="container2=$el" focus
                         class="flex w-64 flex-col border-2 border-blue-900 bg-gray-100">
-                        <button v-for="(link, i) of links" :key="i"
-                            class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
-                            Focus in Portal - {{ link }}
-                        </button>
-                    </PopoverPanel>
-                </Portal>
+                        <template x-for="(link, i) of links" :key="i">
+                            <button
+                                class="border-2 border-transparent px-3 py-2 text-left hover:bg-gray-200 focus:border-blue-900 focus:bg-gray-200 focus:outline-none">
+                                Focus in Portal - <span x-text="link"></span>
+                            </button>
+                        </template>
+                    </hui-popover-panel>
+                </template>
             </hui-popover>
-            -->
         </hui-popover-group>
 
         <button>Next</button>

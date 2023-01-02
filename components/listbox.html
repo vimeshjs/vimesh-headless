@@ -5,7 +5,7 @@
 }">
 
     <input type="hidden" :name="$prop('name')" :value="$prop('value', '')">
-    
+
     <slot></slot>
     <script>
         const _ = $vui._
@@ -72,9 +72,13 @@
             select(val) {
                 if (!this.multiple)
                     this.value = val
-                else if (_.isArray(this.value))
-                    this.value.indexOf(val) === -1 && this.value.push(val)
-                else
+                else if (_.isArray(this.value)) {
+                    let index = this.value.indexOf(val)
+                    if (index === -1)
+                        this.value.push(val)
+                    else
+                        this.value.splice(index, 1)
+                } else
                     this.value = [val]
             },
             selectActive() {
@@ -205,7 +209,8 @@
             onSelect() {
                 if (!this.disabled) {
                     this.select()
-                    this.close()
+                    if (!this.context.multiple)
+                        this.close()
                 }
             }
         }

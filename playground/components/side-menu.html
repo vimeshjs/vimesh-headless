@@ -2,9 +2,11 @@
     <ul>
         <template x-for="item in routes" :key="item.path">
             <template x-if="!item.hidden">
-                <a :href="'#' + item.path">
-                    <li x-text="item.name"
-                        class="flex items-center whitespace-nowrap rounded py-1 px-6 font-medium transition-colors duration-200 hover:bg-gray-700 hover:text-white lg:py-1 lg:px-4 lg:text-sm text-white">
+                <a :href="'#' + item.path" tabindex="-1">
+                    <li x-text="item.name" tabindex="-1"
+                        class="flex items-center whitespace-nowrap rounded py-1 px-6 font-medium transition-colors duration-200 hover:bg-gray-700 lg:py-1 lg:px-4 lg:text-sm "
+                        :class="$api && $api.isCurrent(item) ? 'text-white' : 'text-gray-500 hover:text-gray-200'"
+                        >
                     </li>
                 </a>
             </template>
@@ -12,7 +14,9 @@
     </ul>
     <script>
         return {
-
+            isCurrent(item) {
+                return this.$route.path === item.path
+            }
         }
     </script>
 </template>

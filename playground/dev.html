@@ -32,7 +32,7 @@
                 { name: 'Tabs', path: '/tabs/basic', page: 'tabs/basic' },
                 { name: 'Combobox', path: '/combobox/basic', page: 'combobox/basic' },
                 { name: 'Listbox', path: '/listbox/basic', page: 'listbox/basic' },
-                { name: 'Listbox Multi', path: '/listbox/multi', page: 'listbox/multi' },
+                { name: 'Listbox Multi Select', path: '/listbox/multi', page: 'listbox/multi' },
                 { name: 'Radio Group', path: '/radio-group/basic', page: 'radio-group/basic' },
                 { name: 'Something Wrong!', path: '(.*)', page: 'home', hidden: true }
             ]
@@ -45,7 +45,7 @@
     </style>
 </head>
 
-<body x-cloak x-import="app:header,footer,side-menu,code-viewer"
+<body x-cloak x-import="app:header,footer,side-menu,code-viewer,key-caster"
     class="h-full w-full font-sans text-gray-900 antialiased flex flex-col" x-data="root">
     <app-header class="flex-none h-16 px-1 py-3 flex"></app-header>
     <div class="flex-1 flex">
@@ -56,6 +56,7 @@
                 language="html" :code="$route.code"></app-code-viewer>
         </div>
     </div>
+    <app-key-caster></app-key-caster>
     <template x-component:app="router-view" x-shtml="$api && $api.pageContent || ''"
         x-import:dynamic="$api && $api.pageToImport">
         <script>

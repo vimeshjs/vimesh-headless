@@ -1,0 +1,61 @@
+<script>
+    let isMac = navigator.userAgent.indexOf('Mac OS X') !== -1
+    let KeyDisplay = isMac
+        ? {
+            ArrowUp: '↑',
+            ArrowDown: '↓',
+            ArrowLeft: '←',
+            ArrowRight: '→',
+            Home: '↖',
+            End: '↘',
+            Alt: '⌥',
+            CapsLock: '⇪',
+            Meta: '⌘',
+            Shift: '⇧',
+            Control: '⌃',
+            Backspace: '⌫',
+            Delete: '⌦',
+            Enter: '↵',
+            Escape: '⎋',
+            Tab: '⇥',
+            ShiftTab: '⇤',
+            PageUp: '⇞',
+            PageDown: '⇟',
+            ' ': '␣',
+        }
+        : {
+            ArrowUp: '↑',
+            ArrowDown: '↓',
+            ArrowLeft: '←',
+            ArrowRight: '→',
+            Meta: 'Win',
+            Control: 'Ctrl',
+            Backspace: '⌫',
+            Delete: 'Del',
+            Escape: 'Esc',
+            PageUp: 'PgUp',
+            PageDown: 'PgDn',
+            ' ': '␣',
+        }
+
+    function setupKeyCasterData() {
+        let keys = []
+        return {
+            keys,
+            onKeyDown(event) {
+                this.keys.unshift(
+                    event.shiftKey && event.key !== 'Shift'
+                        ? KeyDisplay[`Shift${event.key}`] || event.key
+                        : KeyDisplay[event.key] || event.key
+                )
+                setTimeout(() => this.keys.pop(), 2000)
+            }
+        }
+    }
+</script>
+<template x-component:app.unwrap="key-caster" x-data="setupKeyCasterData()" @keydown.window="onKeyDown($event)">
+    <div class="pointer-events-none fixed right-4 bottom-68 z-50 cursor-default select-none overflow-hidden rounded-md bg-blue-800 px-4 py-2 text-2xl tracking-wide text-blue-100 shadow"
+        x-show="keys.length > 0">
+        <span x-text="keys.slice().reverse().join(' ')"></span>
+    </div>
+</template>

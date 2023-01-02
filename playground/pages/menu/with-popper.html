@@ -1,21 +1,28 @@
 <script src="https://unpkg.com/@popperjs/core@2"></script>
-<template x-component:page="menu-with-popper" x-import="hui:menu" x-data="{
-    trigger: null,
-    container: null,
-    initPopper(){
-        if (!this.trigger || !this.container) return
-        Popper.createPopper(this.trigger,this.container, {
-            placement: 'bottom-end',
-            strategy: 'fixed',
-            modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
-          })
+<script>
+    function setupMenuWithPopperData() {
+        return {
+            trigger: null,
+            container: null,
+            init() {
+                $vui.effect(() => {
+                    if (!this.trigger || !this.container) return
+                    Popper.createPopper(this.trigger, this.container, {
+                        placement: 'bottom-end',
+                        strategy: 'fixed',
+                        modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
+                    })
+                })
+            }
+        }
     }
-}">
+</script>
+<template x-component:page="menu-with-popper" x-import="hui:menu" x-data="setupMenuWithPopperData()">
     <div class="flex h-full w-screen justify-center bg-gray-50 p-12">
         <div class="mt-64 inline-block text-left">
             <hui-menu id="id-menu">
                 <span class="inline-flex rounded-md shadow-sm">
-                    <hui-menu-button x-init="trigger=$el;initPopper()"
+                    <hui-menu-button x-init="trigger=$el"
                         class="focus:shadow-outline-blue inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out hover:text-gray-500 focus:border-blue-300 focus:outline-none active:bg-gray-50 active:text-gray-800">
                         <span>Options</span>
                         <svg class="ml-2 -mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -27,7 +34,7 @@
                 </span>
 
                 <template x-teleport="body">
-                    <hui-menu-items x-init="container=$el;initPopper()"
+                    <hui-menu-items x-init="container=$el"
                         class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md border border-gray-200 bg-white shadow-lg outline-none">
                         <div class="px-4 py-3">
                             <p class="text-sm leading-5">Signed in as</p>
