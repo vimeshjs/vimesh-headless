@@ -1,0 +1,100 @@
+<script>
+    function setupDialogSlideOverData() {
+
+        const products = [
+            {
+                id: 1,
+                name: 'Throwback Hip Bag',
+                href: '#',
+                color: 'Salmon',
+                price: '$90.00',
+                quantity: 1
+            },
+            {
+                id: 2,
+                name: 'Medium Stuff Satchel',
+                href: '#',
+                color: 'Blue',
+                price: '$32.00',
+                quantity: 1
+            },
+            // More products...
+        ]
+
+        return {
+            products,
+            open: true,
+            auto: true,
+            init() {
+                $vui.effect(() => {
+                    if (this.open === false && this.auto) {
+                        setTimeout(() => {
+                            if (this.auto) this.open = true
+                        }, 2000)
+                    }
+                })
+            }
+        }
+    }
+</script>
+<template x-component:page="dialog-slide-over" x-import="hui:dialog,switch" x-data="setupDialogSlideOverData()">
+    <div class="p-12">
+    <hui-switch-group class="flex items-center space-x-4">
+        <hui-switch-label>Open dialog automatically</hui-switch-label>
+
+        <hui-switch x-model="auto" :class="['relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:shadow-outline',
+  checked ? 'bg-indigo-600' : 'bg-gray-200']">
+            <span class="inline-block h-5 w-5 transform rounded-full bg-white transition duration-200 ease-in-out"
+                :class="[checked ? 'translate-x-5' : 'translate-x-0']"></span>
+        </hui-switch>
+    </hui-switch-group>
+    <button @click="open=true"
+        class="inline-block rounded-lg mt-2 bg-green-600 px-4 py-1.5 text-white shadow ring-1 ring-green-600 hover:bg-green-700 hover:ring-green-700">Open Dialog</button>
+    </div>
+    <hui-dialog class="relative z-10" x-model="open">
+        <hui-dialog-overlay x-transition:enter=" ease-in-out duration-500" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave=" ease-in-out duration-500"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></hui-dialog-overlay>
+        <div class="fixed inset-0 overflow-hidden">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                    <hui-dialog-panel x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                        x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                        x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                        class="pointer-events-auto w-screen max-w-md">
+                        <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                            <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+                                <div class="flex items-start justify-between">
+                                    <hui-dialog-title
+                                        class="text-lg font-medium text-gray-900">Title...</hui-dialog-title>
+                                    <div class="ml-3 flex h-7 items-center">
+                                        <button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                                            @click="open = false">
+                                            <span class="sr-only">Close panel</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                                class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <template x-for="item in products">
+                                        <div>
+                                            <span x-text="item.name"></span><br>
+                                            Price: <span x-text="item.price"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </hui-dialog-panel>
+                </div>
+            </div>
+        </div>
+    </hui-dialog>
+</template>

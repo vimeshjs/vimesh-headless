@@ -1,0 +1,62 @@
+<template x-component:hui="dialog" x-modelable="_isOpen" x-show="_isOpen" x-trap.inert.noscroll="_isOpen"
+    @keydown.escape="$api.close()" x-data="{
+    _isOpen: false
+}">
+    <slot></slot>
+    <script>
+        const _ = $vui._
+        return {
+            open() {
+                this._isOpen = true
+            },
+            get isOpen() { return this._isOpen },
+            close() {
+                if (this.$prop('open'))
+                    this.$dispatch('close', false)
+                else
+                    this._isOpen = false
+            },
+            toggle() {
+                if (this.isOpen)
+                    this.close()
+                else
+                    this.open()
+            },
+            onMounted() {
+                if (this.$prop('open') !== undefined) {
+                    $vui.effect(() => {
+                        this._isOpen = this.$prop('open')
+                    })
+                }
+            }
+        }
+    </script>
+</template>
+<template x-component:hui="dialog-overlay" x-show="$api && $api.context.isOpen"
+    @click.prevent.stop="$api.context.close()">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of(':dialog') },
+        }
+    </script>
+</template>
+<template x-component:hui="dialog-panel" @click.outside="$api.context.close()" x-show="$api && $api.context.isOpen">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of(':dialog') },
+        }
+    </script>
+</template>
+<template x-component:hui="dialog-title">
+    <slot></slot>
+    <script>
+        return {
+            get context() { return this.$of(':dialog') },
+        }
+    </script>
+</template>
+<template x-component:hui="dialog-description">
+    <slot></slot>
+</template>

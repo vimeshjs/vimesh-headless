@@ -27,6 +27,8 @@
                 { name: 'Menu with Transition and Popper', path: '/menu/with-transition-and-popper', page: 'menu/with-transition-and-popper' },
                 
                 { name: 'Popover', path: '/popover/basic', page: 'popover/basic' },
+                { name: 'Dialog', path: '/dialog/basic', page: 'dialog/basic' },
+                { name: 'Dialog with Slide Over', path: '/dialog/slide-over', page: 'dialog/slide-over' },
 
                 { name: 'Switch', path: '/switch/basic', page: 'switch/basic' },
                 { name: 'Tabs', path: '/tabs/basic', page: 'tabs/basic' },
@@ -46,7 +48,7 @@
     </style>
 </head>
 
-<body x-cloak x-import="app:header,footer,side-menu,code-viewer,key-caster"
+<body x-cloak x-import="app:header,side-menu,code-viewer,key-caster"
     class="h-full w-full font-sans text-gray-900 antialiased flex flex-col" x-data="root">
     <app-header class="flex-none h-16 px-1 py-3 flex"></app-header>
     <div class="flex-1 flex">
