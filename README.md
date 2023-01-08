@@ -17,10 +17,10 @@ Vimesh Headless UI has much smaller code size
 
 Comparing the production version of Vimesh and Tailwind headless dialog example page size, Vimesh is much smaller with more features and less bugs (check the menu display in the tailwind popup dialog). 
 
-| Vimesh | Tailwind |
-| ---- | ---- |
-| ![](./assets/vimesh001.png) | ![](./assets/tailwind001.png) |
-| 192k | 425k |
+* Vimesh (192k) 
+![](./assets/vimesh001.png) 
+* Tailwind (425k)
+![](./assets/tailwind001.png)
 
 ### Load only used components dynamically
 Components are plain html files, which could be hosted anywhere, normally at CDN. They could be shared cross different projects without extra tree shaking magic. For example, the dialog basic example uses two components `hui-dialog` and `hui-menu`. Just load them asynchronously with `x-import`. Vimesh UI registers corresponding native custom elements and initialize them.
