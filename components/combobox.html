@@ -1,8 +1,12 @@
 <template x-component:hui="combobox" x-modelable="value" x-data="{
     value: null,
     query: '',
+    get isOpen() { return this.$api && this.$api.isOpen },
     get disabled() {return $prop('disabled')},
-    get multiple() {return $prop('multiple')}
+    get multiple() {return $prop('multiple')},
+    get activeOption() {
+        return this.$api && this.$api.activeOption
+    }
 }">
 
     <input type="hidden" :name="$prop('name')" :value="$prop('value', '')">
@@ -13,7 +17,10 @@
         return {
             _elActive: null,
             _isOpen: false,
-
+            get activeOption() {
+                if (!this.$api._elActive) return null
+                return $vui.$api(this.$api._elActive).value
+            },
             ensureActive() {
                 let elOptions = this.enabledOptions
                 if (elOptions.length > 0 && (!this._elActive || -1 === elOptions.indexOf(this._elActive)))
@@ -87,9 +94,13 @@
             select(val) {
                 if (!this.multiple)
                     this.value = val
-                else if (_.isArray(this.value))
-                    this.value.indexOf(val) === -1 && this.value.push(val)
-                else
+                else if (_.isArray(this.value)) {
+                    let index = this.value.indexOf(val)
+                    if (index === -1)
+                        this.value.push(val)
+                    else
+                        this.value.splice(index, 1)
+                } else
                     this.value = [val]
             },
             selectActive() {
@@ -133,7 +144,7 @@
             onSelect() {
                 if (!this.disabled) {
                     this.select()
-                    this.close()
+                    if (!this.context.multiple) this.close()
                 }
             }
         }
@@ -161,7 +172,7 @@
 </template>
 <template x-component:hui.unwrap="combobox-input">
     <input tabindex="0" @keydown="$api.onKeydown($event)" @click="$api.ensureOpen()" @input.stop="$api.onInput()"
-        :placeholder="$api && $api.displayValue" />
+        :placeholder="$prop('placeholder') || $api && $api.displayValue" />
     <script>
         return {
             get context() { return this.$of(':combobox') },
@@ -170,7 +181,7 @@
                 let val = this.context.value
                 if (displayValueFunc && val)
                     val = displayValueFunc(val)
-                return val || ''
+                return $vui._.isString(val) ? val : ''
             },
             onMounted() {
                 $vui.effect(() => this.syncInputValue())
@@ -209,7 +220,7 @@
                         e.preventDefault()
                         e.stopPropagation()
                         context.selectActive()
-                        context.close()
+                        if (!context.multiple) context.close()
                         this.$el.blur()
                         break;
                     case 'ArrowDown':

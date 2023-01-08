@@ -4,7 +4,7 @@
     <script src="https://unpkg.com/@vimesh/style"></script>
     <script src="https://unpkg.com/@vimesh/ui"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
-    <script src="https://unpkg.com/universal-router/universal-router.min.js"></script>        
+    <script src="https://unpkg.com/universal-router/universal-router.min.js"></script>
 
     <script>
         const DEBUG = false
@@ -19,23 +19,24 @@
             get isHome() { return this.$route.page === 'home' },
             routes: [
                 { name: 'Home', path: '/index', page: 'home' },
+                { name: 'Listbox', path: '/listbox/basic', page: 'listbox/basic' },
+                { name: 'Listbox Multi Select', path: '/listbox/multi-select', page: 'listbox/multi-select' },
+                { name: 'Listbox Multi Elements', path: '/listbox/multi-elements', page: 'listbox/multi-elements' },
+                { name: 'Radio Group', path: '/radio-group/basic', page: 'radio-group/basic' },
+                { name: 'Switch', path: '/switch/basic', page: 'switch/basic' },
+                { name: 'Tabs', path: '/tabs/basic', page: 'tabs/basic' },
+                { name: 'Combobox', path: '/combobox/basic', page: 'combobox/basic' },
+                { name: 'Combobox Multi Select', path: '/combobox/multi-select', page: 'combobox/multi-select' },
+                { name: 'Combobox Command Palette', path: '/combobox/command-palette', page: 'combobox/command-palette' },
+                { name: 'Combobox Command Palette with Group', path: '/combobox/command-palette-group', page: 'combobox/command-palette-group' },
                 { name: 'Menu', path: '/menu/basic', page: 'menu/basic' },
                 { name: 'Menu Multiple Elements', path: '/menu/multiple-elements', page: 'menu/multiple-elements' },
                 { name: 'Menu with Popper', path: '/menu/with-popper', page: 'menu/with-popper' },
                 { name: 'Menu with Transition', path: '/menu/with-transition', page: 'menu/with-transition' },
                 { name: 'Menu with Transition and Popper', path: '/menu/with-transition-and-popper', page: 'menu/with-transition-and-popper' },
-                
                 { name: 'Popover', path: '/popover/basic', page: 'popover/basic' },
                 { name: 'Dialog', path: '/dialog/basic', page: 'dialog/basic' },
                 { name: 'Dialog with Slide Over', path: '/dialog/slide-over', page: 'dialog/slide-over' },
-
-                { name: 'Switch', path: '/switch/basic', page: 'switch/basic' },
-                { name: 'Tabs', path: '/tabs/basic', page: 'tabs/basic' },
-                { name: 'Combobox', path: '/combobox/basic', page: 'combobox/basic' },
-                { name: 'Listbox', path: '/listbox/basic', page: 'listbox/basic' },
-                { name: 'Listbox Multi Select', path: '/listbox/multi-select', page: 'listbox/multi-select' },
-                { name: 'Listbox Multi Elements', path: '/listbox/multi-elements', page: 'listbox/multi-elements' },
-                { name: 'Radio Group', path: '/radio-group/basic', page: 'radio-group/basic' },
                 { name: 'Something Wrong!', path: '(.*)', page: 'home', hidden: true }
             ]
         }

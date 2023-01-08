@@ -2,7 +2,7 @@
 <script>
     function setupDialogBasicData() {
         return {
-            isOpen: true,
+            isOpen: false,
             trigger: null,
             container: null,
             toggleIsOpen() {
@@ -18,19 +18,22 @@
             },
             init() {
                 $vui.effect(() => {
-                    if (!this.trigger || !this.container) return
-                    Popper.createPopper(this.trigger, this.container, {
-                        placement: 'bottom-end',
-                        strategy: 'fixed',
-                        modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
+                    if (!this.trigger || !this.container || !this.isOpen) return
+                    $vui.nextTick(() => {
+                        Popper.createPopper(this.trigger, this.container, {
+                            placement: 'bottom-end',
+                            strategy: 'fixed',
+                            modifiers: [{ name: 'offset', options: { offset: [0, 10] } }]
+                        })
                     })
                 })
             }
         }
     }
 </script>
-<template x-component:page="dialog-basic" x-import="hui:dialog,menu" x-data="setupDialogBasicData()">
-    <template v-for="i in Array(5)
+<template x-component:page="dialog-basic" x-import="hui:dialog,menu" x-data="setupDialogBasicData()"
+    class="overflow-y-auto">
+    <template x-for="i in Array(3)
     .fill(null)
     .map((_, i) => i)" :key="i">
         <p class="m-4">

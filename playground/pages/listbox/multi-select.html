@@ -14,7 +14,7 @@
         ]
         return {
             people,
-            activePersons: [],
+            activePersons: [people[1], people[2]],
             removePerson(toRemove) {
                 this.activePersons = this.activePersons.filter((p) => p !== toRemove)
             }
