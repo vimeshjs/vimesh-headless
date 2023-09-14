@@ -1,0 +1,35 @@
+<script>
+    function appSideMenuData() {
+        return {
+            selected: this.$route.path,
+            isSelected(menu) {
+                const start = menu.path.startsWith('/') ? `/${menu.path.split('/')[1]}` : 'abc';
+                return this.selected.startsWith(start);
+            }
+        }
+    };
+</script>
+<template x-component:app="side-menu" x-data="appSideMenuData">
+    <div :class="`bg-${$store.page.color}-100 font-medium text-${$store.page.color}-600 dark:text-${$store.page.color}-200 dark:bg-${$store.page.color}-700 py-4 h-full grid shadow`"
+        style="grid-template-rows: auto 60px;">
+        <div>
+            <template x-for="menu in $prop('menus',[])">
+                <div class="mb-6">
+                    <a class="font-medium text-${$store.page.color}-600" :href="`#${menu.path}`">
+                        <button x-on:click="selected = menu.path"
+                            @mouseenter.debounce="$dispatch('open-sub-menu', menu)"
+                            :class="`m-auto flex justify-center px-4 py-1 hover:bg-${$store.page.color}-200 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer ${isSelected(menu) ? `bg-${$store.page.color}-200 dark:bg-${$store.page.color}-800` : ''}`">
+                            <i :class="`uil uil-${menu.icon} text-2xl`"></i>
+                        </button>
+                        <div :class="`flex justify-center pt-1 text-xs ${isSelected(menu) ? 'font-bold dark:text-sky-200' : ''}`"
+                            x-text="menu.name"></div>
+                    </a>
+                </div>
+            </template>
+        </div>
+        <button x-on:click="$store.persist.changeTheme()"
+            :class="`m-auto flex justify-center p-3 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer border`">
+            <i :class="`uil uil-${$store.persist.theme==='dark'?'brightness':'moon'} text-2xl`"></i>
+        </button>
+    </div>
+</template>

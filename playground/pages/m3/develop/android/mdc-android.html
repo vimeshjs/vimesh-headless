@@ -1,0 +1,107 @@
+<script>
+    const pageDevelopAndroidMCDAndroid = {
+        data() {
+            return {
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/kkr2TmO3u_FfBakRK1ZO-dpxKpxvX84TsZksqJNtfAjqBpCzdUairFKYnAhUj9Xz8tWkTXwYI9QjykmCmswAlsmLfIIXBFjxYabcsnuPizy5OHVYjMW2=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/Hyd9Ea7nfmAIsP0YdygYsGn38uSoe_tAvkBU9d3uPfBLiJ6ILuvOFousDmp0kXPPoWZrOHotDn4800B7Wp2cidBxor_fBN3nNxDmw9jehZId3XVyrkw=w2400-rj',
+                    },
+                },
+                section1: {
+                    title: 'Announcements',
+                    content: 'The latest from MDC-Android',
+                    cards: [{
+                        title: 'MDC-Android Stable release 1.9.0',
+                        content: 'New ways to navigate in and interact with your applications',
+                        bg: 'https://lh3.googleusercontent.com/KRFY8xEaPyVMcEKjtOmdv_tLS7ri6PXLIigjWOM77tLc52ZByA0s5xUMpEvzsVHMRnh_Hv7HH01xHMfYgAaIJN5EvxENzf1b_Q1hOBcP085GoOSto-DA=w960',
+                    }, {
+                        title: 'Migrate from M2 to M3 for MDC-Android',
+                        content: 'A technical guide for migrating your existing app to Material Design 3.',
+                        bg: 'https://lh3.googleusercontent.com/Ko3EB_dvd84-vrCWpAyOZPVlfs3-_opvEidJvcumw6ysf_xBLTnsZviLSLTzQuZeCTFBLsCkrE3fpDOWru8HJQPzMahrfrZNW6Bhvg-Cppyw6EftSyU=w960',
+                    }]
+                },
+                section2: {
+                    title: 'Resources & documentation',
+                    content: 'Guides, developer docs, tutorials, and more',
+                    cards: [{
+                        title: 'Material Components – Github',
+                        content: 'Documentation for all Material Components available in the MDC-Android repo on Github',
+                        bg: 'https://lh3.googleusercontent.com/9CnOR0OIux564E7TFJqrRBv68zlftQwq0IOEdzLnJtgFfsRLXXmdlVsV0bMd-6xJ0zyJem44vfnetxrWHn9acLorYR_qkFxMGMsLoJVQn3bnb0VUmQ=w960',
+                    }, {
+                        title: 'ADS ‘21: What’s new in Material',
+                        content: 'Keynote talk from Android Developer Summit 2021, covering the top Android 12 updates.',
+                        bg: 'https://lh3.googleusercontent.com/nOCeGDcFZMdGCXEISkqL24_kmFxUx23cxSAraxzjAO0g9yF_9XsUGK1zFEMcerGm8X2sNcE8PyN2UBaqCANSATJnHj5AQ7Qs7z6NmpkRzMGgTB-ppg=w960',
+                    }, {
+                        title: 'Material You: Applying dynamic color for your app or brand',
+                        content: 'Learn how to apply dynamic color in this short talk from two Material experts.',
+                        bg: 'https://lh3.googleusercontent.com/6PfS0vUtxrPUdh6TS9eo0df3m3561Ke94FAm4hKQKjAcdTzJhcLN8KQyekfAorlqLMnIMka-9zxT4h10h2ZvYAAyDdvi42BxHGI-nSGWCSWKfdspZ20=w960',
+                    }, {
+                        title: 'Building beautiful transitions with Material Motion',
+                        content: 'Codelab and video tutorial: Get step-by-step instructions for Material transition patterns.',
+                        bg: 'https://lh3.googleusercontent.com/Ea797Ik6cOBPmOYfCUbmV5ox5sUwD8qAj8bFqYl-4wJuAgSwFbOdyQBYY55tuHRsI-ouHCjZnL0weOMhlFrRq4xPKjlaNtC0hdby9c0Dn8RH-5HCZg=w960',
+                    }, {
+                        title: 'Apply dynamic color using Material Design 3 for Android',
+                        content: 'Codelab with step-by-step instructions for adding dynamic color features to an app.',
+                        bg: 'https://lh3.googleusercontent.com/LDlQ85hvSwtSIQPORGlqAmGJiPkBZ4JcjKn38bWbcqUYdse8ZjLxJ2cJSBmnsh42WVcbssaiR72h5RJN4GzvmW5gNAwD63DdiDgCAE9zUNi0EIS8e6w=w960',
+                    }, {
+                        title: 'Material Design Components - MAD Skills',
+                        content: 'YouTube playlist with step-by-step instructions for using Material Components for Android.',
+                        bg: 'https://lh3.googleusercontent.com/in2ZbUcZSSRvzL7Q850495qwKdXiiniOhYfkNVU8OKez6DAXITQEPc647rN2MO53YS1y788oJVAm_YpQlAbZjqRxSbWzux9IcfYz8ON9HfkPmOWc4lo=w960',
+                    }]
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:page="develop-android-mdc-android" x-import="app:page-container"
+    x-data="pageDevelopAndroidMCDAndroid.data">
+    <app-page-container>
+        <div class="m-auto w-full h-fit p-16 py-32 rounded-3xl bg-cover col-span-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">MDC-Android</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-md text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    Modular and customizable code for building Android products. Support is available for Material
+                    Design 3.
+                </div>
+            </div>
+        </div>
+
+        <fin-android-mdc-android-section :title="section1.title" :content="section1.content"
+            :cards="section1.cards"></fin-android-mdc-android-section>
+
+        <fin-android-mdc-android-section :title="section2.title" :content="section2.content"
+            class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3" height="h-48" :cards="section2.cards"></fin-android-mdc-android-section>
+
+        <app-footer></app-footer>
+    </app-page-container>
+</template>
+
+<template x-component:fin="android-mdc-android-section">
+    <div class="max-w-screen-xl m-auto py-6 text-black">
+        <div class="text-2xl md:text-4xl font-medium mt-4 md:mt-8 ml-4 md:ml-6 py-4 dark:text-gray-300"
+            x-text="$prop('title')"></div>
+        <div class="text-base md:text-base font-normal ml-4 md:ml-6 pb-4 dark:text-gray-300" x-text="$prop('content')">
+        </div>
+        <div :class="`grid ${$prop('class', 'grid-cols-1 md:grid-cols-2')} gap-2`">
+            <template x-for="card in $prop('cards',[])">
+                <div
+                    class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                    <template x-if="Boolean(card.bg)">
+                        <div :class="`${$prop('height','h-72')} rounded-3xl mb-4 bg-cover bg-center`"
+                            :style="`background-image:url('${card.bg}')`"></div>
+                    </template>
+                    <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`" x-text="card.title">
+                    </div>
+                    <div class="px-6 font-normal" x-text="card.content">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

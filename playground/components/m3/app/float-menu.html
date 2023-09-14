@@ -1,0 +1,199 @@
+<script>
+    const appFloatMenu = {
+        all: {
+            data() {
+                return {
+                    selected: null,
+                    submenu: null,
+                    show: false,
+                    showSubMenu: false,
+                    init() {
+                        this.$nextTick(() => {
+                            this.show = true;
+                        });
+                    },
+                    openMenuControl(menu) {
+                        if (menu.children && menu.children.length > 0) {
+                            this.selected = menu.name;
+                            this.$nextTick(() => {
+                                this.showSubMenu = true;
+                            });
+                        }
+                    },
+                    back() {
+                        if (this.selected) {
+                            this.showSubMenu = false;
+                            this.$nextTick(() => {
+                                setTimeout(() => this.selected = null, 300);
+                            });
+                        } else {
+                            this.show = false;
+                            setTimeout(() => this.$dispatch('close-sub-menu'), 300);
+                        }
+                    }
+                }
+            },
+        },
+        float: {
+            data() {
+                return {
+                    show: false,
+                    init() {
+                        this.$nextTick(() => {
+                            this.show = true;
+                        })
+                    }
+                }
+            },
+        },
+        menu: {
+            data() {
+                return {
+                    selected: null,
+                    opens: [],
+                    openSubMenuControl(submenu) {
+                        const index = this.opens.indexOf(submenu.path);
+                        if (index === -1) {
+                            this.opens = [...this.opens, submenu.path]
+                        } else {
+                            this.opens = [...this.opens.slice(0, index), ...this.opens.slice(index + 1)]
+                        }
+                    },
+                    init() {
+                        if (this.$route.path.startsWith('/')) {
+                            const ps = this.$route.path.split('/');
+                            ps.pop();
+                            this.opens = [ps.join('/')];
+                        }
+                    }
+                }
+            }
+        },
+        getSubmenu(menus, name) {
+            if (!name) return null;
+            const menu = menus.find(m => m.name === name) || { name: '' };
+            return menu;
+        },
+    }
+</script>
+
+<template x-component:app="float-menu-all" x-data="appFloatMenu.all.data">
+    <div class="absolute top-0 left-0 w-full h-full bg-zinc-800/70 border" style="z-index:0;"
+        @click="show=false;setTimeout(() => $dispatch('close-sub-menu'), 300);"></div>
+    <div :class="`shadow-md grid absolute top-0 left-0 h-full bg-${$store.page.color}-100 font-medium text-${$store.page.color}-600 dark:text-white dark:bg-${$store.page.color}-700 border-l border-l-${$store.page.color}-500 overflow-hidden`"
+        :style="`${show ? 'width:308px;' : 'width:0px;'} transition: width 0.3s; z-index:1;grid-template-rows: 50px auto 78px;`">
+        <div class="px-2 py-2">
+            <button :class="`hover:bg-${$store.page.color}-200 dark:hover:bg-${$store.page.color}-600 rounded-full p-3`"
+                @click="back">
+                <i class="uil uil-left-indent text-2xl"></i>
+            </button>
+        </div>
+        <div>
+            <template x-if="Boolean(selected) === false">
+                <template x-for="(menu, index) in $prop('menus', [])">
+                    <div :class="`${index===0 ? 'pt-0' : ''} px-2`">
+                        <template x-if="!Boolean(menu.children) || menu.children.length === 0">
+                            <div
+                                :class="`px-3 flex w-full justify-between items-center hover:bg-${$store.page.color}-200 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer ${selected === menu.name ? 'bg-sky-200 dark:bg-sky-800' : ''}`">
+
+                                <a :href="`#${menu.path}`" class="flex items-center">
+                                    <i :class="`uil uil-${menu.icon} text-2xl`"></i>
+                                    <button class="px-4 py-3 text-sm whitespace-nowrap text-2xl font-semibold"
+                                        x-text="menu.name"></button>
+                                </a>
+                            </div>
+                        </template>
+
+                        <template x-if="Boolean(menu.children) && menu.children.length > 0">
+                            <div @click="openMenuControl(menu)"
+                                :class="`px-3 flex w-full justify-between items-center hover:bg-${$store.page.color}-200 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer ${selected === menu.name ? 'bg-sky-200 dark:bg-sky-800' : ''}`">
+                                <div class="flex items-center">
+                                    <i :class="`uil uil-${menu.icon} text-2xl`"></i>
+                                    <button class="px-4 py-3 text-sm whitespace-nowrap text-2xl font-semibold"
+                                        x-text="menu.name"></button>
+                                </div>
+                                <i class="uil uil-arrow-right text-2xl"></i>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </template>
+            <template x-if="Boolean(selected)">
+                <div x-data="{menu:appFloatMenu.getSubmenu($prop('menus', []), selected)}">
+                    <fin-topbar-float-menu :menu="menu" :show="showSubMenu"></fin-topbar-float-menu>
+                </div>
+            </template>
+        </div>
+        <div class="flex justify-center items-center">
+            <template x-if="Boolean(selected) === false">
+                <div :class="`hover:bg-${$store.page.color}-200 dark:hover:bg-${$store.page.color}-600 rounded-full px-5 py-3 flex gap-3 cursor-pointer whitespace-nowrap border`"
+                    x-on:click="$store.persist.changeTheme()">
+                    <i :class="`uil uil-${$store.persist.theme==='dark'?'brightness':'moon'} text-2xl`"></i>
+                    <div x-text="`Switch to ${$store.persist.theme === 'dark' ? 'light': 'dark'} mode`"></div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
+
+<template x-component:app="side-float-menu" x-data="appFloatMenu.float.data">
+    <div :class="`shadow-md hover:shadow-lg absolute top-0 h-screen bg-${$store.page.color}-100 font-medium text-${$store.page.color}-600 dark:text-white dark:bg-${$store.page.color}-700 border-l border-l-${$store.page.color}-500 overflow-x-hidden overflow-y-auto`"
+        :style="`left:88px;${show ? 'width:240px;' : 'width:0px;'} transition: width 0.3s; z-index:1;`"
+        @mouseleave.debounce="if(!$prop('menu') || !Boolean($prop('menu').children) || $prop('menu').children.length === 0) { show=false; }setTimeout(() => $dispatch('close-sub-menu', $prop('menu')), 300);">
+
+        <div x-data="{menu:$prop('menu')}">
+            <fin-float-menu :menu="menu"></fin-float-menu>
+        </div>
+    </div>
+</template>
+
+<template x-component:fin="topbar-float-menu">
+    <div :class="`absolute top-0 h-screen bg-${$store.page.color}-100 font-medium text-${$store.page.color}-600 dark:text-white dark:bg-${$store.page.color}-700 border-l border-l-${$store.page.color}-500 overflow-x-hidden overflow-y-auto`"
+        :style="`left:64px;${$prop('show') ? 'width:240px;' : 'width:0px;'} transition: width 0.3s; z-index:1;`">
+
+        <div x-data="{menu:$prop('menu')}">
+            <fin-float-menu :menu="menu"></fin-float-menu>
+        </div>
+
+    </div>
+</template>
+
+<template x-component:fin="float-menu" x-data="appFloatMenu.menu.data">
+    <template x-for="(submenu,index) in $prop('menu',{children:[]}).children">
+        <div :class="`${index===0 ? 'pt-4' : ''} px-2`">
+
+            <template x-if="!Boolean(submenu.children) || submenu.children.length === 0">
+                <a :href="`#${submenu.path}`"
+                    :class="`mb-1 px-2 flex w-full justify-between hover:bg-${$store.page.color}-300 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer ${$route.path.startsWith(submenu.path || 'abc') ? `bg-${$store.page.color}-300 dark:bg-${$store.page.color}-800` : ''}`">
+                    <button class="flex justify-center px-4 py-3 text-sm whitespace-nowrap"
+                        x-text="submenu.name"></button>
+                    <template x-if="Boolean(submenu.children) && submenu.children.length > 0">
+                        <button class="px-4"><i class="uil uil-angle-down text-2xl"></i></button>
+                    </template>
+                </a>
+            </template>
+
+            <template x-if="Boolean(submenu.children) && submenu.children.length > 0">
+                <div @click="openSubMenuControl(submenu)"
+                    :class="`mb-1 px-2 flex w-full justify-between hover:bg-${$store.page.color}-300 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer ${$route.path.startsWith(submenu.path || 'abc') ? `bg-${$store.page.color}-300 dark:bg-${$store.page.color}-900` : ''}`">
+                    <button class="flex justify-center px-4 py-3 text-sm whitespace-nowrap"
+                        x-text="submenu.name"></button>
+                    <button class="px-4"><i class="uil uil-angle-down text-2xl"></i></button>
+                </div>
+            </template>
+
+            <template x-if="Boolean(submenu.children) && submenu.children.length > 0">
+                <div class="pl-4 overflow-hidden"
+                    :style="`${opens.indexOf(submenu.path) !== -1 ? `height:${submenu.children.length * 48}px;` : 'height:0px;'} transition: height 0.6s;`">
+                    <template x-for="childmenu in submenu.children">
+                        <a :href="`#${childmenu.path}`"
+                            :class="`mb-1 px-2 flex w-full justify-between hover:bg-${$store.page.color}-300 dark:hover:bg-${$store.page.color}-600 rounded-full cursor-pointer ${$route.path === childmenu.path ? `bg-${$store.page.color}-200 dark:bg-${$store.page.color}-800` : ''}`">
+                            <button class="flex justify-center px-4 py-3 text-sm whitespace-nowrap"
+                                x-text="childmenu.name"></button>
+                        </a>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

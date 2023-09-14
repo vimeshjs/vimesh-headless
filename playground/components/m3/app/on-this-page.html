@@ -1,0 +1,37 @@
+<script>
+    const onThisPage = {
+        data() {
+            return {
+                top: 500,
+                list: [],
+                init() {
+                    this.$nextTick(() => {
+                        this.top = this.$prop('top', 500);
+                        this.list = this.$prop('list', []);
+                    })
+                },
+                onSelect(index) {
+                    if (this.list[index].hrefid) {
+                        this.$dispatch('on-select', this.list[index].hrefid);
+                    }
+                }
+            }
+        },
+        scroll(e) {
+            const onThisPage = document.getElementById('onThisPage');
+            const top = +onThisPage.style.top.replace('px', '');
+            if (e.target.scrollTop <= (top - 60)) {
+                onThisPage.style.marginTop = `${-1 * e.target.scrollTop}px`;
+            }
+        },
+    };
+</script>
+<template x-component:app="on-this-page" x-data="onThisPage.data">
+    <div id="onThisPage" class="absolute bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 p-4 rounded-lg" :style="`width: 200px; right: 20px; top:${top}px;`">
+        <div class="px-6 font-xs font-light">On this page</div>
+        <template x-for="(item,index) in list">
+            <div :class="`px-6 py-1 font-normal rounded-full cursor-pointer ${$prop('selected',0) === index ? `font-semibold border` : ``}`"
+                x-text="item.text" @click="onSelect(index)"></div>
+        </template>
+    </div>
+</template>

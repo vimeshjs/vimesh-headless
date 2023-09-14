@@ -1,0 +1,50 @@
+<script>
+    const appTabList = {
+        data() {
+            return {
+                list: [],
+                init() {
+                    this.$nextTick(() => {
+                        this.list = this.$prop('list', []);
+                    })
+                },
+                onSelect(index) {
+                    this.$dispatch('on-select', index);
+                }
+            }
+        },
+        scroll(e) {
+            const topContainer = document.getElementById('topContainer');
+            const tabListContainer = document.getElementById('tabListContainer');
+            const tabListInnerContainer = document.getElementById('tabListInnerContainer');
+            if (e.target.scrollTop >= topContainer.getBoundingClientRect().height) {
+                tabListContainer.classList.add('absolute');
+                tabListContainer.classList.add('top-0');
+                tabListContainer.classList.add('text-xl');
+                tabListContainer.classList.add('scale-70');
+
+                tabListInnerContainer.classList.add('shadow-md');
+
+            } else {
+                tabListContainer.classList.remove('absolute');
+                tabListContainer.classList.remove('top-0');
+                tabListContainer.classList.remove('text-xl');
+                tabListContainer.classList.remove('scale-70');
+
+                tabListInnerContainer.classList.remove('shadow-md');
+            }
+        },
+    };
+</script>
+<template x-component:app="tab-list" x-data="appTabList.data">
+    <div id="tabListContainer" class="h-20 flex justify-center transition-transform	delay-100 ease-in-in"
+        :style="`width:${$store.page.mainSize.width - 32}px`">
+        <div id="tabListInnerContainer"
+            :class="`bg-gray-100 font-medium text-dark dark:text-neutral-200 dark:bg-neutral-700 flex justify-between rounded-full w-full h-full`">
+            <template x-for="(item,index) in list">
+                <div :class="`h-full rounded-full flex grow justify-center items-center cursor-pointer ${$prop('selected',0) === index ? `font-semibold bg-${$store.page.color}-200 hover:bg-${$store.page.color}-300 dark:bg-${$store.page.color}-400 dark:hover:bg-${$store.page.color}-500` : `bg-transparent hover:bg-gray-300 dark:bg-transparent dark:hover:bg-neutral-700`}`"
+                    x-text="item" @click="onSelect(index)"></div>
+            </template>
+        </div>
+    </div>
+</template>

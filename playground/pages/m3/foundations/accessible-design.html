@@ -1,0 +1,152 @@
+<script>
+    const pageFoundationsAccessibleDeign = {
+        data() {
+            return {
+                selected: 0,
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/m8am03OY7pwMPiYPLQ4K1PimDBzWIv49tLkS5ilqBfI4GadhofpAikaOP7bfmxeLWQHIL1dan7DU8wW0ob5w1s2NKf9CXJqkkehN--SM8ROC-ZzgKA=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/_CUhJ8LwfaLYy-56RqbQy6CVZDoeXkQdqRpnRjUnksK6kJOIiGkSqQFdxZUXW3KqBuXSlZx9z2xjFkJyDrIKGmXF2dK7E6ZtMjQzVx69_56mR5OAU0s=w2400-rj',
+                    },
+                },
+                sections1: [{
+                    title: 'Accessibility & Material Design',
+                    contents: [
+                        'Accessibility by default is a foundational design value for Material. Understanding and anticipating a wide range of human experiences and disabilities establishes product foundations that prevent costly redesigns, reduce tech and design debt, and conserve resources upfront.',
+                        'Accessibility standards built into Material components are designed to provide a foundation for inclusive product design. Understanding your product’s accessibility can enhance usability for all users, including those with low vision, blindness, hearing impairments, cognitive impairments, motor impairments, or situational disabilities (such as a broken arm).'
+                    ]
+                }, {
+                    title: 'Get started',
+                    contents: [
+                        'Accessibility requirements and goals are documented across component pages and guidelines. In component guidance, accessibility standards are both implicit (built into design and code), as well as explicit (considerations are discussed where judgment is required.) ',
+                        'Use this page as a starting point for understanding the accessibility standards applied across Material guidelines, as well as a reference to continue checking throughout design and development stages.'
+                    ]
+                }, {
+                    title: 'Principles for accessible design',
+                    contents: [
+                        'The following principles for accessible design are approaches that can help anticipate, include, and respond to the needs of individuals. They\'re considerations for design, development, collaboration, and co- creation that encourage inclusive and equitable outcomes.',
+                    ]
+                }],
+                sections2: [{
+                    title: 'Honor individuals',
+                    contents: [
+                        'Universal default experiences rarely meet everyone’s needs. Introducing customizable features in a default experience allows room for individual adaptation. Honoring the shifting needs of any person can mean giving more freedom to choose things for themselves',
+                        'Because a person\'s experience throughout their day, or year, or life can continue to change, it helps to support varying preferences and choices that allow individuals to address how their changing conditions, individual knowledge, and varying needs are met. '
+                    ],
+                    image: 'https://lh3.googleusercontent.com/FeiRvlGVf5nLAEizreflu6Ei7ZTiwadrggovH9T6mA6X-QVZ_1mrN12Amg4__1Vr_DnXVUXfwOQZXejsgkc4sQGVwaCqElPB8OlHE-Qx5AWxBw=s0'
+
+                }, {
+                    title: 'Learn before, not after',
+                    contents: [
+                        'Before defining solutions, invest time in understanding the needs of users with a wide range of abilities and life experiences. Formal and informal research can open new ways of thinking, reduce biases, and encourage creative ways to make access available, especially to those who fall outside prevailing norms.',
+                        'Accessible design processes anticipate as many potential product or experience outcomes as possible upfront. When design problems arise, the exploration of outcomes can be used as a research foundation for learning and recovering thoughtfully. ',
+                    ],
+                    image: 'https://lh3.googleusercontent.com/w4_OezxMLchD5a0vLS1qwCi-Lb2ZRPq416yNQfmxzUeHIAkh2ywip48X2P3cLoshWE1yV606H6MOhWHsUA69EycOVCA9sBhvdXXjIKIDZhRm=s0'
+                }, {
+                    title: 'Requirements as a starting point',
+                    contents: [
+                        'The minimum requirements established by WCAG support specific human needs. Designing with accessibility standards is a creative opportunity to expand and improve the application of requirements that improve human relationships with technology.',
+                        'History has shown that features originating from responses to specific access needs (dark mode, text-to-speech, speech-to-text) are a result of creative problem-solving within specified constraints. Seeing the requirements as opportunities, rather than constraints, has been shown to lead to solutions that ultimately serve many.',
+                    ],
+                    image: 'https://lh3.googleusercontent.com/takX4Bzh7cUDhRALET-TKMTwLoD9zXB-18FZeDqDh9cnU3JZ6tjy8tuWQYWavtaKl8PNgqWjjrdhXCuoHLUM7PThtgjqBoYp6550H2n1oxM=s0'
+                }],
+                onTabChange(e) {
+                    const index = e.detail;
+                    const section = document.getElementById(`section_${index}`);
+                    const mainPageContainer = document.getElementById('mainPageContainer');
+                    mainPageContainer.scrollTo({
+                        top: section.offsetTop - 100,
+                        left: 0,
+                        behavior: "smooth",
+                    });
+                },
+                onThisPageChage(e) {
+                    const section = document.getElementById(e.detail);
+                    const mainPageContainer = document.getElementById('mainPageContainer');
+                    mainPageContainer.scrollTo({
+                        top: section.offsetTop - 100,
+                        left: 0,
+                        behavior: "smooth",
+                    });
+                },
+                scroll(e) {
+                    let index = 0;
+                    for (let i = 0; i < 4; i++) {
+                        const section = document.getElementById(`section_${i}`);
+                        if (section.getBoundingClientRect().top - 100 <= 0) index = i;
+                    }
+                    this.selected = index;
+                }
+            }
+        }
+    }
+</script>
+<template x-component:page="foundations-accessible-design" x-import="app:page-container"
+    x-data="pageFoundationsAccessibleDeign.data">
+    <app-page-container @scroll="(e) => { appTabList.scroll(e); onThisPage.scroll(e); scroll(e); }">
+
+        <app-on-this-page
+            :list="[{text:'Overview', hrefid: 'section_0'},{text: 'Accessibility basics', hrefid: 'section_1'}, {text:'Patterns', hrefid: 'section_2'}, {text:'Design to implementation', hrefid:'section_3'}]"
+            :selected="selected" x-on:on-select="onThisPageChage"></app-on-this-page>
+
+        <div id="topContainer" class="m-auto w-full h-fit p-16 py-16 rounded-3xl bg-cover col-span-2 mb-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Accessible design</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-lg text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    Accessible design makes products usable for people with all kinds of abilities
+                </div>
+            </div>
+        </div>
+        <app-tab-list :list="['Overview', 'Accessibility basics', 'Patterns', 'Design to implementation']"
+            :selected="selected" x-on:on-select="onTabChange"></app-tab-list>
+
+        <div id="section_0">
+            <template x-for="section in sections1">
+                <fin-foundations-accessible-design-section1
+                    :section="section"></fin-foundations-accessible-design-section1>
+            </template>
+        </div>
+
+        <template x-for="(section, index) in sections2">
+            <fin-foundations-accessible-design-section2 :section="section"
+                :index="index+1"></fin-foundations-accessible-design-section2>
+        </template>
+
+        <app-footer></app-footer>
+
+        <div class="h-screen"></div>
+    </app-page-container>
+</template>
+
+<template x-component:fin="foundations-accessible-design-section1">
+    <div class="max-w-screen-lg px-4 m-auto py-6 text-black dark:text-gray-300">
+        <div class="text-3xl md:text-4xl font-medium mt-4 md:mt-8 py-4 dark:text-gray-300"
+            x-text="$prop('section').title"></div>
+        <template x-for="content in $prop('section').contents">
+            <div class="py-2 font-normal" x-text="content">
+            </div>
+        </template>
+    </div>
+</template>
+
+<template x-component:fin="foundations-accessible-design-section2">
+    <div :id="`section_${$prop('index')}`" class="max-w-screen-lg m-auto py-6 text-black dark:text-gray-300">
+        <div class="grid gap-2" style="grid-template-columns: auto 415px;">
+            <div class="px-4">
+                <div class="text-2xl font-semibold md:text-2xl font-normal pb-2 dark:text-gray-300"
+                    x-text="$prop('section').title">
+                </div>
+                <template x-for="content in $prop('section').contents">
+                    <div class="py-2 font-normal" x-text="content">
+                    </div>
+                </template>
+            </div>
+            <div class="rounded-3xl mb-4 bg-cover bg-center"
+                :style="`background-image:url('${$prop('section').image}');width:415px;height:415px;`"></div>
+        </div>
+    </div>
+</template>

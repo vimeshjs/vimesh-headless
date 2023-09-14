@@ -1,0 +1,128 @@
+<script>
+    const pageDevelopFlutter = {
+        data() {
+            return {
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/kkr2TmO3u_FfBakRK1ZO-dpxKpxvX84TsZksqJNtfAjqBpCzdUairFKYnAhUj9Xz8tWkTXwYI9QjykmCmswAlsmLfIIXBFjxYabcsnuPizy5OHVYjMW2=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/Hyd9Ea7nfmAIsP0YdygYsGn38uSoe_tAvkBU9d3uPfBLiJ6ILuvOFousDmp0kXPPoWZrOHotDn4800B7Wp2cidBxor_fBN3nNxDmw9jehZId3XVyrkw=w2400-rj',
+                    },
+                },
+                section1: {
+                    title: 'Announcements',
+                    content: 'The latest from Material for Flutter',
+                    cards: [{
+                        title: 'What’s new in Flutter 3.7',
+                        content: 'Material 3 updates, iOS improvements, and much more!',
+                        bg: 'https://lh3.googleusercontent.com/l3tz5gQZbeExp1aWSteEgixF9T0wQvu437O0C5-Xtz0zZwX7ZZyxWOy7XTSf84Q84--ZTZJj052Zd2UYeGLIFRonTnqqQR6zmZBNilGrhB2mGm3Tnw=w960',
+                    }, {
+                        title: 'Material 3 Flutter showcase app',
+                        content: 'Demo of Material 3 features, including updated components, typography, colors, and elevation support.',
+                        bg: 'https://lh3.googleusercontent.com/AeNQQetW0pi2m0msUmIBg9Z9RQbcxx_NePMIt2bPNa-SmiWg2lH1GObE3TDAR7h8U2OwB3UkcVH2_qZv4vUXfS54PnjJpJpZvrID8t_E8qKBWAV7mh4=w960',
+                    }]
+                },
+                section2: {
+                    title: 'Resources & documentation',
+                    content: 'Guides, developer docs, tutorials, and more',
+                    cards: [{
+                        title: 'Material 3 from design to deployment',
+                        content: 'Learn how to build the Basil Material study in Flutter with advanced theming techniques that support multiple device contexts.',
+                        bg: 'https://lh3.googleusercontent.com/YBZPtbHCByHZk-JTSLVJbtlFQMOtzICmwwM5xT3iURBCM0fX91lBRTCy1P9DGTfD8WcbWYS36NhWTsiarJgvJ2XYHf38aVNC81esam2KUZ9hqsxmhn0=w960',
+                    }, {
+                        title: 'Material 3 GitHub issue',
+                        content: 'Umbrella tracking issue for all past and future engineering work on Flutter support for Material 3.',
+                        bg: 'https://lh3.googleusercontent.com/dXbSdX3dXoapDCHIAT2bIpcUKwlRy5N0fELgAkGwHusLdkid9EdDb3yFxtu_kXPX2TlkE5R5aegKS37wvJlz2RhpqPnpUq6AzZZshpwvDM3LNZZoN1E=w960',
+                    }, {
+                        title: 'Build an animated responsive layout',
+                        content: 'Start with an empty Flutter app and build out a fully styled and animated application using Material 3 with Flutter.',
+                        bg: 'https://lh3.googleusercontent.com/OGAx7WOq7o270HpAZ4IN4OdHkT_Vq8LlHUf_vKr3EbEtI6hhk-Sqo3sDNos0BaKczKYul2cA63oRSY6GM5Y515qRoVNHOwIwdGY59899-9gUMVxxXPqC=w960',
+                    }, {
+                        title: 'Opt-in with useMaterial3 flag',
+                        content: 'Set ThemeData.useMaterial3 to true for updated components and to apply new typography, color, elevation, and more.',
+                        bg: 'https://lh3.googleusercontent.com/L-rVRIfi6E196mKrNXsHs1vOue-w3tQ4Jk90jrFG5jwkYcFHHRy6_bgAGJAQQkEIKUgnUboGC-l-1n9Q9bYzaIqFnOY0oTAb0k_-tgSyc_okEmH3mA=w960',
+                    }, {
+                        title: 'Flutter.dev',
+                        content: 'Google\'s UI toolkit for building beautiful, natively compiled applications from a single codebase.',
+                        bg: 'https://lh3.googleusercontent.com/d8EJCSQKFU7qPRpxM6nzq0VuehhXTjEN9Xry2m8k3vFXNNjZH7kSOieulhuYcJubNCgnoGaFyAO-c0QPo2kVTmFuDALky1iwW5WJIj26ZGF_3yz_cNDB=w960',
+                    }, {
+                        title: 'Take your Flutter app from boring to beautiful',
+                        content: 'Step-by-step codelab on how to apply Material 3 in your Flutter app.',
+                        bg: 'https://lh3.googleusercontent.com/piwuRKMvd6HPTuEx8wNatKXTqMVlJ_vNsz56YOfb-NO2stz-YBQNVTdzOIxPuRflUSJV7w4Ct5bjw53TwWFAs-3LKod0SDaoHA33OUdcfzLIPzkr874=w960',
+                    }, {
+                        title: '5 Steps to prepare your app for large screens',
+                        content: 'What to prioritize when building a responsive UI experience.',
+                        bg: 'https://lh3.googleusercontent.com/iKZikJ19fnwGhsXKo0f9R218eo5auXIi6srLWVlfxmpXDTSTmH8YS6laTBrblm43RGiNPZKbeIjn_161SQOZL1I1Lp-yx0bYB3GdHa7FS95mBU-TLIk=w960',
+                    }, {
+                        title: 'Material Motion in Flutter and Android',
+                        content: 'Video on how to make beautiful motion using Flutter and the Material Motion system.',
+                        bg: 'https://lh3.googleusercontent.com/k3FtSZ7LP6TnmNrzXcGvePfGI2xxlQPbQHsAXECFQA5ZhfZ75IpYD8N6W6aOPqYrNdNWVlQxJjiulOUiKohOkwtAqV2JIryAV_0sUsukRR9yg39s2kq7=w960',
+                    }, {
+                        title: 'Material 3 Canonical layouts',
+                        content: 'See how to build an adaptive, responsible application using Material 3 canonical layouts with the adaptive_scaffold package.',
+                        bg: 'https://lh3.googleusercontent.com/GY2HVqGNXH3MHVJlwtI_lXuLn3xo0yVuO6R_eNushtdUFuMNSJW6N4l4ZMjkx1vgiSOTtK4xEJfFQ4N3oP6J8aDw2yjiKfmLkLdaqlxJTch3S827k4lR=w960',
+                    }, {
+                        title: 'Material Flutter widget catalog',
+                        content: 'The Flutter team is currently working on Material Design 3 support for Material Components.',
+                        bg: 'https://lh3.googleusercontent.com/QrvmAPEIMJrJmdoCvekEqtMODi3p_YboX4hvHLO-Zr9gmG8vegohb_J0PLY0GB30d-GGLx-ivr9ehwEAkGumPt7A8nFsoxH3z-EaiwJXRyxENoHUa_o=w960',
+                    }, {
+                        title: 'Sample app: Wonderous',
+                        content: 'Wonderous pushes visual fidelity, effects, and transitions to showcase Flutter capabilities on modern mobile hardware.',
+                        bg: 'https://lh3.googleusercontent.com/-ainnwPh7Ivf7fCTwzY70JfW_tVgHEtewmoNNzVnqlgPoxvnEemdXCNSTXZmXARcVvDBpH4xjeXC8aCxQ2wuJz5EE3IDB03yr6O9aHcqJyAkGk4HY2z9=w960',
+                    },]
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:page="develop-flutter" x-import="app:page-container"
+    x-data="pageDevelopFlutter.data">
+    <app-page-container>
+        <div class="m-auto w-full h-fit p-16 py-16 rounded-3xl bg-cover col-span-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Flutter</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-lg text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    A framework for building beautiful, natively compiled applications from a single codebase. Support
+                    is available for Material Design 3.
+                </div>
+            </div>
+        </div>
+
+        <fin-develop-flutter-section :title="section1.title" :content="section1.content"
+            :cards="section1.cards"></fin-develop-flutter-section>
+
+        <fin-develop-flutter-section :title="section2.title" :content="section2.content"
+            class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3" height="h-48"
+            :cards="section2.cards"></fin-develop-flutter-section>
+
+        <app-footer></app-footer>
+    </app-page-container>
+</template>
+
+<template x-component:fin="develop-flutter-section">
+    <div class="max-w-screen-xl m-auto py-6 text-black">
+        <div class="text-2xl md:text-4xl font-medium mt-4 md:mt-8 ml-4 md:ml-6 py-4 dark:text-gray-300"
+            x-text="$prop('title')"></div>
+        <div class="text-base md:text-base font-normal ml-4 md:ml-6 pb-4 dark:text-gray-300" x-text="$prop('content')">
+        </div>
+        <div :class="`grid ${$prop('class', 'grid-cols-1 md:grid-cols-2')} gap-2`">
+            <template x-for="card in $prop('cards',[])">
+                <div
+                    class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                    <template x-if="Boolean(card.bg)">
+                        <div :class="`${$prop('height','h-72')} rounded-3xl mb-4 bg-cover bg-center`"
+                            :style="`background-image:url('${card.bg}')`"></div>
+                    </template>
+                    <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`" x-text="card.title">
+                    </div>
+                    <div class="px-6 font-normal" x-text="card.content">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

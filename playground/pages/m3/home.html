@@ -1,0 +1,113 @@
+<script>
+    const pageHome = {
+        data() {
+            return {
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/BvKj8kuRZqLpqPuuZxOl4IeHv5jaD5kT1jhn3P8EMBcmzyoHRAFXsCxNH6ZeHhQG4V1F_AegXIw2cJIBmETy7eHM27IdLQe7FqEgz6NLaXflHiHM4xyh=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/2OrUzHCRSI-V46Z1qJBh90usG6OkKwCbXN80FbrjkWoQz4VfoJjNAoQHLHPQRZWH7dI_m5I1gi48h6xMJ5pK6kkdXmUnXPe4VqwvEdo4QeWRjLV9Oew=w2400-rj'
+                    }
+                },
+                section1: {
+                    title: 'News & launches',
+                    cards: [
+                        {
+                            bg: 'https://lh3.googleusercontent.com/51moDkmVWptBFXRReuACKocS_fsOoYtfT-C78onEUKeRr7ky4l_ZsuZMK2AnE7-MPRbLzcKTAIFmNyyN7ACo0-eygmXaGeR0ItYtRcYNE8-_L8RHqkA=w960',
+                            title: 'New: Large screen guidance',
+                            content: 'Get started adapting your layouts for a range of window size classes and hardware'
+                        },
+                        {
+                            bg: 'https://lh3.googleusercontent.com/aiJojq_gpPLqLhU0PZH6Dog-OjIMti_hiclF_6oqxucGuvywn_AEtu2Qrk2f4WxEhRWMjXkz8qXpTCGoj5TZ0DUCEZ5UIXnXTSIu_7ndg2dTNmQbdkCO=w960',
+                            title: 'New: Large screen guidance3',
+                            content: 'Get started adapting your layouts for a range of window size classes and hardware'
+                        },
+                        {
+                            bg: 'https://lh3.googleusercontent.com/mLGakWFjdX3zGBIhCUWqzjlj3gUXOY8hOed_ISzomlpNmjKWUiqCFyNGGAZFneVaK30v4GUpjn7lyIsI2Z7KPvMKrYkumzBr2nwbVe3BQKRkpam3sA=w960',
+                            title: 'Figma design kit for M3',
+                            content: 'Jumpstart your M3 designs with the complete library of ready-made components'
+                        }
+                    ]
+                },
+                section2: {
+                    title: 'Design system updates',
+                    cards: [{
+                        bg: 'https://lh3.googleusercontent.com/AG8Da4Doz97XcS62XgVOYWiRwcwgZZdhJOeejfA9bhzY8K5cyhsy753fFaNgkZjcTXA7MwQnPOa9FjKaFFoOVDGVh33PutwuflvNCXkfBS7AR5GbeQ=w960',
+                        title: 'M3 for Jetpack Compose', content: 'With the latest stable release, use Jetpack Compose to build a complete M3 Android app'
+                    }, {
+                        bg: 'https://lh3.googleusercontent.com/IfqcD9hZWV1tohxFc8gyiP9kVjz0Igg1trtKkYD3qxvEziIxbnD2b8mCpmJqC015XWD14Pvwy-0vRUSJltvEa9tcY8TnWpO0zYJaR1IPjJlRrWpo3Q=w960',
+                        title: 'New component: M3 carousel', content: 'An expressive new component for displaying scrollable collections of content'
+                    }, {
+                        bg: 'https://lh3.googleusercontent.com/aLTg-FT4Ocgvjw1B_i3fOVK-rWoV3C7XCHyBkKwSbJFzIZtJjo-5atBHcSs9aZdHxiMw8-nP3lCnULJtFG_KdIVg7Gk-NV8sc1DJkeMRsTtir9pIu6IY=w960',
+                        title: 'Back navigation & gestures', content: 'Explore new motion and gesture capabilities for smooth navigation across screens'
+                    }, {
+                        bg: 'https://lh3.googleusercontent.com/QTSOFxOaVde6gu-lNjTZ_VrOh7ihpSgRc-hErsBVjQ4Te9tIj4cW4BNWXj2fy1WbDnWYNS3v6pO628xBLC-A74K7ylf0ODNz-jbNhM1OUCgTUvZSN3zP=w960',
+                        title: 'Motion system updates', content: 'Get started applying motion, from ready-to-use transition patterns to updated guidance'
+                    }, {
+                        bg: 'https://lh3.googleusercontent.com/w0mg7Iy0YoeV7ViHTp9XRzZFTbCX-ME87HPfbv_XFFZlQ-D6tjVwxsY1X_HUrFiXf-kNp8LePGcqv2Oh3OiNU6J28BYhiTf8UQKJBRDYPZejkpKE0NQ=w960',
+                        title: 'Material Theme Builder', content: 'Easily migrate or get started with the M3 color system and dynamic color'
+                    }, {
+                        bg: 'https://lh3.googleusercontent.com/560ITYkB-YZ3Hc2f0s-i9doX7kqOZ_CNnuzS7XtPolT6zfcKk7PW2TCSlD61OkSAu9eLXn1U404j5Sc4tZNZh-j4IscbCgHURVy1eC7fGtFESdOQMdhm=w960',
+                        title: 'New color guidance for tones', content: 'Updates include tone-based surface colors, contrast modes, and fixed accent colors'
+                    },]
+                },
+                section3: {
+                    title: 'Resources',
+                    cards: [
+                        { title: 'Material blog', content: 'News, tutorials, and inspiration from the Material team' },
+                        { title: 'Figma design kit', content: 'Customizable styles and components to help you design with Material 3' },
+                        { title: 'Get started', content: 'Guides, videos, and tools to start building with Material' },
+                        { title: 'Develop', content: 'Code and developer documentation for Android, Flutter, and the Web' }
+                    ]
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:page="home" x-import="app:page-container" x-data="pageHome.data">
+    <app-page-container>
+        <div class="max-w-screen-2xl m-auto h-fit p-16 rounded-3xl bg-cover"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+            <div class="flex justify-center">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Material Design</div>
+            </div>
+            <div class="flex justify-center pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-md text-lg md:text-xl lg:text-xl xl:text-xl text-center">
+                    Material 3 is the latest version of Google’s open-source design system.
+                    Design and build beautiful, usable products with Material 3.
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <button
+                    class="rounded-full py-1 md:py-2 lg:py-4 px-4 md:px-6 lg:px-8 xl:px-10 text-lg md:text-xl lg:text-2xl font-medium text-white bg-blue dark:bg-blue-300 dark:text-blue-900">Get
+                    started</button>
+            </div>
+        </div>
+        <fin-home-section :title="section1.title" :cards="section1.cards"></fin-home-section>
+        <fin-home-section :title="section2.title" :cards="section2.cards"></fin-home-section>
+        <fin-home-section :title="section3.title" :cards="section3.cards"></fin-home-section>
+
+        <app-footer></app-footer>
+    </app-page-container>
+</template>
+
+<template x-component:fin="home-section">
+    <div class="max-w-screen-xl m-auto py-6 text-black">
+        <div class="text-2xl md:text-4xl font-medium mt-4 md:mt-8 ml-4 md:ml-6 py-4 dark:text-gray-300"
+            x-text="$prop('title')"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+            <template x-for="card in $prop('cards',[])">
+                <div
+                    class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                    <template x-if="Boolean(card.bg)">
+                        <div class="h-48 rounded-3xl mb-4 bg-cover" :style="`background-image:url('${card.bg}')`"></div>
+                    </template>
+                    <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`" x-text="card.title">
+                    </div>
+                    <div class="px-6 font-normal" x-text="card.content">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

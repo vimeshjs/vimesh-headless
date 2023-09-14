@@ -1,0 +1,246 @@
+<head>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <script src="https://unpkg.com/@vimesh/style"></script>
+    <script src="https://unpkg.com/@vimesh/ui"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/universal-router/universal-router.min.js"></script>
+
+    <script>
+        const DEBUG = true
+        $vui.config.debug = DEBUG
+        $vui.config.importMap = {
+            "hui": '../components/m3/${component}.html' + (DEBUG ? '?v=' + new Date().valueOf() : '?v=0.1'),
+            "app": './components/m3/app/${component}.html' + (DEBUG ? '?v=' + new Date().valueOf() : '?v=0.1'),
+            "page": './pages/m3/${path}${component}.html' + (DEBUG ? '?v=' + new Date().valueOf() : '?v=0.1'),
+        }
+        let root = {
+            menus: [],
+            menu: null,
+            currentMenu: null,
+
+            $route: {},
+            get isHome() { return this.$route.page === 'home' },
+            routes: [
+                { name: 'Home', path: '/index', page: 'home' },
+                { name: 'Home', path: '/home', page: 'home' },
+                { name: 'Get started', path: '/get-started', page: 'get-started' },
+                { name: 'Develop', path: '/develop/overview', page: 'develop/overview' },
+                { name: 'MDC Android', path: '/develop/android/mdc-android', page: 'develop/android/mdc-android' },
+                { name: 'Jetpack Compose', path: '/develop/android/jetpack-compose', page: 'develop/android/jetpack-compose' },
+                { name: 'Flutter', path: '/develop/flutter', page: 'develop/flutter' },
+                { name: 'Web', path: '/develop/web', page: 'develop/web' },
+                { name: 'Foundations', path: '/foundations/overview', page: 'foundations/overview' },
+                { name: 'Accessible', path: '/foundations/accessible-design', page: 'foundations/accessible-design' },
+                { name: 'Something Wrong!', path: '(.*)', page: 'home', hidden: true }
+            ],
+
+            styles: {},
+
+            get styles() {
+                const classes = {};
+                const styles = {};
+                if (this.$store.page.showTopbar) {
+                    classes.root = 'grid grid-rows-2 h-full';
+                    styles.root = "grid-template-rows: 60px auto;";
+                } else {
+                    classes.root = 'grid grid-cols-2 h-full';
+                    styles.root = "grid-template-columns: 88px auto;";
+                }
+
+                return { classes, ...styles };
+            },
+            resize(e) {
+                this.$store.page.showTopbar = window.innerWidth <= 960;
+
+                this.$store.page.size = {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                }
+
+
+
+                this.setSideMode();
+            },
+            getMenu() {
+                const menu = this.menus.find(m => {
+                    return this.$route.path.startsWith(`/${m.path.split('/')[1]}`);
+                });
+                return menu;
+            },
+
+            async init() {
+                Alpine.store('page', {
+                    color: 'blue',
+                    size: {
+                        width: window.innerWidth,
+                        height: window.innerHeight,
+                    },
+                    mainSize: {
+                        width: window.innerWidth,
+                        height: window.innerHeight,
+                    },
+                    showTopbar: window.innerWidth <= 960,
+                    showSideMenu: false,
+                    setColor(color) { this.color = color; }
+                });
+
+                Alpine.store('persist', {
+                    theme: this.$persist('dark'),
+                    changeTheme(theme) {
+                        this.theme = theme || (this.theme === 'dark' ? 'light' : 'dark');
+                        this.changePageTheme(this.theme);
+                    },
+                    changePageTheme(theme) {
+                        let t = theme || this.theme;
+                        if (t === 'dark') {
+                            document.querySelector('html').classList.add('dark');
+                        } else {
+                            document.querySelector('html').classList.remove('dark');
+                        }
+                    },
+                })
+
+                this.$nextTick(() => {
+                    this.$store.persist.changePageTheme();
+                });
+
+                const response = await fetch("./data/side-menu.json");
+                const data = await response.json();
+                this.menus = data;
+
+                this.$nextTick(() => {
+                    const menu = this.getMenu() || { color: 'yellow' }
+                    this.$store.page.setColor(menu.color);
+                    this.setSideMode();
+                });
+            },
+            setSideMode() {
+                if (window.innerWidth > 1280) {
+                    setTimeout(() => {
+                        const menu = this.getMenu()
+                        this.menu = menu ? menu : null;
+                        this.currentMenu = this.menu;
+                        const showSideMenu = this.currentMenu && this.currentMenu.children && this.currentMenu.children.length > 0;
+                        setTimeout(() => {
+                            this.$store.page.showSideMenu = showSideMenu;
+                        }, showSideMenu ? 300 : 0);
+                    }, 300);
+                } else {
+                    this.$store.page.showSideMenu = false;
+                    this.currentMenu = null;
+                    this.menu = null;
+                }
+            },
+            openSubMenu(menu) {
+                if (menu === 'all') this.menu = menu;
+                else {
+                    const m = this.currentMenu || this.getMenu();
+                    if (menu.children && menu.children.length) {
+                        // if (menu.path !== m.path && menu.children && menu.children.length) {
+                        this.menu = null;
+                        if (window.innerWidth > 1024)
+                            this.$nextTick(() => { this.menu = menu; });
+                    }
+                }
+            },
+            closeSubMenu(menu) {
+                const m = this.currentMenu;
+                if (m && m.children && m.children.length) {
+                    if (menu && menu.path !== m.path) {
+                        if (m.children && m.children.length > 0) {
+                            this.menu = null;
+                            this.$nextTick(() => { this.menu = m; });
+                        }
+                    }
+                } else {
+                    this.menu = null;
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body x-on:resize.window.debounce="resize" x-cloak
+    x-import="app:side-menu,topbar,float-menu,footer,tab-list,on-this-page"
+    :class="`h-full w-full font-sans antialiased flex flex-col font-medium text-${$store.page.color}-600 dark:text-${$store.page.color}-200 dark:bg-${$store.page.color}-700`"
+    x-data="root" @open-sub-menu="openSubMenu($event.detail)" @close-sub-menu="closeSubMenu($event.detail)"
+    @open-sub-menu-all="openSubMenu('all')">
+    <div :class="styles.classes.root" :style="styles.root">
+        <template x-if="$store.page.showTopbar">
+            <app-topbar :menu="menu"></app-topbar>
+        </template>
+        <template x-if="!$store.page.showTopbar">
+            <app-side-menu :menus="menus"></app-side-menu>
+        </template>
+        <div class="flex-1 h-full flex flex-col overflow-hidden"
+            :style="`margin-left:${$store.page.showSideMenu && !$store.page.showTopbar ? 240 : 0}px;`">
+            <app-router-view></app-router-view>
+        </div>
+    </div>
+    <template
+        x-if="!$store.page.showTopbar && menu !== 'all' && Boolean(menu) && Boolean(menu.children) && menu.children.length > 0">
+        <app-side-float-menu :menu="menu"></app-side-float-menu>
+    </template>
+
+    <template x-if="$store.page.showTopbar && menu === 'all'">
+        <app-float-menu-all :menus="menus"></app-float-menu-all>
+    </template>
+
+    <template x-component:app="router-view" x-shtml="$api && $api.pageContent || ''"
+        x-import:dynamic="$api && $api.pageToImport">
+        <script>
+            return {
+                router: null,
+                pageContent: '',
+                pageToImport: null,
+                onUrlChange() {
+                    let match = window.location.href.match(/#(.*)$/)
+                    let fragment = match ? match[1] : ''
+
+                    this.router.resolve({ pathname: fragment }).then(page => {
+                        if (page) {
+                            let component = `page-${page.replaceAll('/', '-')}`
+                            this.pageContent = `<${component}></${component}>`
+                            this.pageToImport = `page:${page}`
+
+                            const menu = this.getMenu() || { color: 'yellow' }
+                            this.$store.page.setColor(menu.color);
+
+                            this.setSideMode();
+
+                            $vui.import(this.pageToImport).then(() => {
+                                $vui._.each($vui.imports, meta => {
+                                    if (meta.fullname === this.pageToImport) {
+                                        this.$route.code = meta.html
+                                    }
+                                })
+                            })
+                        }
+                    })
+                },
+                onMounted() {
+                    this.router = new UniversalRouter(this.routes, {
+                        context: { self: this },
+                        resolveRoute(context, params) {
+                            context.self.$route = { params, ...context.route }
+                            if (typeof context.route.action === 'function') {
+                                return context.route.action(context, params)
+                            }
+                            return context.route.page
+                        }
+                    })
+                    this.onUrlChange()
+                    window.addEventListener('popstate', e => this.onUrlChange())
+                }
+            }
+        </script>
+    </template>
+</body>

@@ -1,0 +1,23 @@
+<script>
+    const pageContainer = {
+        data() {
+            return {
+                init() {
+                    setTimeout(() => {
+                        this.$nextTick(() => {
+                            const mainPageContainer = document.getElementById('mainPageContainer');
+                            this.$store.page.mainSize.width = mainPageContainer.getBoundingClientRect().width;
+                        })
+                    }, 600)
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:app="page-container" id="mainPageContainer"
+    :class="`bg-transparent w-full text-black dark:text-slate-300 dark:bg-neutral-800 p-2 overflow-y-auto ${$prop('class', '')}`"
+    :style="`height:${$store.page.size.height - ($store.page.showTopbar ? 60 : 0)}px; ${$prop('style', '')}`"
+    x-data="pageContainer.data" x-on:scroll="$prop('scroll', () => { })">
+    <slot></slot>
+</template>

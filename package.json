@@ -9,6 +9,8 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@alpinejs/persist": "^3.13.0",
+    "@iconscout/unicons": "^4.0.8",
     "@vimesh/style": "^1.1.0",
     "@vimesh/ui": "^0.12.4",
     "alpinejs": "^3.10.5",

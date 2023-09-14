@@ -1,0 +1,22 @@
+<script>
+    function appTopbarData() {
+        return {
+            selected: null,
+        }
+    };
+</script>
+<template x-component:app="topbar" x-data="appTopbarData">
+    <div :class="`bg-${$store.page.color}-100 font-medium text-${$store.page.color}-600 dark:text-neutral-200 dark:bg-neutral-800 flex items-center h-full`">
+        <div class="px-3 flex items-center gap-4">
+            <button :class="`hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded-full p-3`"
+                @click="$dispatch('open-sub-menu-all')">
+                <i class="uil uil-bars text-2xl"></i>
+            </button>
+            <button :class="`hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded-full px-3 py-1 flex gap-3`">
+                <i class="uil uil-home text-2xl"></i>
+                <div class="whitespace-nowrap">Material Design 3</div>
+            </button>
+        </div>
+
+    </div>
+</template>

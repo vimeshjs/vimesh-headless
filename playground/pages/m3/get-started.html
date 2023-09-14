@@ -1,0 +1,335 @@
+<script>
+    const getStarted = {
+        data() {
+            return {
+                currentSectionId: null,
+                fixedSectionTop: 0,
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/0ZnL2zDiDVmtuWCeKL6K552nCk4idZVPXHeLgoXEXexXng3yBnj18gVbOXP27Rxyp4I0TI0Pu2Lr32Y3m5hvKronFP-muIHVEOBjpAVO35RvfqD07g=w2400',
+                        light: 'https://lh3.googleusercontent.com/56hiZfyb2EPY34-CEPG71OmvOGBTHLLhabrKW37cc13w4xp5cs-9Rel-zQO0anoqEejUOE6ZZPckCPVlgpG6N6rVDqoKQ7VA9iS9iHcR2jsGBDvrf0U=w2400'
+                    },
+                },
+                section1: {
+                    cards: [
+                        {
+                            title: 'What\'s Material?',
+                            content: 'Learn how Material enables beautiful product design at Google scale'
+                        },
+                        {
+                            title: 'Using Material',
+                            content: 'Get to know Material.io and our top resources'
+                        },
+                        {
+                            title: 'Design',
+                            content: 'Start applying color, type, adaptive design patterns, and more'
+                        },
+                        {
+                            title: 'Develop',
+                            content: 'Developer resources include code for Android, Flutter, and the Web'
+                        }
+                    ]
+                },
+                sections: [{
+                    id: 'section1',
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/XQByYnWbyuby_8byRsflu0KQ-rp0s303nwvr_Y89xrJUgq7v1o8wCzLlN0xs-uvjutTyBGp5HCwK6fNp8nBvVcR30ApCSumnPZqy3_Sl9ZVjbBsPDQ=w2400',
+                        light: 'https://lh3.googleusercontent.com/NAwI7k6MqTjvxHrCCOsjn04JjEx78oF0CDB9cn5H2ieYrjFHQDB_hOx9jV5gKxRmHg-151hPgP9cMgF1wl0F_6I1gQo4T5oIw9BEBNyoUZyOWDcTYLw=w2400',
+                    },
+                    title: 'What\'s Material?',
+                    contents: [
+                        'Material Design is a design system built and supported by Google designers and developers. Material.io includes in-depth UX guidance and UI component implementations for Android, Flutter, and the Web.',
+                        'The latest version, Material 3, enables personal, adaptive, and expressive experiences – from dynamic color and enhanced accessibility, to foundations for large screen layouts and design tokens.'
+                    ],
+                    cards: [{
+                        title: 'UX foundations',
+                        content: 'Foundations like color, type, and shape are customizable systems in Material'
+                    }, {
+                        title: 'Open-source code',
+                        content: 'Multi-platform code to build beautiful products, faster'
+                    }, {
+                        title: 'Tutorials, case studies & news',
+                        content: `Follow Material's blog for updates, deep dives, and more`
+                    }]
+                }, {
+                    id: 'section2',
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/JuW1ZD4t9g_V2Wal31Y910lD5W0B8PL37PHcr81vOZ8QMfxIBq2FmrzM7ubNE2P9sGBdCKh-NeHryHRP9enGKQOUE3qSVFHNyKje6rLO3c00qV8WYCkN=w2400',
+                        light: 'https://lh3.googleusercontent.com/khJSZ447U1WLnhvDgrifbGfWhhZOQsOZ5KHby5Q-JKaPtnqLsbY_J8nyzU3C1NEi0x14AfizRI6XDFmJp2pKGosXQoba5QGSejSkav_oz8Co38UyNA=w2400',
+                    },
+                    title: 'Using Material',
+                    contents: [
+                        'On Material.io, the design system is organized in three main parts: foundations, styles, and components. Each section includes design guidance and tools to help you customize and build with Material.'
+                    ],
+                    cards: [{
+                        title: 'Foundations & customization',
+                        content: 'Accessibility, layout, interaction states, design tokens, and more'
+                    }, {
+                        title: 'Styles',
+                        content: 'Systems for applying color, type, icons, motion, and shape'
+                    }, {
+                        title: 'Components',
+                        content: 'Customizable UI elements, from menus to buttons to dialogs'
+                    }]
+                }, {
+                    id: 'section3',
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/Jh_TEVO-gBzrFMtRXLCR6AADTOc77YhIxSzRZVez8ZELqeT5l9lZWbzokew4KuuijzdK3m-uF-_TlWIrMhumFt1sA3vxMP3Kczmc6Abnl8X74QwVMB8=w2400',
+                        light: 'https://lh3.googleusercontent.com/RbMYWtKTLGv7tEAwsya6Z7NHcUYpn4gwkrp3zy9dVhN0jFppAE7VR12r1Hpgh1fZI3MhK3jUsG2xnCSrzpaLiJTxIHWO_CIARwfhe6naTzWo5VIdg8Y=w2400',
+                    },
+                    title: 'Design',
+                    contents: [
+                        'Design guidance, specs, and tools to streamline the work of getting from Figma to finished products.'
+                    ],
+                    cards: [{
+                        title: 'Styles & customization',
+                        content: 'Scale design decisions with systems for color, type, and more'
+                    }, {
+                        title: 'Adaptive layouts',
+                        content: 'Patterns and best practices for handling multiple screen sizes'
+                    }, {
+                        title: 'Figma design kit',
+                        content: 'Jumpstart your designs with ready-made elements in the M3 design kit'
+                    }]
+                }, {
+                    id: 'section4',
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/NQiYVgUFF-eqtzEhZae7pqNoapgS-zIsnScEI6pECbi8UZ36E2-5XYizdC5PUYi-5iDfTOnd0pZfj4k8h1DXpgK3ZEIGPK3va7LRtM4RBOkAL14hC2I=w2400',
+                        light: 'https://lh3.googleusercontent.com/k5ZNz1pSrSN1NMrxHqxkO8Je_n5S9Q3TVYpZriGx9J2w_mCbya0INifAWw4KGRoaZTavD8e_rbaW3UqRUjk5UC5dKYXuh5M3qyLfrhwE6jIfVrCw9aeL=w2400',
+                    },
+                    title: 'Develop',
+                    contents: [
+                        'The latest Material Components, tutorials, case studies, and documentation.'
+                    ],
+                    cards: [{
+                        title: 'Android',
+                        content: 'Material Components and tutorials for Android’s Jetpack Compose'
+                    }, {
+                        title: 'Flutter',
+                        content: 'Material Components for Flutter, a mobile UI framework'
+                    }, {
+                        title: 'Web',
+                        content: 'Web Components and tutorials are in development for M3'
+                    }]
+                }],
+                setFixedSectionTop() {
+                    setTimeout(() => {
+                        const topSection = document.getElementById('topSection');
+                        if (topSection) {
+                            this.fixedSectionTop = topSection.getBoundingClientRect().height;
+                        }
+                    }, 600);
+                },
+                scroll(e) {
+                    const ids = this.sections.map(section => section.id);
+                    if (ids.length === 0) return;
+
+                    const footerSection = document.getElementById('footerSection');
+                    const fixedSection = document.getElementById('fixedSection');
+                    if (footerSection.getBoundingClientRect().top > window.innerHeight) {
+                        if (fixedSection) {
+                            fixedSection.style.marginTop = `${e.target.scrollTop - this.fixedSectionTop}px`;
+                        }
+                    }
+
+                    for (let i = ids.length - 1; i >= 0; i--) {
+
+                        const section = [];
+
+                        const startSectionId = ids[i];
+                        const startElement = document.getElementById(startSectionId);
+
+                        const { top } = startElement.getBoundingClientRect();
+                        if (top <= 0) {
+                            this.currentSectionId = startSectionId;
+                            return
+                        }
+                    }
+                    this.currentSectionId = null;
+
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:page="get-started" x-import="app:page-container" x-data="getStarted.data">
+    <app-page-container class="grid" style="grid-template-columns: 1fr 1fr;" @scroll="scroll">
+        <div id="topSection" class="m-auto w-full h-fit p-16 py-32 rounded-3xl bg-cover col-span-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`" x-init="setFixedSectionTop">
+
+            <div class="flex justify-center">
+                <svg aria-hidden="true" width="152" height="41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M39.073 20.5c3.23 6.02.79 11.471-5.44 13.133-1.662 6.23-7.112 8.67-13.133 5.44-6.021 3.23-11.472.79-13.133-5.44-6.23-1.662-8.67-7.112-5.44-13.133-3.23-6.021-.79-11.472 5.44-13.133 1.661-6.23 7.112-8.67 13.133-5.44 6.02-3.23 11.471-.79 13.133 5.44 6.23 1.661 8.67 7.112 5.44 13.133zM61.524 35.476c-6.699-6.7-6.699-17.56 0-24.26l5.692-5.692c6.7-6.699 17.56-6.699 24.26 0 6.699 6.7 6.699 17.56 0 24.26l-5.692 5.692c-6.7 6.699-17.56 6.699-24.26 0zM128.707 2.384c1.455-2.512 5.131-2.512 6.586 0 .97 1.672 3.071 2.345 4.853 1.553 2.677-1.19 5.651.939 5.329 3.813-.214 1.915 1.085 3.676 3 4.067 2.874.587 4.011 4.03 2.035 6.17a3.693 3.693 0 000 5.026c1.976 2.14.839 5.583-2.035 6.17-1.915.391-3.214 2.152-3 4.067.322 2.874-2.652 5.003-5.329 3.813-1.782-.792-3.883-.12-4.853 1.553-1.455 2.512-5.131 2.512-6.586 0-.97-1.672-3.071-2.345-4.853-1.553-2.677 1.19-5.651-.939-5.329-3.813.214-1.915-1.085-3.676-3-4.067-2.874-.587-4.011-4.03-2.035-6.17a3.693 3.693 0 000-5.026c-1.976-2.14-.839-5.583 2.035-6.17 1.915-.391 3.214-2.152 3-4.067-.322-2.874 2.652-5.003 5.329-3.813 1.782.792 3.883.12 4.853-1.553z"
+                        fill="#7fcfff"></path>
+                </svg>
+            </div>
+
+            <div class="flex justify-center pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Get Started</div>
+            </div>
+            <div class="flex justify-center pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-md text-lg md:text-xl lg:text-xl xl:text-xl text-center">
+                    Get to know Material 3 – from UX guidance and tools to reusable components and open-source code
+                </div>
+            </div>
+            <template x-if="!$store.page.showTopbar">
+                <div class="flex justify-center">
+                    <fin-section1 :cards="section1.cards"></fin-section1>
+                </div>
+            </template>
+        </div>
+        <template x-if="$store.page.showTopbar">
+            <div class="col-span-2">
+                <fin-section1 :cards="section1.cards"></fin-section1>
+            </div>
+        </template>
+        <template x-if="!$store.page.showTopbar">
+            <fin-sections-content :sections="sections"></fin-sections-content>
+        </template>
+        <template x-if="!$store.page.showTopbar && !Boolean(currentSectionId)">
+            <fin-sections-images :sections="sections"></fin-sections-images>
+        </template>
+        <template x-if="!$store.page.showTopbar && Boolean(currentSectionId)">
+            <fin-sections-image :section="sections.find(section=>section.id === currentSectionId)"></fin-sections-image>
+        </template>
+        <template x-if="$store.page.showTopbar">
+            <fin-sections :sections="sections"></fin-sections>
+        </template>
+
+        <div class="col-span-2" id="footerSection">
+            <app-footer></app-footer>
+        </div>
+    </app-page-container>
+</template>
+
+<template x-component:fin="section1">
+    <div class="max-w-7xl m-auto py-6 text-black">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <template x-for="card in $prop('cards',[])">
+                <div
+                    class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                    <template x-if="Boolean(card.bg)">
+                        <div class="h-48 rounded-3xl mb-4 bg-cover" :style="`background-image:url('${card.bg}')`"></div>
+                    </template>
+                    <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`" x-text="card.title">
+                    </div>
+                    <div class="px-6 font-normal" x-text="card.content">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
+
+<template x-component:fin="sections-content">
+    <div class="pr-2">
+        <template x-for="section in $prop('sections',[])">
+            <div :id="section.id">
+                <div class="flex justify-center py-20">
+                    <svg aria-hidden="true" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <pattern id="a" width="91" height="8" patternUnits="userSpaceOnUse">
+                            <g clip-path="url(#clip0_2426_11367)">
+                                <path
+                                    d="M114 4c-5.067 4.667-10.133 4.667-15.2 0S88.667-.667 83.6 4 73.467 8.667 68.4 4 58.267-.667 53.2 4 43.067 8.667 38 4 27.867-.667 22.8 4 12.667 8.667 7.6 4-2.533-.667-7.6 4s-10.133 4.667-15.2 0S-32.933-.667-38 4s-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0"
+                                    stroke="#E1E3E1" stroke-linecap="square"></path>
+                            </g>
+                        </pattern>
+                        <rect width="100%" height="100%" fill="url(#a)"></rect>
+                    </svg>
+                </div>
+                <div class="max-w-screen-2xl m-auto py-6 text-black">
+                    <div class="text-2xl md:text-4xl font-medium mt-4 md:mt-8 ml-4 md:ml-6 py-4 dark:text-gray-300"
+                        x-text="section.title"></div>
+
+                    <template x-for="content in section.contents">
+                        <div class="text-base md:text-base font-normal ml-4 md:ml-6 pb-4 dark:text-gray-300"
+                            x-text="content"></div>
+                    </template>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-2">
+                        <template x-for="card in section.cards">
+                            <div
+                                class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                                <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`"
+                                    x-text="card.title">
+                                </div>
+                                <div class="px-6 font-normal" x-text="card.content">
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>
+
+<template x-component:fin="sections-images">
+    <template x-if="Boolean($prop('currentSectionId'))">
+        <div x-text="$prop('currentSectionId')"></div>
+    </template>
+
+    <template x-if="!Boolean($prop('currentSectionId'))">
+        <div>
+            <template x-for="section in $prop('sections',[])">
+                <div class="rounded-3xl bg-cover bg-center mt-2"
+                    :style="`background-image: url('${section.top[$store.persist.theme]}');height:${$store.page.size.height - ($store.page.showTopbar ? 60 : 0) - 18}px;`">
+                </div>
+            </template>
+        </div>
+    </template>
+</template>
+
+<template x-component:fin="sections-image">
+    <div id="fixedSection">
+        <div class="rounded-3xl bg-cover bg-center"
+            :style="`background-image: url('${$prop('section').top[$store.persist.theme]}');height:${$store.page.size.height - ($store.page.showTopbar ? 60 : 0) - 18}px;`">
+        </div>
+    </div>
+</template>
+
+<template x-component:fin="sections" class="col-span-2">
+    <template x-for="section in $prop('sections',[])">
+        <div>
+            <div class="flex justify-center py-20">
+                <svg aria-hidden="true" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <pattern id="a" width="91" height="8" patternUnits="userSpaceOnUse">
+                        <g clip-path="url(#clip0_2426_11367)">
+                            <path
+                                d="M114 4c-5.067 4.667-10.133 4.667-15.2 0S88.667-.667 83.6 4 73.467 8.667 68.4 4 58.267-.667 53.2 4 43.067 8.667 38 4 27.867-.667 22.8 4 12.667 8.667 7.6 4-2.533-.667-7.6 4s-10.133 4.667-15.2 0S-32.933-.667-38 4s-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0"
+                                stroke="#E1E3E1" stroke-linecap="square"></path>
+                        </g>
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#a)"></rect>
+                </svg>
+            </div>
+            <div class="max-w-screen-2xl m-auto h-fit p-16 py-64 rounded-3xl bg-cover bg-center"
+                :style="`background-image: url('${section.top[$store.persist.theme]}')`">
+            </div>
+            <div class="max-w-screen-2xl m-auto py-6 text-black">
+                <div class="text-2xl md:text-4xl font-medium mt-4 md:mt-8 ml-4 md:ml-6 py-4 dark:text-gray-300"
+                    x-text="section.title"></div>
+
+                <template x-for="content in section.contents">
+                    <div class="text-base md:text-base font-normal ml-4 md:ml-6 pb-4 dark:text-gray-300"
+                        x-text="content"></div>
+                </template>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+                    <template x-for="card in section.cards">
+                        <div
+                            class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                            <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`"
+                                x-text="card.title">
+                            </div>
+                            <div class="px-6 font-normal" x-text="card.content">
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

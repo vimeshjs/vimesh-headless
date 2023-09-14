@@ -1,0 +1,46 @@
+<script>
+    const pageDevelopWeb = {
+        data() {
+            return {
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/25dhf3qzNHFE3NYiX3hOoMS4tdKXj8U0EYCqosc5_x4_g5Eg0ClC1NpAXkuHGwuuwM-3k0t0l5gV1mRC1BH3RgMiFLfzU0FaNrtJO3tY319OLfA5ixU=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/vvm00GimaLqpsW4zeODWAbrpApsUfm8t7XVOvW4ZMShdEjRa5dx3ZzQzXcbg7jMa6Fo2X63naBVvcXhuj3etkPO78ZHbA21oQfVc2xuWRo2A7wlKaE4=w2400-rj',
+                    },
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:page="develop-web" x-import="app:page-container" x-data="pageDevelopWeb.data">
+    <app-page-container>
+        <div class="m-auto w-full h-fit p-16 py-32 rounded-3xl bg-cover col-span-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Web</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-lg text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    Material Web is Google’s component library for building applications that work in any web framework.
+                </div>
+            </div>
+        </div>
+
+        <div class="m-auto w-full h-fit p-32 rounded-3xl bg-cover col-span-2">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium">Web support is planned</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-md text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    The Material Web team is making significant changes to the codebase in preparation for adding
+                    Material Design 3 support. Follow the material-web repository on Github for updates.
+                </div>
+            </div>
+        </div>
+
+        <app-footer></app-footer>
+    </app-page-container>
+</template>

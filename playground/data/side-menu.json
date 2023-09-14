@@ -1,0 +1,193 @@
+[
+  {
+    "path": "/home",
+    "name": "Home",
+    "icon": "home",
+    "color": "neutral",
+    "children": []
+  },
+  {
+    "path": "/get-started",
+    "name": "Get started",
+    "icon": "elipsis-double-v-alt",
+    "color": "blue"
+  },
+  {
+    "path": "/develop/overview",
+    "name": "Develop",
+    "icon": "arrow",
+    "color": "sky",
+    "children": [
+      { "path": "/develop/overview", "name": "Develop overview" },
+      {
+        "path": "/develop/android",
+        "name": "Android",
+        "children": [
+          { "path": "/develop/android/mdc-android", "name": "MDC-Android" },
+          {
+            "path": "/develop/android/jetpack-compose",
+            "name": "Jetpack Compose"
+          }
+        ]
+      },
+      { "path": "/develop/flutter", "name": "Flutter" },
+      { "path": "/develop/web", "name": "Web" }
+    ]
+  },
+  {
+    "path": "/foundations/overview",
+    "color": "sky",
+    "name": "Foundations",
+    "icon": "file-bookmark-alt",
+    "children": [
+      { "path": "/foundations/overview", "name": "Foundations overview" },
+      { "path": "/foundations/accessible-design", "name": "Accessibility" },
+      {
+        "path": "",
+        "name": "Content design",
+        "children": [
+          { "path": "", "name": "Overview" },
+          { "path": "", "name": "Style guide" }
+        ]
+      },
+      { "path": "", "name": "Customizing Material" },
+      { "path": "", "name": "Design tokens" },
+      {
+        "path": "",
+        "name": "Interaction",
+        "children": [
+          { "path": "", "name": "Gestures" },
+          { "path": "", "name": "Inputs" },
+          { "path": "", "name": "Selection" },
+          { "path": "", "name": "States" }
+        ]
+      },
+      {
+        "path": "",
+        "name": "Layout",
+        "children": [
+          {
+            "path": "",
+            "name": "Understanding layout"
+          },
+          {
+            "path": "",
+            "name": "Applying layout"
+          },
+          {
+            "path": "",
+            "name": "Canonical layouts"
+          }
+        ]
+      },
+      {
+        "path": "",
+        "name": "Material A-Z"
+      }
+    ]
+  },
+  {
+    "path": "/styles",
+    "color": "sky",
+    "name": "Styles",
+    "icon": "palette",
+    "children": [
+      { "path": "", "name": "Style overview" },
+      {
+        "path": "",
+        "name": "Color",
+        "children": [
+          { "path": "", "name": "Overview" },
+          { "path": "", "name": "Color system" },
+          { "path": "", "name": "Dynamic color" }
+        ]
+      },
+      { "path": "", "name": "Elvation" },
+      { "path": "", "name": "Icons" },
+      {
+        "path": "",
+        "name": "Motion",
+        "children": [
+          { "path": "", "name": "Overview" },
+          { "path": "", "name": "Easing and duration" },
+          { "path": "", "name": "Transitions" }
+        ]
+      },
+      {
+        "path": "",
+        "name": "Shape"
+      },
+      {
+        "path": "",
+        "name": "Typography"
+      }
+    ]
+  },
+  {
+    "path": "/components",
+    "color": "sky",
+    "name": "Components",
+    "icon": "plus-circle",
+    "children": [
+      { "path": "", "name": "Components overview" },
+      {
+        "path": "",
+        "name": "App bars",
+        "children": [
+          { "path": "", "name": "Bottom app bar" },
+          { "path": "", "name": "Top app bar" }
+        ]
+      },
+      { "path": "", "name": "Badges" },
+      {
+        "path": "",
+        "name": "Buttons",
+        "children": [
+          { "path": "", "name": "All buttons" },
+          { "path": "", "name": "Common buttons" },
+          { "path": "", "name": "FAB" },
+          { "path": "", "name": "Extened FAB" },
+          { "path": "", "name": "Icon buttons" },
+          { "path": "", "name": "Segmented buttons" }
+        ]
+      },
+      { "path": "", "name": "Cards" },
+      { "path": "", "name": "Carousel" },
+      { "path": "", "name": "Checkbox" },
+      { "path": "", "name": "Chips" },
+      { "path": "", "name": "Date pickers" },
+      { "path": "", "name": "Dialogs" },
+      { "path": "", "name": "Divider" },
+      { "path": "", "name": "Lists" },
+      { "path": "", "name": "Menus" },
+      {
+        "path": "",
+        "name": "Navigation",
+        "children": [
+          { "path": "", "name": "Navigation bar" },
+          { "path": "", "name": "Navigation drawer" },
+          { "path": "", "name": "Navigation rail" }
+        ]
+      },
+      { "path": "", "name": "Progress indicators" },
+      { "path": "", "name": "Radio button" },
+      { "path": "", "name": "Search" },
+      {
+        "path": "",
+        "name": "Sheets",
+        "children": [
+          { "path": "", "name": "Bottom sheets" },
+          { "path": "", "name": "Side sheets" }
+        ]
+      },
+      { "path": "", "name": "Sliders" },
+      { "path": "", "name": "Snackbar" },
+      { "path": "", "name": "Switch" },
+      { "path": "", "name": "Tabs" },
+      { "path": "", "name": "Text fields" },
+      { "path": "", "name": "Time pickers" },
+      { "path": "", "name": "Tooltips" }
+    ]
+  },
+  { "path": "blog", "color": "sky", "name": "Blog", "icon": "star" }
+]

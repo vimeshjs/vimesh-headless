@@ -1,0 +1,83 @@
+<script>
+    const pageFoundationsOverview = {
+        data() {
+            return {
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/D3-OahttrL-yH62XV-Ss1HzQWT1RaCeAowh_b24TSPUbfilOv559cGrzrExTklxin0oOrZ4RlyPYe85coUMZDSTCqgMOlsofyLm3RKFzhwONddZRf8X_=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/U8dSUmCjiqUZmZoCxzBZ5oGBCqCVipJvghZZDUfRgErjMa_UKYWEAU4TwlArCrW_TLDzfuIE08tirIROhJ8OZDsFZf8DK4p7pam74PGvtqBiE0ES2gI=w2400-rj',
+                    },
+                },
+                section1: {
+                    cards: [{
+                        title: 'Accessibility',
+                        content: 'Accessible design enables users with diverse abilities to navigate, understand, and enjoy a UI.',
+                        bg: 'https://lh3.googleusercontent.com/yW9keBR_4F-w5mTHkNzGsviez7-xaxbRrNjbjPGf3pm3WxwdJgqU-KDJvkL-MM0oNfptPRraXNZmZJ2-pxpUsPBwKaflHt-DHBHYD_nsEPXq7O9ing=w960',
+                    }, {
+                        title: 'Adaptive design',
+                        content: 'Adaptive layouts react to input from users, devices, and screen elements. Material guidance describes how to design for variable screen sizes, from phones and tablets, to desktop and beyond.',
+                        bg: 'https://lh3.googleusercontent.com/jeH_DXs3SntefbFeBWIMp-0t8EIpwnMDgqxooGiOgWfA2iS_S95TH-w0qD0jvMk2Dw7TOaAimKTwYrff88lNmGFKu97iuoctJPLAdZYwrv3VSSLQSw=w960',
+                    }, {
+                        title: 'Customizing Material',
+                        content: 'M3 makes brand expression in an interface simpler and more beautiful than ever before.',
+                        bg: 'https://lh3.googleusercontent.com/zQXC4ZwVUA3GFP6oWjRrrBmQXGUF4ivC5Te-AqK9NPihA5oLEkLbVyQiW3Wi3gIbOl4xjqWP1GpTG6GSdi1FYRFFwJyJO3_JLMaFSOiLyJaHk5knWJfq=w960',
+                    }, {
+                        title: 'Design tokens',
+                        content: 'Tokens store style values like colors and fonts so the same values can be used across designs, code, tools, and platforms.',
+                        bg: 'https://lh3.googleusercontent.com/3qHtqBY1lR0fp4IxXE72CAKXIv2VRSaYaAxYv7AmbLieFpnFw8_sBAxOoG8RwSWGJE7ErO6kIVrkZ_UrJMh86vxAmYkiF-ug6jmqKGM4UOsQTVga2w=w960',
+                    }, {
+                        title: 'Interaction states',
+                        content: 'States are visual indicators used to communicate the status of a component or interactive element.',
+                        bg: 'https://lh3.googleusercontent.com/1qunnpRZ_uridw9L8XI8RRKyRMHQ5npx4F4fFywzZpneckwd8T_t1WDhDu2ZbPlIV0XmauzfANMGJSb3VDBiB7sFxiFhiU7rSX3BQQhC5KY1UYjXPD8=w960',
+                    }, {
+                        title: 'Material A-Z',
+                        content: 'Get to know the key terms and concepts behind Material, from A to Z.',
+                        bg: 'https://lh3.googleusercontent.com/xA-uPF7vBzResUgmqwRGdzQfpLI7THZNLhC5wrEe5d_4H_zLYR3FeO1A_ADSCefvvtvoM9QMB4Jt6pr3x0gqs2QuXN1Xd_iIz38qDPvd3jlkSlfZCA=w960',
+                    },]
+                },
+            }
+        }
+    }
+</script>
+
+<template x-component:page="foundations-overview" x-import="app:page-container" x-data="pageFoundationsOverview.data">
+    <app-page-container>
+        <div class="m-auto w-full h-fit p-16 py-16 rounded-3xl bg-cover col-span-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Foundations</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-lg text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    Foundations inform the basis of any great user interface, from accessibility standards to essential
+                    patterns for layout and interaction.
+                </div>
+            </div>
+        </div>
+
+        <fin-foundations-overview-section :cards="section1.cards"></fin-foundations-overview-section>
+
+        <app-footer></app-footer>
+    </app-page-container>
+</template>
+
+<template x-component:fin="foundations-overview-section">
+    <div class="max-w-screen-xl m-auto py-6 text-black">
+        <div :class="`grid ${$prop('class', 'grid-cols-1 md:grid-cols-2')} gap-2`">
+            <template x-for="card in $prop('cards',[])">
+                <div
+                    class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                    <template x-if="Boolean(card.bg)">
+                        <div :class="`${$prop('height','h-72')} rounded-3xl mb-4 bg-cover bg-center`"
+                            :style="`background-image:url('${card.bg}')`"></div>
+                    </template>
+                    <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`" x-text="card.title">
+                    </div>
+                    <div class="px-6 font-normal" x-text="card.content">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,75 @@
+<script>
+    const pageDevelopOverview = {
+        data() {
+            return {
+                bg: {
+                    top: {
+                        dark: 'https://lh3.googleusercontent.com/kkr2TmO3u_FfBakRK1ZO-dpxKpxvX84TsZksqJNtfAjqBpCzdUairFKYnAhUj9Xz8tWkTXwYI9QjykmCmswAlsmLfIIXBFjxYabcsnuPizy5OHVYjMW2=w2400-rj',
+                        light: 'https://lh3.googleusercontent.com/ZBG1cIsDtZG3zwzieULlEvBk_jw6VpxHOkDlvCe9FUdoVObz7MxUtKmATzYZj1cYaj99SOzcpiz0Gjz8a78aEXpV_yEotJjfMwQrQvCD_4Up7qqfYWo=w2400-rj',
+                    },
+                },
+                section1: {
+                    cards: [{
+                        title: 'MDC-Android',
+                        content: 'Developer documentation, tutorials, and feature highlights to build with Material for Android.',
+                        bg: 'https://lh3.googleusercontent.com/_w9xZ-KglSVNibMtvqpKGEZG06lz2oQR0Auh4KB6EAGa7MYMkxvRmohH0-jyh8ciLXCnS-wxBlv62KUbaHObMik6bSQx_cT6DC2_olwfNHCvddX6eq4=w960',
+                    }, {
+                        title: 'Jetpack Compose',
+                        content: 'Developer documentation, tutorials, and feature highlights to build with Material for Android using Jetpack Compose.',
+                        bg: 'https://lh3.googleusercontent.com/YQ2x7-9vHQ7ax5tZrd5iWEyDQiJw-nBoqT0dmGEsEiJFrcJrSSzjVrgJh8apIm_mfV4_nucy-ZOFWMFjMEuCyHMvpHkN540fjWaBCsMENx37aNljhQo=w960',
+                    }, {
+                        title: 'Flutter',
+                        content: 'Developer documentation, tutorials, and feature highlights to build with Material for Flutter.',
+                        bg: 'https://lh3.googleusercontent.com/Wnu15qqiKzI9JuTmK-Iv5Ohu48whuEN65F1mlHOTOLOTyup9scIu-9V4f2cy_DgIuuyTkt3WxyUMeGG-M4mMu3HlCngs4PB280X28c4oKoc9qBo4ORY=w960',
+                    }, {
+                        title: 'Web',
+                        content: 'Planned developer documentation to build with Material in any Web framework.',
+                        bg: 'https://lh3.googleusercontent.com/EDyzxrUlg9kQePSpKWlGfEqIueTE6b5B7FdbzXbAXXCvOj55JW76TvUTydBxaJ5_YkBT8PZxdpxKdLg4c1yEp7dxWT7W8W3ucM_uh6tpmNvo7pUh1Q=w960',
+                    }]
+                }
+            }
+        }
+    }
+</script>
+
+<template x-component:page="develop-overview" x-import="app:page-container" x-data="pageDevelopOverview.data">
+    <app-page-container>
+        <div class="m-auto w-full h-fit p-16 py-32 rounded-3xl bg-cover col-span-2"
+            :style="`background-image: url('${bg.top[$store.persist.theme]}')`">
+
+            <div class="flex justify-start pt-6">
+                <div class="text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-medium">Develop</div>
+            </div>
+            <div class="flex justify-start pt-2 pb-8 text-2xl">
+                <div class="max-w-screen-md text-lg md:text-xl lg:text-xl xl:text-xl text-left font-normal">
+                    Implement Material Design with code and developer documentation for MDC-Android, Flutter, Jetpack
+                    Compose, and the Web.
+                </div>
+            </div>
+        </div>
+
+        <fin-develop-overview-section :cards="section1.cards"></fin-develop-overview-section>
+
+        <app-footer></app-footer>
+    </app-page-container>
+</template>
+
+<template x-component:fin="develop-overview-section">
+    <div class="max-w-screen-xl m-auto py-6 text-black">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <template x-for="card in $prop('cards',[])">
+                <div
+                    class="pb-6 rounded-3xl bg-gray-100 dark:bg-neutral-700 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 cursor-pointer">
+                    <template x-if="Boolean(card.bg)">
+                        <div class="h-72 rounded-3xl mb-4 bg-cover bg-center"
+                            :style="`background-image:url('${card.bg}')`"></div>
+                    </template>
+                    <div :class="`text-2xl font-medium px-6 ${Boolean(card.bg) ? '' : 'pt-6'}`" x-text="card.title">
+                    </div>
+                    <div class="px-6 font-normal" x-text="card.content">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
